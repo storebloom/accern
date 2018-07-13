@@ -1,15 +1,15 @@
 <?php
 /**
- * Template part for home page section 1
+ * Template part for home page section 2
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Accern_Custom
  */
 
-$section_info = get_home_section_info( '1', get_the_ID() );
+$section_info = get_home_section_info( '2', get_the_ID() );
 ?>
-<div id="home-section-1">
+<div id="home-section-2">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 	<div class="section-title">
 		<?php echo esc_html( $section_info['title'] ); ?>
@@ -25,20 +25,20 @@ $section_info = get_home_section_info( '1', get_the_ID() );
 	<?php if ( ! empty( $section_info['overlay-repeater'][1]['content'] ) && is_array( $section_info['overlay-repeater'] ) ) : ?>
 		<?php foreach ( $section_info['overlay-repeater'] as $num => $overlay_links ) : ?>
 			<div class="section-overlay">
-				<a class="accern-overlay-button" data-section="1" data-num="<?php echo esc_attr( $num ); ?>" id="section-1-overlay-<?php echo esc_attr( $num ); ?>">
+				<a class="accern-overlay-button" data-section="2" data-num="<?php echo esc_attr( $num ); ?>" id="section-2-overlay-<?php echo esc_attr( $num ); ?>">
 					<img class="overlay-icon" src="<?php echo esc_url( get_template_directory_uri() . '/assets/overlay-icon.png' ); ?>">
 					<?php echo esc_html( $overlay_links['title'] ); ?>
 				</a>
 			</div>
-			<?php
+		<?php
 		endforeach;
 	endif; ?>
 
 	<?php if ( isset( $section_info['cta-url'] ) && '' !== $section_info['cta-url'] ) : ?>
-	<div class="section-cta">
-		<a href="<?php echo esc_url( $section_info['cta-url'] ); ?>" class="accern-button">
-			<?php echo esc_html( $section_info['cta-text'] ); ?>
-		</a>
-	</div>
+		<div class="section-cta">
+			<a href="<?php echo esc_url( $section_info['cta-url'] ); ?>" class="accern-button">
+				<?php echo esc_html( $section_info['cta-text'] ); ?>
+			</a>
+		</div>
 	<?php endif; ?>
 </div>

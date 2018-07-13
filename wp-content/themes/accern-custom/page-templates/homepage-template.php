@@ -10,7 +10,13 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 
-	get_template_part( 'template-parts/home', '1' );
+	// Set for 5 sections.  Change integer to add or remove sections.
+	for ( $x = 0; $x <= 5; $x++ ) {
+		get_template_part( 'template-parts/home', (string) $x );
+	}
+
+	// Pull in overlay wrap.
+	get_template_part( 'template-parts/home', 'overlay' );
 endwhile; // End of the loop.
 
 get_footer();

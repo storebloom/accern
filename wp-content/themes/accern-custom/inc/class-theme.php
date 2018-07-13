@@ -53,7 +53,10 @@ class Theme extends Theme_Base {
 	 * @action wp_enqueue_scripts
 	 */
 	public function register_assets() {
-
+		wp_register_script( "{$this->assets_prefix}-front-ui", "{$this->dir_url}/js/accern-front-ui.js", array(
+			'jquery',
+			'wp-util',
+		), time() );
 	}
 
 	/**
@@ -62,6 +65,9 @@ class Theme extends Theme_Base {
 	 * @action admin_enqueue_scripts
 	 */
 	public function register_admin_assets() {
-
+		wp_register_script( "{$this->assets_prefix}-custom-fields", "{$this->dir_url}/js/accern-custom-fields.js", array(
+			'jquery',
+			'wp-util',
+		), time() );
 	}
 }
