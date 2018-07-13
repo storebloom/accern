@@ -31,6 +31,37 @@ class Custom_Fields {
 	}
 
 	/**
+	 * Enqueue Assets for custom fields.
+	 *
+	 * @action admin_enqueue_scripts
+	 */
+	public function enqueue_admin_assets() {
+		wp_enqueue_script( "{$this->theme->assets_prefix}-custom-fields" );
+		wp_add_inline_script( "{$this->theme->assets_prefix}-custom-fields", sprintf( 'AccernCustomFields.boot( %s );',
+			wp_json_encode( array(
+				'nonce'         => wp_create_nonce( $this->theme->meta_prefix ),
+			) )
+		) );
+	}
+
+	/**
+	 * Enqueue front Assets for custom fields.
+	 *
+	 * @action wp_enqueue_scripts
+	 */
+	public function enqueue_front_assets() {
+		global $post;
+
+		wp_enqueue_script( "{$this->theme->assets_prefix}-front-ui" );
+		wp_add_inline_script( "{$this->theme->assets_prefix}-front-ui", sprintf( 'AccernFrontUI.boot( %s );',
+			wp_json_encode( array(
+				'nonce'  => wp_create_nonce( $this->theme->meta_prefix ),
+				'postid' => $post->ID,
+			) )
+		) );
+	}
+
+	/**
 	 * Register the page description metabox in page editor.
 	 *
 	 * @action add_meta_boxes
@@ -58,18 +89,10 @@ class Custom_Fields {
 	 * @param string $fields The html for all custom fields in that metabox.
 	 */
 	public function get_metabox_html( $postid, $fields = array() ) {
-		$allowed_tags = wp_kses_allowed_html( 'post' );
-		$allowed_tags['input'] = array(
-			'value' => true,
-			'name' => true,
-			'class' => true,
-		);
-		$html = $fields['args'];
-
 		// Noncename needed to verify where the data originated.
 		wp_nonce_field( 'accern-meta-settings', 'accern_meta_noncename' );
 
-		echo wp_kses( $html, $allowed_tags );
+		echo isset( $fields['args'] ) ? $fields['args'] : ''; // XSS ok. All html is sanitized before getting to this point.
 	}
 
 	/**
@@ -97,9 +120,19 @@ class Custom_Fields {
 			return;
 		}
 
+		// Sanitize all types of meta data.
 		if ( isset( $_POST['page-meta'] ) && is_array( $_POST['page-meta'] ) ) {
 			foreach ( $_POST['page-meta'] as $section => $meta ) {
-				$value[ $section ] = array_map( 'sanitize_text_field', wp_unslash( $meta ) );
+				foreach ( $meta as $field_name => $field_value ) {
+					if ( 'overlay-repeater' === $field_name ) {
+						foreach ( $field_value as $num => $overlay_values ) {
+							$value[ $section ][ $field_name ][ $num ]['title'] = sanitize_text_field( wp_unslash( $overlay_values['title'] ) );
+							$value[ $section ][ $field_name ][ $num ]['content'] = wp_kses_post( wp_unslash( $overlay_values['content'] ) );
+						}
+					} else {
+						$value[ $section ][ $field_name ] = sanitize_text_field( wp_unslash( $field_value ) );
+					}
+				}
 			}
 		}
 
@@ -117,28 +150,29 @@ class Custom_Fields {
 
 		switch ( $page_template ) {
 			case 'page-templates/homepage-template.php' :
-				// Remove all page editors that have custom metaboxes.
+				// Remove editor features for specific page.
 				remove_post_type_support( 'page', 'editor' );
+				remove_meta_box( 'postimagediv', 'page', 'side' );
 
-				$prefix = 'home-section-1';
+				// Set for 5 homepage sections.  Looping since all metaboxes have same fields.
+				for ( $x = 1; $x <= 5; $x ++ ) {
+					// Section 1.
+					$prefix          = 'home-section-' . $x;
+					$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
+					$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
+					$cta_text_field  = $this->create_custom_field( $postid, $prefix, 'cta-text', 'text' );
+					$cta_field       = $this->create_custom_field( $postid, $prefix, 'cta-url', 'text' );
+					$overlay_field   = $this->create_custom_field( $postid, $prefix, 'overlay-repeater', 'overlay' );
 
-				// Section 1 Custom Fields.
-				$title_field = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
-				$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
-				$cta_url_field = $this->create_custom_field( $postid, $prefix,'cta-url', 'text' );
-				$cta_text_field = $this->create_custom_field( $postid, $prefix,'cta-text', 'text' );
-				$logo_repeater_field = $this->create_custom_field( $postid, $prefix, 'trust-by', 'image_repeater' );
-
-				$metabox_array = array(
-					array(
-						'id' => $prefix . '-accern',
-						'description' => esc_html__( 'Home Section 1', 'accern-custom' ),
-						'screen'   => 'page',
-						'context'  => 'normal',
-						'priority' => 'high',
-						'args' => $title_field . $sub_title_field . $cta_url_field . $cta_text_field . $logo_repeater_field,
-					),
-				);
+					$metabox_array[] = array(
+						'id'          => $prefix . '-accern',
+						'description' => 'Home Section ' . $x,
+						'screen'      => 'page',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $title_field . $sub_title_field . $cta_text_field . $cta_field . $overlay_field,
+					);
+				}
 			break;
 		} // End switch().
 
@@ -171,10 +205,82 @@ class Custom_Fields {
 	 * @param string $value The custom field value if any.
 	 */
 	private function get_text_field_html( $section, $name, $value = '' ) {
+		$allowed_tags = wp_kses_allowed_html( 'post' );
+		$allowed_tags['input'] = array(
+			'value' => true,
+			'name' => true,
+			'class' => true,
+			'size' => true,
+		);
+
 		$html = '<div class="accern-text-field">';
 		$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . '</label>';
-		$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . ']" value="' . $value . '">';
+		$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . ']" value="' . $value . '" size="60">';
 		$html .= '</div>';
+
+		return wp_kses( $html, $allowed_tags );
+	}
+
+	/**
+	 * Call back function for returning custom overlay repeater wysiwyg field html
+	 *
+	 * @param string $section The metabox section.
+	 * @param string $name The field name.
+	 * @param string $value The custom field value if any.
+	 */
+	private function get_overlay_field_html( $section, $name, $value = '' ) {
+		$html = '';
+
+		if ( is_array( $value ) ) {
+			foreach ( $value as $field_num => $field_value ) {
+				$title = isset( $field_value['title'] ) ? $field_value['title'] : '';
+				$content = isset( $field_value['content'] ) ? $field_value['content'] : '';
+				$options = array(
+					'media_buttons' => true,
+					'textarea_name' => 'page-meta[' . $section . '][' . $name . '][' . $field_num . '][content]',
+				);
+				$id = $section . '_' . $name . '_' . $field_num;
+
+				$html .= '<div data-num="' . $field_num . '" class="accern-overlay-field">';
+
+				if ( 1 < count( $value ) && ! empty( $field_value['content'] ) ) {
+					$html .= '<button type="button" class="remove-overlay-field">-</button>';
+				}
+
+				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
+				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][title]" value="' . esc_attr( $title ) . '" size="60">';
+				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
+
+				ob_start();
+				wp_editor( $content, $id, $options );
+
+				$html .= ob_get_clean();
+				$html .= \_WP_Editors::enqueue_scripts();
+				$html .= \_WP_Editors::editor_js();
+				$html .= '</div>';
+			}
+		} else {
+			$options = array(
+				'media_buttons' => true,
+				'textarea_name' => 'page-meta[' . $section . '][' . $name . '][1][content]',
+			);
+			$id = $section . '_' . $name . '_1';
+
+			$html .= '<div class="accern-overlay-field">';
+			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
+			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
+
+			ob_start();
+			wp_editor( '', $id, $options );
+
+			$html .= ob_get_clean();
+			$html .= \_WP_Editors::enqueue_scripts();
+			$html .= \_WP_Editors::editor_js();
+			$html .= '</div>';
+		} // End if().
+
+		$html .= '<button type="button" class="add-overlay-field">+</button>';
 
 		return $html;
 	}
@@ -212,5 +318,53 @@ class Custom_Fields {
 		$html .= '</div>';
 
 		return $html;
+	}
+
+	/**
+	 * AJAX Call Back function to return a new wysiwyg for overlay
+	 *
+	 * @action wp_ajax_get_overlay_field
+	 */
+	public function get_overlay_field() {
+		check_ajax_referer( $this->theme->meta_prefix, 'nonce' );
+
+		if ( ! isset( $_POST['count'] ) || '' === $_POST['count'] ) { // WPCS: input var ok.
+			wp_send_json_error( 'Get overlay field failed' );
+		}
+
+		$count = intval( $_POST['count'] ) + 1 ; // WPCS: input var ok.
+		$section = sanitize_text_field( wp_unslash( $_POST['section'] ) ); // WPCS: input var ok.
+
+		$options = array(
+			'media_buttons' => true,
+			'textarea_name' => 'page-meta[' . $section . '][overlay-repeater][' . $count . '][content]',
+		);
+		$id = $section . '_overlay-repeater_' . $count;
+
+		wp_editor( '', $id, $options );
+
+		wp_die();
+	}
+
+	/**
+	 * AJAX Call Back function to return a the overlay content for specified link.
+	 *
+	 * @action wp_ajax_get_overlay_content
+	 */
+	public function get_overlay_content() {
+		check_ajax_referer( $this->theme->meta_prefix, 'nonce' );
+
+		if ( ! isset( $_POST['section'] ) || '' === $_POST['section'] ) { // WPCS: input var ok.
+			wp_send_json_error( 'Get overlay content failed' );
+		}
+
+		$section = sanitize_text_field( wp_unslash( $_POST['section'] ) ); // WPCS: input var ok.
+		$number = sanitize_text_field( wp_unslash( $_POST['number'] ) ); // WPCS: input var ok.
+		$postid = (int) $_POST['postid'];
+
+		$post_meta = get_post_meta( $postid, 'page-meta', true );
+		$content = isset( $post_meta[ $section ]['overlay-repeater'][ $number ]['content'] ) ? $post_meta[ $section ]['overlay-repeater'][ $number ]['content'] : '';
+
+		wp_send_json_success( $content );
 	}
 }
