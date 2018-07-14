@@ -127,10 +127,16 @@ class Custom_Fields {
 					if ( 'overlay-repeater' === $field_name ) {
 						foreach ( $field_value as $num => $overlay_values ) {
 							$value[ $section ][ $field_name ][ $num ]['title'] = sanitize_text_field( wp_unslash( $overlay_values['title'] ) );
+							$value[ $section ][ $field_name ][ $num ]['url'] = esc_url_raw( $overlay_values['url'] );
 							$value[ $section ][ $field_name ][ $num ]['content'] = wp_kses_post( wp_unslash( $overlay_values['content'] ) );
 						}
+					} elseif ( 'link-repeater' === $field_name ) {
+						foreach ( $field_value as $num => $link_values ) {
+							$value[ $section ][ $field_name ][ $num ]['title'] = sanitize_text_field( wp_unslash( $link_values['title'] ) );
+							$value[ $section ][ $field_name ][ $num ]['url'] = str_replace( 'http://', '', esc_url_raw( $link_values['url'] ) );
+						}
 					} else {
-						$value[ $section ][ $field_name ] = sanitize_text_field( wp_unslash( $field_value ) );
+						$value[ $section ][ $field_name ] = wp_kses_post( wp_unslash( $field_value ) );
 					}
 				}
 			}
@@ -147,6 +153,7 @@ class Custom_Fields {
 	 */
 	private function set_the_meta_boxes( $postid, $page_template ) {
 		$metabox_array = array();
+		$post_type = get_post_type( $postid );
 
 		switch ( $page_template ) {
 			case 'page-templates/homepage-template.php' :
@@ -154,27 +161,119 @@ class Custom_Fields {
 				remove_post_type_support( 'page', 'editor' );
 				remove_meta_box( 'postimagediv', 'page', 'side' );
 
-				// Set for 5 homepage sections.  Looping since all metaboxes have same fields.
-				for ( $x = 1; $x <= 5; $x ++ ) {
-					// Section 1.
-					$prefix          = 'home-section-' . $x;
-					$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
-					$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
-					$cta_text_field  = $this->create_custom_field( $postid, $prefix, 'cta-text', 'text' );
-					$cta_field       = $this->create_custom_field( $postid, $prefix, 'cta-url', 'text' );
-					$overlay_field   = $this->create_custom_field( $postid, $prefix, 'overlay-repeater', 'overlay' );
+				// Set for 6 homepage sections.  Looping since all metaboxes have same fields.
+				for ( $x = 1; $x <= 6; $x ++ ) {
+					if ( $x < 6 ) {
+						$prefix          = 'home-section-' . $x;
+						$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
+						$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
+						$overlay_field   = $this->create_custom_field( $postid, $prefix, 'overlay-repeater', 'overlay' );
 
-					$metabox_array[] = array(
-						'id'          => $prefix . '-accern',
-						'description' => 'Home Section ' . $x,
+						$metabox_array[] = array(
+							'id'          => $prefix . '-accern',
+							'description' => 'Home Section ' . $x,
+							'screen'      => 'page',
+							'context'     => 'normal',
+							'priority'    => 'high',
+							'args'        => $title_field . $sub_title_field . $overlay_field,
+						);
+					} else {
+						// Home Use Cases Link Section.
+						$prefix        = 'home-section-cases';
+						$title_field   = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
+						$link_repeater = $this->create_custom_field( $postid, $prefix, 'link-repeater', 'link_repeater' );
+
+						$metabox_array[] = array(
+							'id'          => $prefix . '-accern',
+							'description' => esc_html__( 'Home Use Cases Section', 'accern-custom' ),
+							'screen'      => 'page',
+							'context'     => 'normal',
+							'priority'    => 'high',
+							'args'        => $title_field . $link_repeater,
+						);
+					}
+				}
+			break;
+			case 'page-templates/company-template.php' :
+				// Remove editor features for specific page.
+				remove_post_type_support( 'page', 'editor' );
+				remove_meta_box( 'postimagediv', 'page', 'side' );
+
+				$prefix          = 'company-main-section';
+				$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
+				$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
+				$wysiwyg_field   = $this->create_custom_field( $postid, $prefix, 'content', 'wysiwyg' );
+
+				$prefix2          = 'company-team-section';
+				$title_field2     = $this->create_custom_field( $postid, $prefix2, 'title', 'text' );
+				$sub_title_field2 = $this->create_custom_field( $postid, $prefix2, 'sub-title', 'text' );
+				$wysiwyg_field2   = $this->create_custom_field( $postid, $prefix2, 'content', 'wysiwyg' );
+				$overlay_field2   = $this->create_custom_field( $postid, $prefix2, 'overlay-repeater', 'overlay' );
+
+				$prefix3          = 'company-partners-section';
+				$title_field3     = $this->create_custom_field( $postid, $prefix3, 'title', 'text' );
+				$sub_title_field3 = $this->create_custom_field( $postid, $prefix3, 'sub-title', 'text' );
+				$wysiwyg_field3   = $this->create_custom_field( $postid, $prefix3, 'content', 'wysiwyg' );
+				$overlay_field3   = $this->create_custom_field( $postid, $prefix3, 'overlay-repeater', 'overlay' );
+
+				$metabox_array = array(
+					array(
+					'id'          => $prefix . '-accern',
+					'description' => 'Company Main Section',
+					'screen'      => 'page',
+					'context'     => 'normal',
+					'priority'    => 'high',
+					'args'        => $title_field . $sub_title_field . $wysiwyg_field,
+					),
+					array(
+						'id'          => $prefix2 . '-accern',
+						'description' => 'Company Team Section',
 						'screen'      => 'page',
 						'context'     => 'normal',
 						'priority'    => 'high',
-						'args'        => $title_field . $sub_title_field . $cta_text_field . $cta_field . $overlay_field,
-					);
-				}
+						'args'        => $title_field2 . $sub_title_field2 . $wysiwyg_field2 . $overlay_field2,
+					),
+					array(
+						'id'          => $prefix3 . '-accern',
+						'description' => 'Company Partners Section',
+						'screen'      => 'page',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $title_field3 . $sub_title_field3 . $wysiwyg_field3 . $overlay_field3,
+					),
+				);
 			break;
 		} // End switch().
+
+		if ( 'team' === $post_type ) {
+			$url_field = $this->create_custom_field( $postid, 'team-section-accern', 'linkedin', 'text' );
+
+			$metabox_array = array(
+				array(
+					'id'          => 'team-section-accern',
+					'description' => 'Linkedin Account Url',
+					'screen'      => 'team',
+					'context'     => 'normal',
+					'priority'    => 'high',
+					'args'        => $url_field,
+				),
+			);
+		}
+
+		if ( 'partner' === $post_type ) {
+			$url_field = $this->create_custom_field( $postid, 'partner-section-accern', 'link', 'text' );
+
+			$metabox_array = array(
+				array(
+					'id'          => 'partner-section-accern',
+					'description' => 'Company Url',
+					'screen'      => 'partner',
+					'context'     => 'normal',
+					'priority'    => 'high',
+					'args'        => $url_field,
+				),
+			);
+		}
 
 		return $metabox_array;
 	}
@@ -186,6 +285,7 @@ class Custom_Fields {
 	 * @param string  $section The metabox section.
 	 * @param string  $name The field name.
 	 * @param string  $type The type of field to create.
+	 * @param string  $post_type The post type of the post specified.
 	 *
 	 * @return string
 	 */
@@ -228,6 +328,36 @@ class Custom_Fields {
 	 * @param string $name The field name.
 	 * @param string $value The custom field value if any.
 	 */
+	private function get_wysiwyg_field_html( $section, $name, $value = '' ) {
+		$html = '';
+
+		$options = array(
+			'media_buttons' => true,
+			'textarea_name' => 'page-meta[' . $section . '][' . $name . ']',
+		);
+		$id = $section . '_' . $name . '_1';
+
+		$html .= '<div class="accern-wysiwyg-field">';
+		$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . '</label>';
+
+		ob_start();
+		wp_editor( $value, $id, $options );
+
+		$html .= ob_get_clean();
+		$html .= \_WP_Editors::enqueue_scripts();
+		$html .= \_WP_Editors::editor_js();
+		$html .= '</div>';
+
+		return $html;
+	}
+
+	/**
+	 * Call back function for returning custom overlay repeater wysiwyg field html
+	 *
+	 * @param string $section The metabox section.
+	 * @param string $name The field name.
+	 * @param string $value The custom field value if any.
+	 */
 	private function get_overlay_field_html( $section, $name, $value = '' ) {
 		$html = '';
 
@@ -235,6 +365,7 @@ class Custom_Fields {
 			foreach ( $value as $field_num => $field_value ) {
 				$title = isset( $field_value['title'] ) ? $field_value['title'] : '';
 				$content = isset( $field_value['content'] ) ? $field_value['content'] : '';
+				$url = isset( $field_value['url'] ) ? $field_value['url'] : '';
 				$options = array(
 					'media_buttons' => true,
 					'textarea_name' => 'page-meta[' . $section . '][' . $name . '][' . $field_num . '][content]',
@@ -249,6 +380,8 @@ class Custom_Fields {
 
 				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
 				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][title]" value="' . esc_attr( $title ) . '" size="60">';
+				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL (Leave empty if overlay)</label>';
+				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][url]" value="' . esc_attr( $url ) . '" size="60">';
 				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
 
 				ob_start();
@@ -269,6 +402,8 @@ class Custom_Fields {
 			$html .= '<div class="accern-overlay-field">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
+			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL (Leave empty if overlay)</label>';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][url]" value="' . esc_attr( $url ) . '" size="60">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
 
 			ob_start();
@@ -281,6 +416,46 @@ class Custom_Fields {
 		} // End if().
 
 		$html .= '<button type="button" class="add-overlay-field">+</button>';
+
+		return $html;
+	}
+
+	/**
+	 * Call back function for returning custom overlay repeater wysiwyg field html
+	 *
+	 * @param string $section The metabox section.
+	 * @param string $name The field name.
+	 * @param string $value The custom field value if any.
+	 */
+	private function get_link_repeater_field_html( $section, $name, $value = '' ) {
+		$html = '';
+
+		if ( is_array( $value ) ) {
+			foreach ( $value as $field_num => $field_value ) {
+				$title = isset( $field_value['title'] ) ? $field_value['title'] : '';
+				$url = isset( $field_value['url'] ) ? $field_value['url'] : '';
+				$html .= '<div data-num="' . $field_num . '" class="accern-link-field">';
+
+				if ( 1 < count( $value ) && ! empty( $field_value['url'] ) ) {
+					$html .= '<button type="button" class="remove-link-field">-</button>';
+				}
+
+				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
+				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][title]" value="' . esc_attr( $title ) . '" size="60">';
+				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL</label>';
+				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][url]" value="' . esc_attr( $url ) . '" size="60">';
+				$html .= '</div>';
+			}
+		} else {
+			$html .= '<div data-num="1" class="accern-link-field">';
+			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
+			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL</label>';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][url]" value="" size="60">';
+			$html .= '</div>';
+		} // End if().
+
+		$html .= '<button type="button" class="add-link-field">+</button>';
 
 		return $html;
 	}

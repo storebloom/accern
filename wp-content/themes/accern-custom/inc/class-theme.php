@@ -35,6 +35,7 @@ class Theme extends Theme_Base {
 		// Initiate classes.
 		$classes = array(
 			new Custom_Fields( $this ),
+			new Register( $this ),
 		);
 
 		// Add classes doc hooks.

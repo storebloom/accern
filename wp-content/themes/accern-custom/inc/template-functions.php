@@ -49,3 +49,17 @@ function get_home_section_info( $section, $postid ) {
 
 	return $home_meta[ 'home-section-' . $section ];
 }
+
+/**
+ * Helper function to retreive company page sections data.
+ *
+ * @param $section
+ * @param $postid
+ *
+ * @return array
+ */
+function get_company_section_info( $section, $postid ) {
+	$company_meta = get_post_meta( $postid, 'page-meta', true );
+
+	return $company_meta[ 'company-' . $section . '-section' ];
+}
