@@ -15,6 +15,9 @@ while ( have_posts() ) :
 		get_template_part( 'template-parts/home', (string) $x );
 	}
 
+	// Pull in use cases link list section.
+	get_template_part( 'template-parts/home', 'cases' );
+
 	// Pull in overlay wrap.
 	get_template_part( 'template-parts/home', 'overlay' );
 endwhile; // End of the loop.

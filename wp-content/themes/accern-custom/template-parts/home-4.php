@@ -22,23 +22,23 @@ $section_info = get_home_section_info( '4', get_the_ID() );
 	</div>
 	<?php endif; ?>
 
-	<?php if ( ! empty( $section_info['overlay-repeater'][1]['content'] ) && is_array( $section_info['overlay-repeater'] ) ) : ?>
+	<?php if ( ! empty( $section_info['overlay-repeater'][1]['title'] ) && is_array( $section_info['overlay-repeater'] ) ) : ?>
 		<?php foreach ( $section_info['overlay-repeater'] as $num => $overlay_links ) : ?>
-			<div class="section-overlay">
-				<a class="accern-overlay-button" data-section="4" data-num="<?php echo esc_attr( $num ); ?>" id="section-4-overlay-<?php echo esc_attr( $num ); ?>">
-					<img class="overlay-icon" src="<?php echo esc_url( get_template_directory_uri() . '/assets/overlay-icon.png' ); ?>">
-					<?php echo esc_html( $overlay_links['title'] ); ?>
-				</a>
-			</div>
-			<?php
+			<?php if ( ! empty( $overlay_links['url'] ) ) : ?>
+				<div class="section-cta">
+					<a href="<?php echo esc_url( $overlay_links['url'] ); ?>" class="accern-button">
+						<?php echo esc_html( $overlay_links['title'] ); ?>
+					</a>
+				</div>
+			<?php else : ?>
+				<div class="section-overlay">
+					<a class="accern-overlay-button" data-section="home-section-4" data-num="<?php echo esc_attr( $num ); ?>" id="section-4-overlay-<?php echo esc_attr( $num ); ?>">
+						<?php echo esc_html( $overlay_links['title'] ); ?>
+					</a>
+				</div>
+				<?php
+			endif;
 		endforeach;
-	endif; ?>
-
-	<?php if ( isset( $section_info['cta-url'] ) && '' !== $section_info['cta-url'] ) : ?>
-		<div class="section-cta">
-			<a href="<?php echo esc_url( $section_info['cta-url'] ); ?>" class="accern-button">
-				<?php echo esc_html( $section_info['cta-text'] ); ?>
-			</a>
-		</div>
-	<?php endif; ?>
+	endif;
+	?>
 </div>

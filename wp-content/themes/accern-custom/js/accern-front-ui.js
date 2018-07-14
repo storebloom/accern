@@ -41,7 +41,7 @@ var AccernFrontUI = ( function( $, wp ) {
 				timer = '';
 
 			this.$pageContainer.on( 'click', '.accern-overlay-button', function() {
-				var section = 'home-section-' + $( this ).attr( 'data-section' ),
+				var section = $( this ).attr( 'data-section' ),
 					overlayNum = $( this ).attr( 'data-num' );
 
 				self.openOverlay( section, overlayNum );
