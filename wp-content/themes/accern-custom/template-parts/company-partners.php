@@ -8,11 +8,13 @@
  */
 
 $section_info = get_company_section_info( 'partners', get_the_ID() );
-$associations = get_terms([
+$associations = get_terms(
+	array(
 	'taxonomy'   => 'association',
 	'order'      => 'ASC',
 	'hide_empty' => true,
-]);
+	)
+);
 ?>
 <div id="company-partners-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
