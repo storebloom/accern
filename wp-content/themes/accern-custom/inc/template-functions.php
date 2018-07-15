@@ -51,15 +51,16 @@ function get_home_section_info( $section, $postid ) {
 }
 
 /**
- * Helper function to retreive company page sections data.
+ * Helper function to retreive page sections data.
  *
- * @param $section
- * @param $postid
+ * @param string  $page The page name to get info for.
+ * @param string  $section The Section of the page to get info for.
+ * @param integer $postid The post id to get info from.
  *
  * @return array
  */
-function get_company_section_info( $section, $postid ) {
-	$company_meta = get_post_meta( $postid, 'page-meta', true );
+function get_section_info( $page, $section, $postid ) {
+	$the_meta = get_post_meta( $postid, 'page-meta', true );
 
-	return $company_meta[ 'company-' . $section . '-section' ];
+	return $the_meta[ $page . '-' . $section . '-section' ];
 }
