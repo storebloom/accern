@@ -243,6 +243,27 @@ class Custom_Fields {
 					),
 				);
 			break;
+			case 'page-templates/community-template.php' :
+				// Remove editor features for specific page.
+				remove_post_type_support( 'page', 'editor' );
+				remove_meta_box( 'postimagediv', 'page', 'side' );
+
+				$prefix          = 'community-main-section';
+				$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
+				$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
+				$wysiwyg_field   = $this->create_custom_field( $postid, $prefix, 'content', 'wysiwyg' );
+
+				$metabox_array = array(
+					array(
+						'id'          => $prefix . '-accern',
+						'description' => 'Community Main Section',
+						'screen'      => 'page',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $title_field . $sub_title_field . $wysiwyg_field,
+					),
+				);
+				break;
 		} // End switch().
 
 		if ( 'team' === $post_type ) {
