@@ -8,11 +8,13 @@
  */
 
 $section_info = get_company_section_info( 'team', get_the_ID() );
-$team_regions = get_terms([
+$team_regions = get_terms(
+	array(
 	'taxonomy'   => 'team_region',
 	'order'      => 'ASC',
 	'hide_empty' => true,
-]);
+	)
+);
 ?>
 <div id="company-team-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
