@@ -7,7 +7,7 @@
  * @package Accern_Custom
  */
 
-$section_info = get_company_section_info( 'main', get_the_ID() );
+$section_info = get_section_info( 'company', 'main', get_the_ID() );
 ?>
 <div id="company-main-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>

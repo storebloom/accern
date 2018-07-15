@@ -12,6 +12,18 @@ while ( have_posts() ) :
 
 	// Pull in main community section.
 	get_template_part( 'template-parts/community', 'main' );
+
+	// Pull in white papers community section.
+	get_template_part( 'template-parts/community', 'white' );
+
+	// Pull in education center community section.
+	get_template_part( 'template-parts/community', 'education' );
+
+	// Pull in media community section.
+	get_template_part( 'template-parts/community', 'media' );
+
+	// Pull in overlay wrap.
+	get_template_part( 'template-parts/home', 'overlay' );
 endwhile; // End of the loop.
 
 get_footer();

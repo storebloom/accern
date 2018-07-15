@@ -7,7 +7,7 @@
  * @package Accern_Custom
  */
 
-$section_info = get_company_section_info( 'team', get_the_ID() );
+$section_info = get_section_info( 'company', 'team', get_the_ID() );
 $team_regions = get_terms(
 	array(
 	'taxonomy'   => 'team_region',

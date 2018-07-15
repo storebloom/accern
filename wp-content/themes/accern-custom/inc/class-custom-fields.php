@@ -251,7 +251,7 @@ class Custom_Fields {
 				$prefix          = 'community-main-section';
 				$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
 				$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
-				$wysiwyg_field   = $this->create_custom_field( $postid, $prefix, 'content', 'wysiwyg' );
+				$overlay_field   = $this->create_custom_field( $postid, $prefix, 'overlay-repeater', 'overlay' );
 
 				$metabox_array = array(
 					array(
@@ -260,7 +260,7 @@ class Custom_Fields {
 						'screen'      => 'page',
 						'context'     => 'normal',
 						'priority'    => 'high',
-						'args'        => $title_field . $sub_title_field . $wysiwyg_field,
+						'args'        => $title_field . $sub_title_field . $overlay_field,
 					),
 				);
 				break;
@@ -424,7 +424,7 @@ class Custom_Fields {
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL (Leave empty if overlay)</label>';
-			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][url]" value="' . esc_attr( $url ) . '" size="60">';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][url]" value="" size="60">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
 
 			ob_start();

@@ -7,7 +7,7 @@
  * @package Accern_Custom
  */
 
-$section_info = get_company_section_info( 'partners', get_the_ID() );
+$section_info = get_section_info( 'company', 'partners', get_the_ID() );
 $associations = get_terms(
 	array(
 	'taxonomy'   => 'association',
