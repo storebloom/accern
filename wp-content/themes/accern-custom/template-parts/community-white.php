@@ -7,7 +7,13 @@
  * @package Accern_Custom
  */
 
-
+$posts = get_posts(
+	array(
+		'posts_per_page' => 100,
+		'post_type'      => 'post',
+		
+	)
+);
 ?>
 <div id="community-white-papers">
 	<div class="community-title">
