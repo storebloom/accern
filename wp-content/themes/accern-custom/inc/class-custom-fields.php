@@ -135,6 +135,10 @@ class Custom_Fields {
 							$value[ $section ][ $field_name ][ $num ]['title'] = sanitize_text_field( wp_unslash( $link_values['title'] ) );
 							$value[ $section ][ $field_name ][ $num ]['url'] = str_replace( 'http://', '', esc_url_raw( $link_values['url'] ) );
 						}
+					} elseif ( 'wysiwyg-repeater' === $field_name ) {
+						foreach ( $field_value as $num => $wysiwyg_values ) {
+							$value[ $section ][ $field_name ][ $num ]['content'] = wp_kses_post( wp_unslash( $wysiwyg_values['content'] ) );
+						}
 					} else {
 						$value[ $section ][ $field_name ] = wp_kses_post( wp_unslash( $field_value ) );
 					}
@@ -159,7 +163,6 @@ class Custom_Fields {
 			case 'page-templates/homepage-template.php' :
 				// Remove editor features for specific page.
 				remove_post_type_support( 'page', 'editor' );
-				remove_meta_box( 'postimagediv', 'page', 'side' );
 
 				// Set for 6 homepage sections.  Looping since all metaboxes have same fields.
 				for ( $x = 1; $x <= 6; $x ++ ) {
@@ -197,7 +200,6 @@ class Custom_Fields {
 			case 'page-templates/company-template.php' :
 				// Remove editor features for specific page.
 				remove_post_type_support( 'page', 'editor' );
-				remove_meta_box( 'postimagediv', 'page', 'side' );
 
 				$prefix          = 'company-main-section';
 				$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
@@ -246,7 +248,6 @@ class Custom_Fields {
 			case 'page-templates/community-template.php' :
 				// Remove editor features for specific page.
 				remove_post_type_support( 'page', 'editor' );
-				remove_meta_box( 'postimagediv', 'page', 'side' );
 
 				$prefix          = 'community-main-section';
 				$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
@@ -264,6 +265,42 @@ class Custom_Fields {
 					),
 				);
 				break;
+			case 'page-templates/contact-template.php' :
+				// Remove editor features for specific page.
+				remove_post_type_support( 'page', 'editor' );
+				remove_meta_box( 'postimagediv', 'page', 'side' );
+
+				// Form Section.
+				$prefix         = 'contact-form-section';
+				$title_field    = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
+				$wysiwyg_field  = $this->create_custom_field( $postid, $prefix, 'content', 'wysiwyg' );
+				$form_shortcode = $this->create_custom_field( $postid, $prefix, 'shortcode', 'text' );
+
+				// Locations Section.
+				$prefix2          = 'contact-locations-section';
+				$title_field2     = $this->create_custom_field( $postid, $prefix2, 'title', 'text' );
+				$wysiwyg_field2   = $this->create_custom_field( $postid, $prefix2, 'content', 'wysiwyg' );
+				$wysiwyg_repeater = $this->create_custom_field( $postid, $prefix2, 'wysiwyg-repeater', 'wysiwyg_repeater' );
+
+				$metabox_array = array(
+					array(
+						'id'          => $prefix . '-accern',
+						'description' => esc_html__( 'Form Section', 'accern-custom' ),
+						'screen'      => 'page',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $title_field . $wysiwyg_field . $form_shortcode,
+					),
+					array(
+						'id'          => $prefix2 . '-accern',
+						'description' => esc_html__( 'Locations Section', 'accern-custom' ),
+						'screen'      => 'page',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $title_field2 . $wysiwyg_field2 . $wysiwyg_repeater,
+					),
+				);
+			break;
 		} // End switch().
 
 		if ( 'team' === $post_type ) {
@@ -343,7 +380,7 @@ class Custom_Fields {
 	}
 
 	/**
-	 * Call back function for returning custom overlay repeater wysiwyg field html
+	 * Call back function for returning wysiwyg field html.
 	 *
 	 * @param string $section The metabox section.
 	 * @param string $name The field name.
@@ -368,6 +405,67 @@ class Custom_Fields {
 		$html .= \_WP_Editors::enqueue_scripts();
 		$html .= \_WP_Editors::editor_js();
 		$html .= '</div>';
+
+		return $html;
+	}
+
+	/**
+	 * Call back function for returning repeater wysiwyg field html.
+	 *
+	 * @param string $section The metabox section.
+	 * @param string $name The field name.
+	 * @param string $value The custom field value if any.
+	 */
+	private function get_wysiwyg_repeater_field_html( $section, $name, $value = '' ) {
+		$html = '';
+
+		if ( is_array( $value ) ) {
+			foreach ( $value as $field_num => $field_value ) {
+				$title = isset( $field_value['title'] ) ? $field_value['title'] : '';
+				$content = isset( $field_value['content'] ) ? $field_value['content'] : '';
+				$url = isset( $field_value['url'] ) ? $field_value['url'] : '';
+				$options = array(
+					'media_buttons' => true,
+					'textarea_name' => 'page-meta[' . $section . '][' . $name . '][' . $field_num . '][content]',
+				);
+				$id = $section . '_' . $name . '_' . $field_num;
+
+				$html .= '<div data-num="' . $field_num . '" class="accern-wysiwyg-repeater-field">';
+
+				if ( 1 < count( $value ) && ! empty( $field_value['content'] ) ) {
+					$html .= '<button type="button" class="remove-wysiwyg-repeater-field">-</button>';
+				}
+
+				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
+
+				ob_start();
+				wp_editor( $content, $id, $options );
+
+				$html .= ob_get_clean();
+				$html .= \_WP_Editors::enqueue_scripts();
+				$html .= \_WP_Editors::editor_js();
+				$html .= '</div>';
+			}
+		} else {
+			$options = array(
+				'media_buttons' => true,
+				'textarea_name' => 'page-meta[' . $section . '][' . $name . '][1][content]',
+			);
+			$id = $section . '_' . $name . '_1';
+
+			$html .= '<div data-num="1" class="accern-wysiwyg-repeater-field">';
+			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
+
+			ob_start();
+			wp_editor( '', $id, $options );
+
+			$html .= ob_get_clean();
+			$html .= \_WP_Editors::enqueue_scripts();
+			$html .= \_WP_Editors::editor_js();
+			$html .= '</div>';
+		} // End if().
+
+		$html .= '<button type="button" class="add-wysiwyg-repeater-field">+</button>';
 
 		return $html;
 	}
@@ -420,7 +518,7 @@ class Custom_Fields {
 			);
 			$id = $section . '_' . $name . '_1';
 
-			$html .= '<div class="accern-overlay-field">';
+			$html .= '<div data-num="1" class="accern-overlay-field">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL (Leave empty if overlay)</label>';
@@ -536,6 +634,32 @@ class Custom_Fields {
 			'textarea_name' => 'page-meta[' . $section . '][overlay-repeater][' . $count . '][content]',
 		);
 		$id = $section . '_overlay-repeater_' . $count;
+
+		wp_editor( '', $id, $options );
+
+		wp_die();
+	}
+
+	/**
+	 * AJAX Call Back function to return a new wysiwyg.
+	 *
+	 * @action wp_ajax_get_wysiwyg_field
+	 */
+	public function get_wysiwyg_field() {
+		check_ajax_referer( $this->theme->meta_prefix, 'nonce' );
+
+		if ( ! isset( $_POST['count'] ) || '' === $_POST['count'] ) { // WPCS: input var ok.
+			wp_send_json_error( 'Get overlay field failed' );
+		}
+
+		$count = intval( $_POST['count'] ) + 1 ; // WPCS: input var ok.
+		$section = sanitize_text_field( wp_unslash( $_POST['section'] ) ); // WPCS: input var ok.
+
+		$options = array(
+			'media_buttons' => true,
+			'textarea_name' => 'page-meta[' . $section . '][wysiwyg-repeater][' . $count . '][content]',
+		);
+		$id = $section . '_wysiwyg-repeater_' . $count;
 
 		wp_editor( '', $id, $options );
 

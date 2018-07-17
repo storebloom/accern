@@ -47,6 +47,14 @@ var AccernCustomFields = ( function( $, wp ) {
 				self.addOverlayField( count, section );
 			} );
 
+			// Add new wysiwyg field.
+			this.$container.on( 'click', '.add-wysiwyg-repeater-field', function() {
+				var section = $( this ).closest( '.postbox' ).attr( 'id' ).replace( '-accern', '' ),
+					count = $( this ).closest( '.postbox' ).find( '.inside .accern-wysiwyg-repeater-field:last-of-type' ).attr( 'data-num' );
+
+				self.addWysiwygField( count, section );
+			} );
+
 			// Add new link repeater field.
 			this.$container.on( 'click', '.add-link-field', function() {
 				var section = $( this ).closest( '.postbox' ).attr( 'id' ).replace( '-accern', '' ),
@@ -58,6 +66,11 @@ var AccernCustomFields = ( function( $, wp ) {
 			// Remove overlay field from admin.
 			this.$container.on( 'click', '.remove-overlay-field', function() {
 				$( this ).parent( '.accern-overlay-field' ).remove();
+			} );
+
+			// Remove wysiwyg field from admin.
+			this.$container.on( 'click', '.remove-wysiwyg-repeater-field', function() {
+				$( this ).parent( '.accern-wysiwyg-repeater-field' ).remove();
 			} );
 
 			// Remove link field from admin.
@@ -95,6 +108,38 @@ var AccernCustomFields = ( function( $, wp ) {
 
 				// Add new editor to the page.
 				$( '#' + section + '-accern .inside .accern-overlay-field:last-of-type' ).append( results );
+
+				// Reload scripts/assets for tinymce for new editor.
+				tinymce.execCommand('mceAddEditor', false, theId);
+				quicktags({id : theId});
+			} );
+		},
+
+		/**
+		 * Add new WYSIWYG field to section.
+		 *
+		 * @param count
+		 * @param section
+		 */
+		addWysiwygField: function( count, section ) {
+			wp.ajax.post( 'get_wysiwyg_field', {
+				count: count,
+				section: section,
+				nonce: this.data.nonce
+			} ).always( function( results ) {
+				var newCount = parseInt( count ) + 1,
+					theId = section + '_wysiwyg-repeater_' + newCount;
+
+				//  Add title and label.
+				$( '#' + section + '-accern .inside .accern-wysiwyg-repeater-field:last-of-type' ).after(
+					'<div data-num="' + newCount + '" class="accern-wysiwyg-repeater-field">' +
+					'<button type="button" class="remove-wysiwyg-repeater-field">-</button>' +
+					'<label class="accern-admin-label">Locations Content</label>' +
+					'</div>'
+				);
+
+				// Add new editor to the page.
+				$( '#' + section + '-accern .inside .accern-wysiwyg-repeater-field:last-of-type' ).append( results );
 
 				// Reload scripts/assets for tinymce for new editor.
 				tinymce.execCommand('mceAddEditor', false, theId);
