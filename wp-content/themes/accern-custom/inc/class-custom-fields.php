@@ -373,7 +373,7 @@ class Custom_Fields {
 
 		$html = '<div class="accern-text-field">';
 		$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . '</label>';
-		$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . ']" value="' . $value . '" size="60">';
+		$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . ']" value="' . esc_html( $value ) . '" size="60">';
 		$html .= '</div>';
 
 		return wp_kses( $html, $allowed_tags );
