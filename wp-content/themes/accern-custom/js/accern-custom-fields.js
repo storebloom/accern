@@ -162,7 +162,7 @@ var AccernCustomFields = ( function( $, wp ) {
 					theLeftId = section + '_usecase-repeater_' + newCount + '_left_1_graph_content';
 
 				$( '#' + section + '-accern .inside .accern-usecase-repeater-field:last-of-type' ). after(
-					'<div data-num="1" class="accern-usecase-repeater-field">' +
+					'<div data-num="' + newCount + '" class="accern-usecase-repeater-field">' +
 					'<label class="accern-admin-label">Tab Name</label>' +
 					'<button type="button" class="remove-tab-field">-</button>' +
 					'<input type="text" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][title]" value="" size="60">' +
