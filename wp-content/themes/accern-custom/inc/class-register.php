@@ -151,6 +151,63 @@ class Register {
 	}
 
 	/**
+	 * Register the Use Case post type.
+	 *
+	 * @action init
+	 */
+	public function register_usecase() {
+		$supports = array( 'title' );
+		$labels = array(
+			'name'                  => esc_html__( ' Use Cases', 'accern-custom' ),
+			'singular_name'         => esc_html__( ' Use Case', 'accern-custom' ),
+			'all_items'             => esc_html__( ' Use Cases', 'accern-custom' ),
+			'menu_name'             => _x( ' Use Cases', 'Admin menu name', 'accern-custom' ),
+			'add_new'               => esc_html__( 'Add New', 'accern-custom' ),
+			'add_new_item'          => esc_html__( 'Add new use case', 'accern-custom' ),
+			'edit'                  => esc_html__( 'Edit', 'accern-custom' ),
+			'edit_item'             => esc_html__( 'Edit use case', 'accern-custom' ),
+			'new_item'              => esc_html__( 'New use case', 'accern-custom' ),
+			'view'                  => esc_html__( 'View use case', 'accern-custom' ),
+			'view_item'             => esc_html__( 'View use case', 'accern-custom' ),
+			'search_items'          => esc_html__( 'Search use cases', 'accern-custom' ),
+			'not_found'             => esc_html__( 'No use cases found', 'accern-custom' ),
+			'not_found_in_trash'    => esc_html__( 'No use cases found in trash', 'accern-custom' ),
+			'parent'                => esc_html__( 'Parent use case', 'accern-custom' ),
+			'featured_image'        => esc_html__( ' Use Case image', 'accern-custom' ),
+			'set_featured_image'    => esc_html__( 'Set use case image', 'accern-custom' ),
+			'remove_featured_image' => esc_html__( 'Remove use case image', 'accern-custom' ),
+			'use_featured_image'    => esc_html__( 'Use as use case image', 'accern-custom' ),
+			'insert_into_item'      => esc_html__( 'Insert into use case', 'accern-custom' ),
+			'uploaded_to_this_item' => esc_html__( 'Uploaded to this use case', 'accern-custom' ),
+			'filter_items_list'     => esc_html__( 'Filter use cases', 'accern-custom' ),
+			'items_list_navigation' => esc_html__( ' Use Cases navigation', 'accern-custom' ),
+			'items_list'            => esc_html__( ' Use Cases list', 'accern-custom' ),
+		);
+
+		$args = array(
+			'labels'             => $labels,
+			'description'        => esc_html__( 'Use Cases', 'accern-custom' ),
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'menu_icon'          => 'dashicons-analytics',
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array(
+				'slug' => 'usecase',
+			),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => $supports,
+			'show_in_rest'       => true,
+		);
+
+		register_post_type( 'usecase', $args );
+	}
+
+	/**
 	 * Register custom taxonomies.
 	 *
 	 * @action init

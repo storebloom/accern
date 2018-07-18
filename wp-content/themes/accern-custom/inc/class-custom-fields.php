@@ -139,6 +139,12 @@ class Custom_Fields {
 						foreach ( $field_value as $num => $wysiwyg_values ) {
 							$value[ $section ][ $field_name ][ $num ]['content'] = wp_kses_post( wp_unslash( $wysiwyg_values['content'] ) );
 						}
+					} elseif ( 'usecase-repeater' === $field_name ) {
+						foreach ( $field_value as $num => $usecase_values ) {
+							$value[ $section ][ $field_name ][ $num ]['title'] = sanitize_text_field( wp_unslash( $usecase_values['title'] ) );
+							$value[ $section ][ $field_name ][ $num ]['left'] = array_map( 'wp_kses_post', wp_unslash( $usecase_values['left'] ) );
+							$value[ $section ][ $field_name ][ $num ]['right'] = array_map( 'wp_kses_post', wp_unslash( $usecase_values['right'] ) );
+						}
 					} else {
 						$value[ $section ][ $field_name ] = wp_kses_post( wp_unslash( $field_value ) );
 					}
@@ -159,6 +165,7 @@ class Custom_Fields {
 		$metabox_array = array();
 		$post_type = get_post_type( $postid );
 
+		// Page switch case.
 		switch ( $page_template ) {
 			case 'page-templates/homepage-template.php' :
 				// Remove editor features for specific page.
@@ -300,38 +307,90 @@ class Custom_Fields {
 						'args'        => $title_field2 . $wysiwyg_field2 . $wysiwyg_repeater,
 					),
 				);
-			break;
+				break;
+			case 'page-templates/use-case-template.php' :
+				// Remove editor features for specific page.
+				remove_post_type_support( 'page', 'editor' );
+
+				// Main Section
+				$prefix = 'usecase-main-section';
+				$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
+				$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
+
+				$metabox_array = array(
+					array(
+						'id'          => $prefix . '-accern',
+						'description' => esc_html__( 'Main Section', 'accern-custom' ),
+						'screen'      => 'page',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $title_field . $sub_title_field,
+					),
+				);
+				break;
 		} // End switch().
 
-		if ( 'team' === $post_type ) {
-			$url_field = $this->create_custom_field( $postid, 'team-section-accern', 'linkedin', 'text' );
+		// CPT switch case.
+		switch ( $post_type ) {
+			case 'team' :
+				$url_field = $this->create_custom_field( $postid, 'team-section-accern', 'linkedin', 'text' );
 
-			$metabox_array = array(
-				array(
-					'id'          => 'team-section-accern',
-					'description' => 'Linkedin Account Url',
-					'screen'      => 'team',
-					'context'     => 'normal',
-					'priority'    => 'high',
-					'args'        => $url_field,
-				),
-			);
-		}
+				$metabox_array = array(
+					array(
+						'id'          => 'team-section-accern',
+						'description' => 'Linkedin Account Url',
+						'screen'      => 'team',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $url_field,
+					),
+				);
+				break;
 
-		if ( 'partner' === $post_type ) {
-			$url_field = $this->create_custom_field( $postid, 'partner-section-accern', 'link', 'text' );
+			case 'partner' :
+				$url_field = $this->create_custom_field( $postid, 'partner-section-accern', 'link', 'text' );
 
-			$metabox_array = array(
-				array(
-					'id'          => 'partner-section-accern',
-					'description' => 'Company Url',
-					'screen'      => 'partner',
-					'context'     => 'normal',
-					'priority'    => 'high',
-					'args'        => $url_field,
-				),
-			);
-		}
+				$metabox_array = array(
+					array(
+						'id'          => 'partner-section-accern',
+						'description' => 'Company Url',
+						'screen'      => 'partner',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $url_field,
+					),
+				);
+				break;
+
+			case 'usecase' :
+				// Main Section.
+				$prefix = 'usecase-main-section';
+				$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
+
+				// Tab Section.
+				$prefix2 = 'usecase-tab-section';
+				$usecase_field = $this->create_custom_field( $postid, $prefix2, 'usecase-repeater', 'usecase_repeater' );
+
+				$metabox_array = array(
+					array(
+						'id'          => $prefix . '-accern',
+						'description' => 'Sub-title',
+						'screen'      => 'usecase',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $sub_title_field,
+					),
+					array(
+						'id'          => $prefix2 . '-accern',
+						'description' => 'Tabs',
+						'screen'      => 'usecase',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $usecase_field,
+					),
+				);
+				break;
+		} // End switch().
 
 		return $metabox_array;
 	}
@@ -546,6 +605,160 @@ class Custom_Fields {
 	 * @param string $name The field name.
 	 * @param string $value The custom field value if any.
 	 */
+	private function get_usecase_repeater_field_html( $section, $name, $value = '' ) {
+		$html = '';
+
+		if ( is_array( $value ) ) {
+			foreach ( $value as $field_num => $field_value ) {
+				$html .= '<div data-num="' . $field_num . '" class="accern-usecase-repeater-field">';
+				$html .= '<label class="accern-admin-label">Tab Name</label>';
+				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][title]" value="' . $field_value['title'] . '" size="60">';
+				$html .= '<hr>';
+				$html .= '<div class="left-repeater-section">';
+				$html .= '<div class="side-title">Left Side</div>';
+
+				foreach ( $field_value['left'] as $left_num => $left_value ) {
+					$options_left_graph = array(
+						'media_buttons' => true,
+						'textarea_name' => 'page-meta[' . $section . '][' . $name . '][' . $field_num . '][left][' . $left_num . '][graph-content]',
+					);
+					$id_left_graph = $section . '_' . $name . '_' . $field_num . '_left_' . $left_num . '_graph_content';
+
+					$html .= '<div data-num="' . $left_num . '" data-side="left" class="accern-tab-content-overlay">';
+					$html .= '<button data-side="left" type="button" class="remove-usecase-field">-</button>';
+					$html .= '<label class="accern-admin-label">First Graph Number</label>';
+					$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][left][' . $left_num . '][graph-first]" value="' . $left_value['graph-first'] . '">';
+					$html .= '<label class="accern-admin-label">First Graph Text</label>';
+					$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][left][' . $left_num . '][graph-first-text]" value="' . $left_value['graph-first-text'] . '" size="60">';
+
+					$html .= '<label class="accern-admin-label">Second Graph Number</label>';
+					$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][left][' . $left_num . '][graph-second]" value="' . $left_value['graph-second'] . '">';
+					$html .= '<label class="accern-admin-label">Second Graph Text</label>';
+					$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][left][' . $left_num . '][graph-second-text]" value="' . $left_value['graph-second-text'] . '" size="60">';
+					$html .= '<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>';
+					ob_start();
+					wp_editor( $left_value['graph-content'], $id_left_graph, $options_left_graph );
+
+					$html .= ob_get_clean();
+					$html .= \_WP_Editors::enqueue_scripts();
+					$html .= \_WP_Editors::editor_js();
+					$html .= '</div>';
+				}
+
+				$html .= '<button data-side="left" type="button" class="add-usecase-content-field">+</button>';
+				$html .= '</div>';
+				$html .= '<div class="right-repeater-section">';
+				$html .= '<div class="side-title">Right Side</div>';
+
+				foreach ( $field_value['right'] as $right_num => $right_value ) {
+					$options_right_graph = array(
+						'media_buttons' => true,
+						'textarea_name' => 'page-meta[' . $section . '][' . $name . '][' . $field_num . '][right][' . $right_num . '][graph-content]',
+					);
+					$id_right_graph = $section . '_' . $name . '_' . $field_num . '_right_' . $right_num . '_graph_content';
+
+					$html .= '<div data-num="' . $right_num . '" data-side="right" class="accern-tab-content-overlay">';
+					$html .= '<button data-side="right" type="button" class="remove-usecase-field">-</button>';
+					$html .= '<label class="accern-admin-label">First Graph Number</label>';
+					$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][right][' . $right_num . '][graph-first]" value="' . $right_value['graph-first'] . '">';
+					$html .= '<label class="accern-admin-label">First Graph Text</label>';
+					$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][right][' . $right_num . '][graph-first-text]" value="' . $right_value['graph-first-text'] . '" size="60">';
+
+					$html .= '<label class="accern-admin-label">Second Graph Number</label>';
+					$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][right][' . $right_num . '][graph-second]" value="' . $right_value['graph-second'] . '">';
+					$html .= '<label class="accern-admin-label">Second Graph Text</label>';
+					$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][right][' . $right_num . '][graph-second-text]" value="' . $right_value['graph-second-text'] . '" size="60">';
+					$html .= '<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>';
+					ob_start();
+					wp_editor( $right_value['graph-content'], $id_right_graph, $options_right_graph );
+
+					$html .= ob_get_clean();
+					$html .= \_WP_Editors::enqueue_scripts();
+					$html .= \_WP_Editors::editor_js();
+					$html .= '</div>';
+				}
+
+				$html .= '<hr>';
+				$html .= '<button data-side="right" type="button" class="add-usecase-content-field">+</button>';
+				$html .= '</div>';
+				$html .= '</div>';
+			} // End foreach().
+		} else {
+			$options_left_graph = array(
+				'media_buttons' => true,
+				'textarea_name' => 'page-meta[' . $section . '][' . $name . '][1][left][1][graph-content]',
+			);
+			$id_left_graph = $section . '_' . $name . '_1_left_1_graph_content';
+
+			$html .= '<div data-num="1" class="accern-usecase-repeater-field">';
+			$html .= '<label class="accern-admin-label">Tab Name</label>';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
+			$html .= '<hr>';
+			$html .= '<div class="left-repeater-section">';
+			$html .= '<div class="side-title">Left Side</div>';
+			$html .= '<div data-num="1" data-side="left" class="accern-tab-content-overlay">';
+			$html .= '<label class="accern-admin-label">First Graph Number</label>';
+			$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][1][left][1][graph-first]" value="">';
+			$html .= '<label class="accern-admin-label">First Graph Text</label>';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][left][1][graph-first-text]" value="" size="60">';
+			$html .= '<label class="accern-admin-label">Second Graph Number</label>';
+			$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][1][left][1][graph-second]" value="">';
+			$html .= '<label class="accern-admin-label">Second Graph Text</label>';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][left][1][graph-second-text]" value="" size="60">';
+			$html .= '<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>';
+			ob_start();
+			wp_editor( '', $id_left_graph, $options_left_graph );
+
+			$html .= ob_get_clean();
+			$html .= \_WP_Editors::enqueue_scripts();
+			$html .= \_WP_Editors::editor_js();
+			$html .= '</div>';
+			$html .= '<button data-side="left" type="button" class="add-usecase-content-field">+</button>';
+			$html .= '</div>';
+
+			$options_right_graph = array(
+				'media_buttons' => true,
+				'textarea_name' => 'page-meta[' . $section . '][' . $name . '][1][right][1][graph-content]',
+			);
+			$id_right_graph = $section . '_' . $name . '_1_right_1_graph_content';
+
+			$html .= '<div class="right-repeater-section">';
+			$html .= '<div class="side-title">Right Side</div>';
+			$html .= '<div data-num="1" data-side="right" class="accern-tab-content-overlay">';
+			$html .= '<label class="accern-admin-label">First Graph Number</label>';
+			$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][1][right][1][graph-first]" value="">';
+			$html .= '<label class="accern-admin-label">First Graph Text</label>';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][right][1][graph-first-text]" value="" size="60">';
+			$html .= '<label class="accern-admin-label">Second Graph Number</label>';
+			$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][1][right][1][graph-second]" value="">';
+			$html .= '<label class="accern-admin-label">Second Graph Text</label>';
+			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][right][1][graph-second-text]" value="" size="60">';
+			$html .= '<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>';
+			ob_start();
+			wp_editor( '', $id_right_graph, $options_right_graph );
+
+			$html .= ob_get_clean();
+			$html .= \_WP_Editors::enqueue_scripts();
+			$html .= \_WP_Editors::editor_js();
+			$html .= '</div>';
+			$html .= '<button data-side="right" type="button" class="add-usecase-content-field">+</button>';
+			$html .= '</div>';
+			$html .= '</div>';
+		} // End if().
+
+		$html .= '<hr>';
+		$html .= '<button type="button" class="add-usecase-field">+</button>';
+
+		return $html;
+	}
+
+	/**
+	 * Call back function for returning custom overlay repeater wysiwyg field html
+	 *
+	 * @param string $section The metabox section.
+	 * @param string $name The field name.
+	 * @param string $value The custom field value if any.
+	 */
 	private function get_link_repeater_field_html( $section, $name, $value = '' ) {
 		$html = '';
 
@@ -660,6 +873,61 @@ class Custom_Fields {
 			'textarea_name' => 'page-meta[' . $section . '][wysiwyg-repeater][' . $count . '][content]',
 		);
 		$id = $section . '_wysiwyg-repeater_' . $count;
+
+		wp_editor( '', $id, $options );
+
+		wp_die();
+	}
+
+	/**
+	 * AJAX Call Back function to return a new use case tab wysiwyg.
+	 *
+	 * @action wp_ajax_get_usecase_tab_field
+	 */
+	public function get_usecase_tab_field() {
+		check_ajax_referer( $this->theme->meta_prefix, 'nonce' );
+
+		if ( ! isset( $_POST['count'] ) || '' === $_POST['count'] ) { // WPCS: input var ok.
+			wp_send_json_error( 'Get overlay field failed' );
+		}
+
+		$count = intval( $_POST['count'] ) + 1 ; // WPCS: input var ok.
+		$section = sanitize_text_field( wp_unslash( $_POST['section'] ) ); // WPCS: input var ok.
+		$side = sanitize_text_field( wp_unslash( $_POST['side'] ) ); // WPCS: input var ok.
+
+		$options = array(
+			'media_buttons' => true,
+			'textarea_name' => 'page-meta[' . $section . '][usecase-repeater][' . $count . '][' . $side . '][1][graph-content]',
+		);
+		$id = $section . '_usecase-repeater_' . $count . '_' . $side . '_1_graph_content';
+
+		wp_editor( '', $id, $options );
+
+		wp_die();
+	}
+
+	/**
+	 * AJAX Call Back function to return a new use case wysiwyg.
+	 *
+	 * @action wp_ajax_get_usecase_field
+	 */
+	public function get_usecase_field() {
+		check_ajax_referer( $this->theme->meta_prefix, 'nonce' );
+
+		if ( ! isset( $_POST['count'] ) || '' === $_POST['count'] ) { // WPCS: input var ok.
+			wp_send_json_error( 'Get overlay field failed' );
+		}
+
+		$count = intval( $_POST['count'] ); // WPCS: input var ok.
+		$section = sanitize_text_field( wp_unslash( $_POST['section'] ) ); // WPCS: input var ok.
+		$side = sanitize_text_field( wp_unslash( $_POST['side'] ) ); // WPCS: input var ok.
+		$side_count = intval( $_POST['side_count'] ) + 1; // WPCS: input var ok.
+
+		$options = array(
+			'media_buttons' => true,
+			'textarea_name' => 'page-meta[' . $section . '][usecase-repeater][' . $count . '][' . $side . '][' . $side_count . '][graph-content]',
+		);
+		$id = $section . '_usecase-repeater_' . $count . '_' . $side . '_' . $side_count . '_graph_content';
 
 		wp_editor( '', $id, $options );
 
