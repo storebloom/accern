@@ -75,6 +75,12 @@ $associations = get_terms(
 				echo esc_html( $type->name );
 				?>
 			</div>
+			<div class="association-cta">
+				<a class="accern-button" href="<?php echo esc_url( $type->description ); ?>">
+					<?php echo 'Investors' === $type->name ?  esc_html__( 'Become An ', 'accern-custom' ) : esc_html__( 'Become A ', 'accern-custom' ); ?>
+					<?php echo esc_html( substr( $type->name, 0, -1 ) ); ?>
+				</a>
+			</div>
 			<?php
 			$partners = get_posts( $args );
 

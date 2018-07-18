@@ -55,6 +55,24 @@ var AccernCustomFields = ( function( $, wp ) {
 				self.addWysiwygField( count, section );
 			} );
 
+			// Add new usecase tab field.
+			this.$container.on( 'click', '.add-usecase-field', function() {
+				var section = $( this ).closest( '.postbox' ).attr( 'id' ).replace( '-accern', '' ),
+					count = $( this ).closest( '.postbox' ).find( '.inside .accern-usecase-repeater-field:last-of-type' ).attr( 'data-num' );
+
+				self.addUsecaseTabField( count, section );
+			} );
+
+			// Add new usecase field.
+			this.$container.on( 'click', '.add-usecase-content-field', function() {
+				var side = $( this ).attr( 'data-side' ),
+					section = $( this ).closest( '.postbox' ).attr( 'id' ).replace( '-accern', '' ),
+					count = $( this ).closest( '.accern-usecase-repeater-field' ).attr( 'data-num' ),
+					sideCount = $( this ).closest( '.' + side + '-repeater-section' ).find( '.accern-tab-content-overlay:last-of-type' ).attr( 'data-num' );
+
+				self.addUsecaseField( count, section, sideCount, side );
+			} );
+
 			// Add new link repeater field.
 			this.$container.on( 'click', '.add-link-field', function() {
 				var section = $( this ).closest( '.postbox' ).attr( 'id' ).replace( '-accern', '' ),
@@ -76,6 +94,16 @@ var AccernCustomFields = ( function( $, wp ) {
 			// Remove link field from admin.
 			this.$container.on( 'click', '.remove-link-field', function() {
 				$( this ).parent( '.accern-link-field' ).remove();
+			} );
+
+			// Remove tab field from admin.
+			this.$container.on( 'click', '.remove-tab-field', function() {
+				$( this ).parent( '.accern-usecase-field' ).remove();
+			} );
+
+			// Remove usecase field from admin.
+			this.$container.on( 'click', '.remove-usecase-field', function() {
+				$( this ).parent( '.accern-tab-content-overlay' ).remove();
 			} );
 		},
 
@@ -108,6 +136,131 @@ var AccernCustomFields = ( function( $, wp ) {
 
 				// Add new editor to the page.
 				$( '#' + section + '-accern .inside .accern-overlay-field:last-of-type' ).append( results );
+
+				// Reload scripts/assets for tinymce for new editor.
+				tinymce.execCommand('mceAddEditor', false, theId);
+				quicktags({id : theId});
+			} );
+		},
+
+		/**
+		 * Add new use case tab field to section.
+		 *
+		 * @param count
+		 * @param section
+		 */
+		addUsecaseTabField: function( count, section ) {
+			var self = this;
+
+			wp.ajax.post( 'get_usecase_tab_field', {
+				count: count,
+				side: 'left',
+				section: section,
+				nonce: this.data.nonce
+			} ).always( function( leftresults ) {
+				var newCount = parseInt( count ) + 1,
+					theLeftId = section + '_usecase-repeater_' + newCount + '_left_1_graph_content';
+
+				$( '#' + section + '-accern .inside .accern-usecase-repeater-field:last-of-type' ). after(
+					'<div data-num="1" class="accern-usecase-repeater-field">' +
+					'<label class="accern-admin-label">Tab Name</label>' +
+					'<button type="button" class="remove-tab-field">-</button>' +
+					'<input type="text" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][title]" value="" size="60">' +
+					'<hr>' +
+					'<div data-num="1" class="left-repeater-section">' +
+					'<div class="side-title">Left Side</div>' +
+					'<div data-num="' + newCount + '" data-side="left" class="accern-tab-content-overlay">' +
+					'<button data-side="left" type="button" class="remove-usecase-field">-</button>' +
+					'<label class="accern-admin-label">First Graph Number</label>' +
+					'<input type="number" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][left][1][graph-first]" value="">' +
+					'<label class="accern-admin-label">First Graph Text</label>' +
+					'<input type="text" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][left][1][graph-first-text]" value="" size="60">' +
+					'<label class="accern-admin-label">Second Graph Number</label>' +
+					'<input type="number" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][left][1][graph-second]" value="">' +
+					'<label class="accern-admin-label">Second Graph Text</label>' +
+					'<input type="text" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][left][1][graph-second-text]" value="" size="60">' +
+					'<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>' +
+					leftresults +
+					'</div>' +
+					'<button data-side="left" type="button" class="add-usecase-content-field">+</button>' +
+					'</div>' +
+					'<div data-num="1" class="right-repeater-section">' +
+					'<div class="side-title">Right Side</div>' +
+					'<div data-num="1" data-side="right" class="accern-tab-content-overlay">' +
+					'<button data-side="right" type="button" class="remove-usecase-field">-</button>' +
+					'<label class="accern-admin-label">First Graph Number</label>' +
+					'<input type="number" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][right][1][graph-first]" value="">' +
+					'<label class="accern-admin-label">First Graph Text</label>' +
+					'<input type="text" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][right][1][graph-first-text]" value="" size="60">' +
+					'<label class="accern-admin-label">Second Graph Number</label>' +
+					'<input type="number" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][right][1][graph-second]" value="">' +
+					'<label class="accern-admin-label">Second Graph Text</label>' +
+					'<input type="text" name="page-meta[' + section + '][usecase-repeater][' + newCount + '][right][1][graph-second-text]" value="" size="60">' +
+					'<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>' +
+					'</div>' +
+					'</div>' +
+					'<button data-side="right" type="button" class="add-usecase-content-field">+</button>' +
+					'</div>'
+				);
+
+				// Reload scripts/assets for tinymce for new editor.
+				tinymce.execCommand('mceAddEditor', false, theLeftId);
+				quicktags({id : theLeftId});
+
+				wp.ajax.post( 'get_usecase_tab_field', {
+					count: count,
+					side: 'right',
+					section: section,
+					nonce: self.data.nonce
+				} ).always( function( rightresults ) {
+					var newCount2 = parseInt( count ) + 1,
+						theRightId = section + '_usecase-repeater_' + newCount2 + '_right_1_graph_content';
+
+					//  Add title and label.
+					$( '#' + section + '-accern .inside .accern-usecase-repeater-field:last-of-type .right-repeater-section' ).append( rightresults );
+
+					tinymce.execCommand('mceAddEditor', false, theRightId);
+					quicktags({id : theRightId});
+				} );
+			} );
+		},
+
+		/**
+		 * Add new use case field to section.
+		 *
+		 * @param count
+		 * @param section
+		 * @param sideCount
+		 * @param side
+		 */
+		addUsecaseField: function( count, section, sideCount, side ) {
+			var self = this;
+
+			wp.ajax.post( 'get_usecase_field', {
+				count: count,
+				side: side,
+				section: section,
+				side_count: sideCount,
+				nonce: this.data.nonce
+			} ).always( function( results ) {
+				var newSideCount = parseInt( sideCount ) + 1,
+					theId = section + '_usecase-repeater_' + count + '_' + side + '_' + newSideCount + '_graph_content';
+
+				$( '#' + section + '-accern .inside .accern-usecase-repeater-field[data-num="' + count + '"] .' + side + '-repeater-section .accern-tab-content-overlay:last-of-type' ). after(
+                   '<div data-num="' + newSideCount + '" data-side="' + side + '" class="accern-tab-content-overlay">' +
+                   '<button data-side="' + side + '" type="button" class="remove-usecase-field">-</button>' +
+                   '<label class="accern-admin-label">First Graph Number</label>' +
+                   '<input type="number" name="page-meta[' + section + '][usecase-repeater][' + count + '][' + side + '][' + newSideCount + '][graph-first]" value="">' +
+                   '<label class="accern-admin-label">First Graph Text</label>' +
+                   '<input type="text" name="page-meta[' + section + '][usecase-repeater][' + count + '][' + side + '][' + newSideCount + '][graph-first-text]" value="" size="60">' +
+                   '<label class="accern-admin-label">Second Graph Number</label>' +
+                   '<input type="number" name="page-meta[' + section + '][usecase-repeater][' + count + '][' + side + '][' + newSideCount + '][graph-second]" value="">' +
+                   '<label class="accern-admin-label">Second Graph Text</label>' +
+                   '<input type="text" name="page-meta[' + section + '][usecase-repeater][' + count + '][' + side + '][' + newSideCount + '][graph-second-text]" value="" size="60">' +
+                   '<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>' +
+                   results +
+                   '</div>'
+				);
 
 				// Reload scripts/assets for tinymce for new editor.
 				tinymce.execCommand('mceAddEditor', false, theId);
