@@ -52,11 +52,16 @@ class Custom_Fields {
 	public function enqueue_front_assets() {
 		global $post;
 
+		wp_enqueue_script( "{$this->theme->assets_prefix}-animation-manifest" );
+		wp_enqueue_script( "{$this->theme->assets_prefix}-animation-vendor" );
+		wp_enqueue_script( "{$this->theme->assets_prefix}-animation-app" );
+		wp_enqueue_script( "{$this->theme->assets_prefix}-scrollify" );
 		wp_enqueue_script( "{$this->theme->assets_prefix}-front-ui" );
 		wp_add_inline_script( "{$this->theme->assets_prefix}-front-ui", sprintf( 'AccernFrontUI.boot( %s );',
 			wp_json_encode( array(
 				'nonce'  => wp_create_nonce( $this->theme->meta_prefix ),
 				'postid' => $post->ID,
+				'page'   => $post->post_title,
 			) )
 		) );
 	}

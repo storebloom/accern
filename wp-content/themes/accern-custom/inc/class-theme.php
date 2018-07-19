@@ -49,15 +49,25 @@ class Theme extends Theme_Base {
 	}
 
 	/**
-	 * Register MU Script
+	 * Register Front Assets
 	 *
 	 * @action wp_enqueue_scripts
 	 */
 	public function register_assets() {
+		wp_register_script( "{$this->assets_prefix}-animation-manifest", "{$this->dir_url}/js/animation/manifest.2ae2e69a05c33dfc65f8.js", array(), time(), false );
+		wp_register_script( "{$this->assets_prefix}-animation-vendor", "{$this->dir_url}/js/animation/vendor.6a274349fb8ac9adac60.js", array(), time(), false );
+		wp_register_script( "{$this->assets_prefix}-animation-app", "{$this->dir_url}/js/animation/app.583d66e54f5e67b41ba7.js", array(), time(), false );
 		wp_register_script( "{$this->assets_prefix}-front-ui", "{$this->dir_url}/js/accern-front-ui.js", array(
 			'jquery',
 			'wp-util',
-		), time() );
+			"{$this->assets_prefix}-scrollify",
+			"{$this->assets_prefix}-animation-app",
+			"{$this->assets_prefix}-animation-manifest",
+			"{$this->assets_prefix}-animation-vendor",
+		), time(), true );
+		wp_register_script( "{$this->assets_prefix}-scrollify", 'https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js', array(
+			'jquery',
+		) );
 	}
 
 	/**
