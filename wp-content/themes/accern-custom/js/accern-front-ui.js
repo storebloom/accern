@@ -29,8 +29,18 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * Initialize plugin.
 		 */
 		init: function() {
+			var animateEl = document.getElementById( 'home-page-animations' ),
+				section = undefined !== window.location.hash ? parseInt( window.location.hash.replace( '#', '' ) ) - 1 : 0;
+
 			this.$pageContainer = $( 'body.page' );
 			this.listen();
+			this.setSectionHeight( this.data.page.toLowerCase() );
+			this.scrollifySections();
+			this.$animate = window.__mountVisualization( animateEl, {
+				sequences: [0, 1, 2, 3, 4, 6]
+			} );
+
+			this.$animate.transitionTo( section );
 		},
 
 		/**
@@ -52,6 +62,21 @@ var AccernFrontUI = ( function( $, wp ) {
 				$( this ).siblings( '.accern-overlay-content' ).html( '' );
 				$( this ).parent( 'div' ).removeClass( 'open' );
 			} );
+
+			// Nav click sectin.
+			this.$pageContainer.on( 'click', '.home-nav-section', function() {
+				var section = $( this ).attr( 'data-section' );
+
+				$.scrollify.move( '#' + section );
+			} );
+
+			// Show page name in nav icons.
+			$( '.home-nav-section' ).hover( function() {
+				$( this ).find( '.nav-page-name' ).fadeIn();
+			},
+			function() {
+				$( this ).find( '.nav-page-name' ).fadeOut();
+			} );
 		},
 
 		/**
@@ -68,6 +93,37 @@ var AccernFrontUI = ( function( $, wp ) {
 				nonce: this.data.nonce
 			} ).always( function( results ) {
 				$( '.accern-overlay-content' ).html( results ).addClass( 'open' );
+			} );
+		},
+
+		/**
+		 * Set the section height to browser.
+		 *
+		 * @param page
+		 */
+		setSectionHeight: function( page ) {
+			$( '.page-template-' + page + '-template .' + page + '-section' ).css( 'height', $( window ).height() );
+		},
+
+		/**
+		 * Auto scroll to sections.
+		 */
+		scrollifySections: function() {
+			var self = this;
+
+			$.scrollify( {
+				section : ".homepage-section",
+				scrollbars: false,
+				before: function (index, sections) {
+					var section = index + 1;
+
+					index = 5 === index ? 6 : index;
+
+					$( '.home-nav-section' ).removeClass( 'current-section' );
+					$( '#section-' + section ).addClass( 'current-section' );
+
+					self.$animate.transitionTo( index );
+				},
 			} );
 		}
 	};

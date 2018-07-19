@@ -9,7 +9,7 @@
 
 $section_info = get_home_section_info( '3', get_the_ID() );
 ?>
-<div id="home-section-3">
+<div id="home-section-3" class="homepage-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 	<div class="section-title">
 		<?php echo esc_html( $section_info['title'] ); ?>
