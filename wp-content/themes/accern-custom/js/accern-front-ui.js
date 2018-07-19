@@ -117,6 +117,8 @@ var AccernFrontUI = ( function( $, wp ) {
 				before: function (index, sections) {
 					var section = index + 1;
 
+					index = 5 === index ? 6 : index;
+
 					$( '.home-nav-section' ).removeClass( 'current-section' );
 					$( '#section-' + section ).addClass( 'current-section' );
 
