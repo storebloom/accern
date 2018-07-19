@@ -30,6 +30,6 @@ $member_linkedin = isset( $member_linkedin['team-section-accern']['linkedin'] ) 
 	<div class="team-member-info">
 		<div class="member-count"><?php echo esc_html( $count ); ?></div>
 		<div class="member-name"><?php echo esc_html( $member->post_title ); ?></div>
-		<div class="member-title"><?php echo esc_html( $member->post_content ); ?></div>
+		<div class="member-title"><?php echo wp_kses_post( $member->post_content ); ?></div>
 	</div>
 </div>
