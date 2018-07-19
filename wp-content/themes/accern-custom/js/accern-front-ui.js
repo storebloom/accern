@@ -37,7 +37,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			this.setSectionHeight( this.data.page.toLowerCase() );
 			this.scrollifySections();
 			this.$animate = window.__mountVisualization( animateEl, {
-				sequences: [0, 1, 2, 3, 4, 6]
+				sequences: [0, 1, 2, 3, 4, 5, 6]
 			} );
 
 			this.$animate.transitionTo( section );
@@ -116,8 +116,6 @@ var AccernFrontUI = ( function( $, wp ) {
 				scrollbars: false,
 				before: function (index, sections) {
 					var section = index + 1;
-
-					index = 5 === index ? 6 : index;
 
 					$( '.home-nav-section' ).removeClass( 'current-section' );
 					$( '#section-' + section ).addClass( 'current-section' );
