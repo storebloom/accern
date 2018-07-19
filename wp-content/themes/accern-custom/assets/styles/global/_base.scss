@@ -1,0 +1,59 @@
+/**
+  Global Body & Wrappers
+  ---------------------------------------------------------------------- */
+html,
+body {
+  max-width: 100%;
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+}
+
+/**
+  Global Link Defaults
+  ---------------------------------------------------------------------- */
+a {
+  text-decoration: none;
+}
+
+@include linkColor($blue, all);
+
+/**
+  Wordpress Image ALignment
+  ---------------------------------------------------------------------- */
+.aligncenter {
+  margin: 1em auto;
+}
+
+.alignleft {
+  margin: 1em 1em 1em 0;
+}
+
+.alignright {
+  margin: 1em 0 1em 1em;
+}
+
+/**
+  Responsive Breakpoints
+  ---------------------------------------------------------------------- */
+@media (min-width: 1025px) {
+  .wrap {
+    width: 1150px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .wrap {
+    width: 1400px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrap {
+    width: 100%;
+    padding: 0 2rem;
+  }
+}

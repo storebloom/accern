@@ -7,6 +7,9 @@
  * @package Accern_Custom
  */
 
+/** Include the Asset Builder for the Sass build system **/
+require_once('inc/asset-builder.php');
+
 if ( ! function_exists( 'accern_custom_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -120,14 +123,23 @@ add_action( 'widgets_init', 'accern_custom_widgets_init' );
  * Enqueue scripts and styles.
  */
 function accern_custom_scripts() {
-	wp_enqueue_style( 'accern-custom-style', get_stylesheet_uri() );
-
 	wp_enqueue_script( 'accern-custom-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'accern-custom-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+
+	// Custom admin and editor CSS
+	if ( is_admin()) {
+		wp_enqueue_style( 'accern-custom-admin-styles', asset_path('styles/admin.css') );
+		add_editor_style( asset_path('styles/editor.css') );
+	}
+
+	// Custom login stylesheet
+	if ( $GLOBALS['pagenow'] === 'wp-login.php' ) {
+		wp_enqueue_style('custom-login', asset_path('styles/login.css'));
 	}
 }
 add_action( 'wp_enqueue_scripts', 'accern_custom_scripts' );
