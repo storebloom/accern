@@ -1,0 +1,24 @@
+{
+  "entry": {
+    "main": [
+      "./styles/main.scss"
+    ],
+    "admin": [
+      "./styles/admin.scss"
+    ],
+    "editor": [
+      "./styles/editor.scss"
+    ],
+    "login": [
+      "./styles/login.scss"
+    ]
+  },
+  "publicPath": "/app/themes/accern-custom",
+  "devUrl": "https://accern.dev",
+  "proxyUrl": "https://localhost:3000",
+  "cacheBusting": "[name]_[hash:8]",
+  "watch": [
+    "*.php",
+    "**/*.php"
+  ]
+}

@@ -1,0 +1,217 @@
+/**
+  Font Families & Settings
+  ---------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i");
+
+$font-default: "Lato", sans-serif;
+$font-heading: "Lato", sans-serif;
+
+$font-size: 16px;
+
+$font-light: 300;
+$font-normal: 400;
+$font-bold: 700;
+$font-ultra-bold: 900;
+
+$font-italic: italic;
+
+// Define if font weights and styles use markup or an alternate font face
+$useMarkupBold: true;
+$useMarkupItal: true;
+
+@mixin fontBold($undo: true, $weight: $font-bold) {
+  @if $useMarkupBold {
+    @if $undo {
+      font-weight: $weight;
+    }
+
+    @else {
+      font-weight: $font-normal;
+    }
+  }
+
+  @else {
+    @if $undo {
+      font-family: $weight;
+    }
+
+    @else {
+      font-family: $font-default;
+    }
+  }
+}
+
+@mixin fontItalic($undo: true, $style: $font-italic) {
+  @if $useMarkupItal {
+    @if $undo {
+      font-style: $style;
+    }
+
+    @else {
+      font-style: normal;
+    }
+  }
+
+  @else {
+    @if $undo {
+      font-family: $style;
+    }
+
+    @else {
+      font-family: $font-default;
+    }
+  }
+}
+
+strong {
+  @include fontBold();
+}
+
+em {
+  @include fontItalic();
+}
+
+small {
+  font-size: 0.75rem;
+}
+
+/**
+  Body Typography Defaults
+  ---------------------------------------------------------------------- */
+body {
+  color: $black;
+  line-height: 1;
+  font-size: $font-size;
+  font-family: $font-default;
+  font-weight: $font-normal;
+}
+
+/**
+  Exonym Module Text Sizes
+  ---------------------------------------------------------------------- */
+.module-text-size {
+  &-xsmall {
+    font-size: 0.75em;
+  }
+
+  &-small {
+    font-size: 0.85em;
+  }
+
+  &-normal {
+    font-size: 1em;
+  }
+
+  &-large {
+    font-size: 1.25em;
+  }
+
+  &-xlarge {
+    font-size: 1.5em;
+  }
+}
+
+/**
+  Global Website Headings
+  ---------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  display: block;
+  text-rendering: optimizelegibility;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  font-family: $font-heading;
+
+  @include fontBold();
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+h4 {
+  font-size: 1.25em;
+  margin-bottom: 1em;
+}
+
+h5 {
+  font-size: 1em;
+  margin-bottom: 1em;
+  text-transform: uppercase;
+}
+
+h6 {
+  font-size: 0.75em;
+  margin-bottom: 2em;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+/**
+  Global List Settings
+  ---------------------------------------------------------------------- */
+ul,
+ol {
+  margin: 0 0 2em 2rem;
+  padding: 0;
+
+  li {
+    margin-bottom: 0.25em;
+    line-height: 1.5em;
+  }
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+/**
+  Global Paragraph Settings
+  ---------------------------------------------------------------------- */
+p {
+  margin: 0;
+  padding: 0 0 2em 0;
+  line-height: 1.5em;
+}
+
+blockquote {
+  display: block;
+  padding: 1em 1.25em 1em 3em;
+  margin: 0 0 1.25em 0;
+  position: relative;
+
+  &::before {
+    content: "\201C";
+    font-family: Georgia, serif;
+    font-size: 4em;
+    font-weight: bold;
+    position: absolute;
+    left: 0.5rem;
+    top: 0.25rem;
+  }
+
+  &::after {
+    content: "";
+  }
+}

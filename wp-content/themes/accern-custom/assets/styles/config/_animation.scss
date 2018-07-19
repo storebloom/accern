@@ -1,0 +1,38 @@
+/**
+  Animation Settings
+  ---------------------------------------------------------------------- */
+.animate-parallax {
+  .module-bg {
+    top: 0;
+    left: auto;
+    right: auto;
+  }
+}
+
+.animate-on-enter,
+.animate-on-leave {
+  opacity: 0;
+  top: 4rem;
+
+  @include transition(all 600ms ease-in-out);
+
+  &.is-visible {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+/**
+  Parallax Animation
+  ---------------------------------------------------------------------- */
+.animate-z-subtle .module-bg {
+  height: calc(100% + 4rem);
+}
+
+.animate-z-normal .module-bg {
+  height: calc(100% + 8rem);
+}
+
+.animate-z-extreme .module-bg {
+  height: calc(100% + 16rem);
+}
