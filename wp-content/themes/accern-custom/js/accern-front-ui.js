@@ -65,7 +65,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			// Close overlay.
 			this.$pageContainer.on( 'click', '#close-overlay', function() {
 				$( this ).siblings( '.accern-overlay-content' ).html( '' );
-				$( this ).parent( 'div' ).removeClass( 'open' );
+				$( '.accer-overlay-content-wrap' ).removeClass( 'open' );
 			} );
 
 			// Nav click sectin.
@@ -100,14 +100,15 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * @param section
 		 * @param overlayNum
 		 */
-		openOverlay: function( section, overlayNum ) {
+		openOverlay: function( section, overlayNum ) { alert('hey');
 			wp.ajax.post( 'get_overlay_content', {
 				section: section,
 				number: overlayNum,
 				postid: this.data.postid,
 				nonce: this.data.nonce
 			} ).always( function( results ) {
-				$( '.accern-overlay-content' ).html( results ).addClass( 'open' );
+				$( '.accern-overlay-content' ).html( results );
+				$( '.accer-overlay-content-wrap' ).addClass( 'open' );
 			} );
 		},
 
