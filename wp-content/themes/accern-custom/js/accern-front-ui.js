@@ -90,11 +90,13 @@ var AccernFrontUI = ( function( $, wp ) {
 			// Open main menu.
 			$( '#site-navigation' ).on( 'click', '#open-accern-menu', function() {
 				$( '#site-navigation' ).addClass( 'is-active' );
+				$( 'body' ).addClass( 'nav-active' );
 			} );
 
 			// Close main menu.
-			$( '#site-navigation' ).on( 'click', '#close-accern-menu', function() {
+			$( '#site-navigation' ).on( 'click', '.accern-main-menu-close', function() {
 				$( '#site-navigation' ).removeClass( 'is-active' );
+				$( 'body' ).removeClass( 'nav-active' );
 			} );
 
 			// Use case tab reveal.

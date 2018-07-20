@@ -2,7 +2,7 @@
   Global Website Header
   ---------------------------------------------------------------------- */
 .site-header {
-  position: absolute;
+  position: fixed;
   z-index: 999;
   top: 0;
   left: 0;
@@ -13,31 +13,145 @@
 }
 
 .site-branding {
-  padding: 1.75rem;
-  height: 1.5rem;
-  width: auto;
+  padding: 1.75rem 0;
+
+  img {
+    display: block;
+    height: 1.55rem;
+    width: auto;
+  }
 }
 
+.main-navigation {
+  @include grid(center, center);
+
+  position: relative;
+  height: 1.25rem;
+  width: 50%;
+}
+
+.accern-main-menu-open,
+.accern-main-menu-close {
+  @include transition(all 100ms ease);
+
+  transform-origin: right;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+
+  img {
+    display: block;
+    height: 1rem;
+    width: auto;
+  }
+}
+
+.accern-main-menu-close {
+  @include grid(center, center);
+
+  transform: scaleX(0);
+  text-transform: uppercase;
+
+  img {
+    margin-left: 1rem;
+  }
+}
+
+/**
+  Overlaying Menu
+  ---------------------------------------------------------------------- */
 .main-menu-overlay {
   position: fixed;
+  z-index: -1;
   width: 100%;
   height: 100%;
+  left: 0;
+  top: 0;
+  transform: scaleY(0);
+  opacity: 0;
+  background: radial-gradient(ellipse at center 20%, rgb(34, 37, 46) 0%, rgb(8, 11, 16) 100%);
+  transition: all 500ms ease;
+  transform-origin: top;
 
   @include grid(center, center, column);
 }
 
 .accern-primary-menu {
   @include listStripped();
-  @include grid(center, center, column);
+  @include grid(center, flex-start, column);
+
+  li {
+    position: relative;
+    font-size: 4rem;
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 1.5rem;
+
+    @include fontBold();
+  }
+
+  a {
+    display: block;
+    opacity: 0.2;
+
+    @include transition();
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .accern-menu-item-count {
+    position: absolute;
+    top: 0.5rem;
+    right: calc(100% + 1rem);
+    font-size: 1rem;
+
+    @include fontBold(false);
+  }
+
+  .accern-primary-menu-item-current {
+    .accern-menu-item-count {
+      @extend %section-dashes;
+
+      &::before {
+        width: 4rem;
+        height: 1rem;
+        background-size: 150%;
+        position: absolute;
+        right: calc(100% - 1rem);
+      }
+    }
+
+    a {
+      color: $red-light;
+      opacity: 1;
+    }
+  }
+}
+
+/**
+  Navigation is Opened
+  ---------------------------------------------------------------------- */
+body.nav-active {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 #site-navigation.is-active {
   .accern-main-menu-open {
-    display: none;
+    transform: scaleX(0);
   }
 
   .accern-main-menu-close {
-    display: block;
+    transform: scaleX(1);
+  }
+
+  .main-menu-overlay {
+    transform: scaleY(1);
+    opacity: 1;
   }
 }
 

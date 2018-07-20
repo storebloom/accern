@@ -28,21 +28,24 @@
 
 		<nav id="site-navigation" class="main-navigation">
 			<div class="accern-main-menu-open">
-				<img id="open-accern-menu" class="open-menu-icon" src="<?php echo esc_url( asset_path( 'images/menu-icon.png' ) ); ?>">
+				<img id="open-accern-menu" class="open-menu-icon" src="<?php echo esc_url( asset_path( 'images/icon-menu.svg' ) ); ?>" alt="Open Navigation Menu" />
 			</div>
 			<div class="accern-main-menu-close">
 				<?php echo esc_html__( 'Close', 'accern-custom' ); ?>
-				<img id="close-accern-menu" class="menu-icon" src="<?php echo esc_url( asset_path( 'images/overlay-icon.png' ) ); ?>">
+				<img id="close-accern-menu" class="menu-icon" src="<?php echo esc_url( asset_path( 'images/icon-close.svg' ) ); ?>" alt="Close Navigation Menu" />
 			</div>
+
 			<div class="main-menu-overlay">
 				<ul class="accern-primary-menu">
 					<?php
 					$menu_items = wp_get_nav_menu_items( 'main-menu' );
+					$currentPage =  get_the_id();
 
 					foreach ( $menu_items as $num => $menu_item ) :
 						$num = intval( $num ) + 1;
+						$menuItemId = $menu_item->object_id;
 					?>
-					<li class="accern-primary-menu-item">
+					<li class="accern-primary-menu-item<?php if($currentPage == $menuItemId) { echo esc_html( ' accern-primary-menu-item-current' ); } ?>">
 						<a href="<?php echo esc_url( $menu_item->url ); ?>">
 							<div class="accern-menu-item-count"><?php echo esc_html( '0' . $num . '/' ); ?></div>
 							<?php echo esc_html( $menu_item->title ); ?>
