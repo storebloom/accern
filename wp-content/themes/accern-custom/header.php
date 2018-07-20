@@ -23,7 +23,9 @@
 <div id="page" class="site">
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
-			<?php the_custom_logo(); ?>
+			<a href="<?php echo esc_url( get_home_url() ); ?>">
+				<img src="<?php echo esc_url( asset_path( 'images/accern-logo-white.svg' ) ); ?>" alt="White Logo for Accern" />
+			</a>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
