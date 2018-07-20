@@ -72,9 +72,8 @@ function get_section_info( $page, $section, $postid ) {
  * @param integer $count How many nav icons to display.
  * @param string  $name The page name icons are for.
  * @param array   $sections An array of section names to use for nav.
- * @param bool    $page_names Should the sections be page names or sections names.
  */
-function get_accern_nav_icons( $id, $count, $page, $sections, $page_names = false ) {
+function get_accern_nav_icons( $id, $count, $page, $sections ) {
 	?>
 	<div class="nav-icons">
 		<ul>
@@ -84,7 +83,7 @@ function get_accern_nav_icons( $id, $count, $page, $sections, $page_names = fals
 
 				if ( 'homepage' === $page ) {
 					$section = get_home_section_info( $sections[ $section_num ], $id );
-				} elseif ( 'company' === $page ) {
+				} else {
 					$section = get_section_info( 'company', $sections[ $section_num ], $id );
 				}
 				$current = 1 === $x ? 'current-section' : '';
@@ -92,13 +91,7 @@ function get_accern_nav_icons( $id, $count, $page, $sections, $page_names = fals
 				<li data-section="<?php echo esc_attr( $x ); ?>" id="section-<?php echo esc_attr( $x ); ?>" class="<?php echo esc_attr( $current ); ?> <?php echo esc_attr( $page ); ?>-nav-section">
 					●
 					<div class="nav-page-name">
-						<?php
-						if ( $page_name ) {
-							echo esc_html( $section[ $section_num ] );
-						} else {
-							echo esc_html( $section['title'] );
-						}
-						?>
+						<?php echo esc_html( $section['title'] ); ?>
 					</div>
 				</li>
 			<?php endfor; ?>
