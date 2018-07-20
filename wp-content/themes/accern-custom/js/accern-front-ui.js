@@ -85,12 +85,12 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Open main menu.
 			$( '#site-navigation' ).on( 'click', '#open-accern-menu', function() {
-				$( '.main-menu-overlay' ).fadeIn();
+				$( '#site-navigation' ).addClass( 'is-active' );
 			} );
 
 			// Close main menu.
 			$( '#site-navigation' ).on( 'click', '#close-accern-menu', function() {
-				$( '.main-menu-overlay' ).fadeOut();
+				$( '#site-navigation' ).removeClass( 'is-active' );
 			} );
 		},
 

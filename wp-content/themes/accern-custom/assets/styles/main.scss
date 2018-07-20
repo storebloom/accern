@@ -2,7 +2,6 @@
   Configuration Settings & Mixins
   ---------------------------------------------------------------------- */
 @import 'config/effects';
-@import 'config/animation';
 @import 'config/functions';
 @import 'config/grid';
 @import 'config/reset';
@@ -15,13 +14,13 @@
   Global Elements
   ---------------------------------------------------------------------- */
 @import 'global/base';
-@import 'global/navigation';
 @import 'global/header';
 @import 'global/footer';
 
 /**
   Shared Module Components
   ---------------------------------------------------------------------- */
+@import 'modules/animation';
 @import 'modules/buttons';
 @import 'modules/sections';
 
