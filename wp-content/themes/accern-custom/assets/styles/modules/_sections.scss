@@ -4,16 +4,11 @@
 %section-container {
   @include grid(center, flex-start, column);
   @include columnPadding();
+
+  position: relative;
 }
 
-.section-title {
-  @include grid(flex-start, center);
-  @include fontBold();
-
-  color: $red;
-  text-transform: uppercase;
-  margin: 1em 0;
-
+%section-dashes {
   &::before {
     content: '';
     display: block;
@@ -26,6 +21,17 @@
     background-repeat: no-repeat;
     background-color: transparent;
   }
+}
+
+.section-title {
+  @include grid(flex-start, center);
+  @include fontBold();
+
+  color: $red;
+  text-transform: uppercase;
+  margin: 1em 0;
+
+  @extend %section-dashes;
 }
 
 .section-sub-title {

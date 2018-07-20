@@ -11,18 +11,18 @@
 @import 'config/forms';
 
 /**
-  Global Elements
-  ---------------------------------------------------------------------- */
-@import 'global/base';
-@import 'global/header';
-@import 'global/footer';
-
-/**
   Shared Module Components
   ---------------------------------------------------------------------- */
 @import 'modules/animation';
 @import 'modules/buttons';
 @import 'modules/sections';
+
+/**
+  Global Elements
+  ---------------------------------------------------------------------- */
+@import 'global/base';
+@import 'global/header';
+@import 'global/footer';
 
 /**
   Individual Page Styling
