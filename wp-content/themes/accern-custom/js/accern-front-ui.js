@@ -100,7 +100,7 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * @param section
 		 * @param overlayNum
 		 */
-		openOverlay: function( section, overlayNum ) { alert('hey');
+		openOverlay: function( section, overlayNum ) {
 			wp.ajax.post( 'get_overlay_content', {
 				section: section,
 				number: overlayNum,
@@ -108,7 +108,7 @@ var AccernFrontUI = ( function( $, wp ) {
 				nonce: this.data.nonce
 			} ).always( function( results ) {
 				$( '.accern-overlay-content' ).html( results );
-				$( '.accer-overlay-content-wrap' ).addClass( 'open' );
+				$( '.accern-overlay-content-wrap' ).addClass( 'open' );
 			} );
 		},
 
