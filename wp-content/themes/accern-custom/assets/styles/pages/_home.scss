@@ -1,0 +1,11 @@
+.homepage-section {
+  @extend %section-container;
+
+  &#home-section-1 {
+    .accern-overlay-button {
+      @include button();
+
+      transform-origin: left;
+    }
+  }
+}

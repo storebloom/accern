@@ -123,6 +123,14 @@ add_action( 'widgets_init', 'accern_custom_widgets_init' );
  * Enqueue scripts and styles.
  */
 function accern_custom_scripts() {
+
+	// Remove jQuery Migrate because we have eslint telling us everything we did wrong
+	function remove_jquery_migrate($scripts) {
+	   if(is_admin()) return;
+	   $scripts->remove('jquery');
+	   $scripts->add('jquery', false, array('jquery-core'), '1.10.2');
+	}
+
 	wp_enqueue_script( 'accern-custom-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'accern-custom-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
@@ -135,6 +143,13 @@ function accern_custom_scripts() {
 	if ( is_admin()) {
 		wp_enqueue_style( 'accern-custom-admin-styles', asset_path('styles/admin.css') );
 		add_editor_style( asset_path('styles/editor.css') );
+	}
+
+	if (!is_admin()) {
+		// comment out the next two lines to load the local copy of jQuery
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', false, '3.3.1');
+		wp_enqueue_script('jquery');
 	}
 
 	// Custom login stylesheet

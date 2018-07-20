@@ -1,0 +1,39 @@
+/**
+  Shared Section Element Styles
+  ---------------------------------------------------------------------- */
+%section-container {
+  @include grid(center, flex-start, column);
+  @include columnPadding();
+}
+
+.section-title {
+  @include grid(flex-start, center);
+  @include fontBold();
+
+  color: $red;
+  text-transform: uppercase;
+  margin: 1em 0;
+
+  &::before {
+    content: '';
+    display: block;
+    margin-right: $sectionGutter;
+    width: $sectionColumn;
+    height: 2em;
+    background-image: url('../images/icon-dotline.svg');
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+}
+
+.section-sub-title {
+  @include columnWidth(4);
+  @include fontBold();
+
+  margin: 1.5rem 0 4.75rem 0;
+  color: $white;
+  font-size: 4rem;
+  line-height: 1.25;
+}

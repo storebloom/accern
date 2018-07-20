@@ -7,9 +7,9 @@
 @import "config/grid";
 @import "config/reset";
 @import "config/colors";
+@import 'config/font-import.scss';
 @import "config/typography";
 @import "config/forms";
-@import "config/hamburger";
 
 /**
   Global Elements
@@ -20,11 +20,12 @@
 @import "global/footer";
 
 /**
-  Exonym Plugins
+  Shared Module Components
   ---------------------------------------------------------------------- */
-// @import "../../../../plugins/exonym-content/sass/exonym-content.scss"; // Content Builder
-// @import "../../../../plugins/exonym-staff/exonym-staff.scss"; // Staff Plugin
+@import "modules/buttons";
+@import "modules/sections";
 
-body {
-  background-color: #c00 !important;
-}
+/**
+  Individual Page Styling
+  ---------------------------------------------------------------------- */
+@import "pages/home";
