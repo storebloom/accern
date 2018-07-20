@@ -1,9 +1,15 @@
 .homepage-section {
   @extend %section-container;
 
+  .accern-overlay-button {
+    @include button(outline);
+
+    margin-bottom: 1rem;
+  }
+
   &#home-section-1 {
     .accern-overlay-button {
-      @include button();
+      @include button(red);
 
       transform-origin: left;
     }
