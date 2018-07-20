@@ -49,7 +49,7 @@ foreach ( $use_cases as $case ) :
 <?php endforeach; ?>
 
 <?php
-$page_names = array_unshift( $case_name, $section_info['title'] );
+array_unshift( $case_name, $section_info['title'] );
 
 // Nav icons.
-get_accern_nav_icons( $id, count( $use_cases ) + 1, 'usecase', $page_names, true );
+get_accern_nav_icons( $id, count( $use_cases ) + 1, 'usecase', $case_name, true );
