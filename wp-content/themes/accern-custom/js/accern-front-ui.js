@@ -40,7 +40,11 @@ var AccernFrontUI = ( function( $, wp ) {
 					sequences: [0, 1, 2, 3, 4, 5, 6]
 				} );
 
-				this.scrollifySections();
+				this.scrollifySections( 'homepage' );
+			}
+
+			if ( 'Company' === this.data.page ) {
+				this.scrollifySections( 'company' );
 			}
 		},
 
@@ -65,14 +69,14 @@ var AccernFrontUI = ( function( $, wp ) {
 			} );
 
 			// Nav click sectin.
-			this.$pageContainer.on( 'click', '.home-nav-section', function() {
+			this.$pageContainer.on( 'click', '.homepage-nav-section, .company-nav-section', function() {
 				var section = $( this ).attr( 'data-section' );
 
 				$.scrollify.move( '#' + section );
 			} );
 
 			// Show page name in nav icons.
-			$( '.home-nav-section' ).hover( function() {
+			$( '.homepage-nav-section, .company-nav-section' ).hover( function() {
 				$( this ).find( '.nav-page-name' ).fadeIn();
 			},
 			function() {
@@ -113,27 +117,32 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * @param page
 		 */
 		setSectionHeight: function( page ) {
-			$( '.page-template-' + page + '-template .' + page + '-section' ).css( 'height', $( window ).height() );
+			$( '.page-template-' + page + '-template .' + page + '-section' ).css( 'min-height', $( window ).height() );
 		},
 
 		/**
 		 * Auto scroll to sections.
+		 *
+		 * @param page
 		 */
-		scrollifySections: function() {
+		scrollifySections: function( page ) {
 			var self = this;
 
 			$.scrollify( {
-				section : ".homepage-section",
-				scrollbars: false,
+				section : '.' + page + '-section',
+				scrollbars: true,
 				sectionName: false,
 				updateHash: false,
+				overflowScroll: true,
 				afterRender: function() {
 					var index = $.scrollify.currentIndex(),
 						section = parseInt( index ) + 1;
 
-					self.$animate.transitionTo( index );
+					if ( 'homepage' === page ) {
+						self.$animate.transitionTo( index );
+					}
 
-					$( '.home-nav-section' ).removeClass( 'current-section' );
+					$( '.' + page + '-nav-section' ).removeClass( 'current-section' );
 					$( '#section-' + section ).addClass( 'current-section' );
 				},
 				before: function (index, sections) {
@@ -141,10 +150,12 @@ var AccernFrontUI = ( function( $, wp ) {
 
 					index = 5 === index ? 6 : index;
 
-					$( '.home-nav-section' ).removeClass( 'current-section' );
+					$( '.' + page + '-nav-section' ).removeClass( 'current-section' );
 					$( '#section-' + section ).addClass( 'current-section' );
 
-					self.$animate.transitionTo( index );
+					if ( 'homepage' === page ) {
+						self.$animate.transitionTo( index );
+					}
 				},
 			} );
 		}

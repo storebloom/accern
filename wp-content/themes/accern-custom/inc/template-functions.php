@@ -64,3 +64,38 @@ function get_section_info( $page, $section, $postid ) {
 
 	return $the_meta[ $page . '-' . $section . '-section' ];
 }
+
+/**
+ * Helper function to get specified page nav icons with page names.
+ *
+ * @param integer $id The page id to grab info for.
+ * @param integer $count How many nav icons to display.
+ * @param string  $name The page name icons are for.
+ * @param array   $sections An array of section names to use for nav.
+ */
+function get_accern_nav_icons( $id, $count, $page, $sections ) {
+	?>
+	<div class="nav-icons">
+		<ul>
+			<?php
+			for ( $x = 1; $x <= $count; $x++ ) :
+				$section_num = $x - 1;
+
+				if ( 'homepage' === $page ) {
+					$section = get_home_section_info( $sections[ $section_num ], $id );
+				} else {
+					$section = get_section_info( 'company', $sections[ $section_num ], $id );
+				}
+				$current = 1 === $x ? 'current-section' : '';
+			?>
+				<li data-section="<?php echo esc_attr( $x ); ?>" id="section-<?php echo esc_attr( $x ); ?>" class="<?php echo esc_attr( $current ); ?> <?php echo esc_attr( $page ); ?>-nav-section">
+					●
+					<div class="nav-page-name">
+						<?php echo esc_html( $section['title'] ); ?>
+					</div>
+				</li>
+			<?php endfor; ?>
+		</ul>
+	</div>
+<?php
+}
