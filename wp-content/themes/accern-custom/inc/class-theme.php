@@ -59,7 +59,7 @@ class Theme extends Theme_Base {
 		wp_enqueue_style( 'accern-custom-style', asset_path('styles/main.css') );
 		wp_register_script( "{$this->assets_prefix}-animation-manifest", "{$this->dir_url}/js/animation/manifest.2ae2e69a05c33dfc65f8.js", array(), time(), false );
 		wp_register_script( "{$this->assets_prefix}-animation-vendor", "{$this->dir_url}/js/animation/vendor.6a274349fb8ac9adac60.js", array(), time(), false );
-		wp_register_script( "{$this->assets_prefix}-animation-app", "{$this->dir_url}/js/animation/app.90d9af110eb54e485108.js", array(), time(), false );
+		wp_register_script( "{$this->assets_prefix}-animation-app", "{$this->dir_url}/js/animation/app.f20f7f688b95f685e972.js", array(), time(), false );
 		wp_register_script( "{$this->assets_prefix}-front-ui", "{$this->dir_url}/js/accern-front-ui.js", array(
 			'jquery',
 			'wp-util',

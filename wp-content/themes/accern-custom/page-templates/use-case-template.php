@@ -10,11 +10,14 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 
+	$id = get_the_ID();
+	$section_info = get_section_info( 'usecase', 'main', $id );
+
 	// Pull in main use case section.
-	get_template_part( 'template-parts/usecase', 'main' );
+	include( locate_template( 'template-parts/usecase-main.php' ) );
 
 	// Pull in use cases.
-	get_template_part( 'template-parts/usecase', 'cases' );
+	include( locate_template( 'template-parts/usecase-cases.php' ) );
 endwhile; // End of the loop.
 
 get_footer();
