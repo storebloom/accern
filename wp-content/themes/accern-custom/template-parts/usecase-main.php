@@ -7,8 +7,9 @@
  * @package Accern_Custom
  */
 
+$section_info = get_section_info( 'usecase', 'main', get_the_ID() );
 ?>
-<div id="company-main-section" class="usecase-section">
+<div id="company-main-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>
