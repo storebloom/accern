@@ -2,7 +2,6 @@
   Configuration Settings & Mixins
   ---------------------------------------------------------------------- */
 @import 'config/effects';
-@import 'config/animation';
 @import 'config/functions';
 @import 'config/grid';
 @import 'config/reset';
@@ -22,6 +21,7 @@
 /**
   Shared Module Components
   ---------------------------------------------------------------------- */
+@import 'modules/animation';
 @import 'modules/buttons';
 @import 'modules/sections';
 
