@@ -22,6 +22,11 @@ $section_info = get_home_section_info( 'cases', get_the_ID() );
 				<a href="<?php echo esc_url( $link['url'] ); ?>" class="home-case-link">
 					<?php echo esc_html( $link['title'] ); ?>
 				</a>
+				<div class="section-cta">
+					<a href="<?php echo esc_url( $link['url'] ); ?>" class="accern-overlay-button">
+						<?php echo esc_html__( 'More Info', 'accern-custom' ); ?>
+					</a>
+				</div>
 			</div>
 	<?php
 		endforeach;
