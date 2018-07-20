@@ -46,6 +46,10 @@ var AccernFrontUI = ( function( $, wp ) {
 			if ( 'Company' === this.data.page ) {
 				this.scrollifySections( 'company' );
 			}
+
+			if ( 'Use Cases' === this.data.page ) {
+				this.scrollifySections( 'usecase' );
+			}
 		},
 
 		/**
@@ -91,6 +95,16 @@ var AccernFrontUI = ( function( $, wp ) {
 			// Close main menu.
 			$( '#site-navigation' ).on( 'click', '#close-accern-menu', function() {
 				$( '#site-navigation' ).removeClass( 'is-active' );
+			} );
+
+			// Use case tab reveal.
+			this.$pageContainer.on( 'click', '.tab-item', function() {
+				var tabid = $( this ).attr( 'data-tab' );
+
+				$( this ).closest( '.usecase-tabs' ).find( '.tab-item' ).removeClass( 'current-tab' );
+				$( this ).addClass( 'current-tab' );
+				$( '#' + tabid ).closest( '.usecase-tab-content' ).find( '.use-case-content-wrap' ).removeClass( 'active-tab' );
+				$( '#' + tabid ).addClass( 'active-tab' );
 			} );
 		},
 

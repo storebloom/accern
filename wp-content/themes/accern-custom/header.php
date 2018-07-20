@@ -34,9 +34,6 @@
 				<?php echo esc_html__( 'Close', 'accern-custom' ); ?>
 				<img id="close-accern-menu" class="menu-icon" src="<?php echo esc_url( asset_path( 'images/overlay-icon.png' ) ); ?>">
 			</div>
-
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'accern-custom' ); ?></button>
-
 			<div class="main-menu-overlay">
 				<ul class="accern-primary-menu">
 					<?php
