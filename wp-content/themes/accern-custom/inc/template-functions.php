@@ -93,7 +93,7 @@ function get_accern_nav_icons( $id, $count, $page, $sections, $page_names = fals
 					●
 					<div class="nav-page-name">
 						<?php
-						if ( $page_name ) {
+						if ( $page_names ) {
 							echo esc_html( $section[ $section_num ] );
 						} else {
 							echo esc_html( $section['title'] );
