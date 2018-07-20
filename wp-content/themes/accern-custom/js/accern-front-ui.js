@@ -29,18 +29,19 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * Initialize plugin.
 		 */
 		init: function() {
-			var animateEl = document.getElementById( 'home-page-animations' ),
-				section = undefined !== window.location.hash ? parseInt( window.location.hash.replace( '#', '' ) ) - 1 : 0;
+			var animateEl = document.getElementById( 'home-page-animations' );
 
 			this.$pageContainer = $( 'body.page' );
 			this.listen();
 			this.setSectionHeight( this.data.page.toLowerCase() );
-			this.scrollifySections();
-			this.$animate = window.__mountVisualization( animateEl, {
-				sequences: [0, 1, 2, 3, 4, 5, 6]
-			} );
 
-			this.$animate.transitionTo( section );
+			if ( animateEl ) {
+				this.$animate = window.__mountVisualization( animateEl, {
+					sequences: [0, 1, 2, 3, 4, 5, 6]
+				} );
+
+				this.scrollifySections();
+			}
 		},
 
 		/**
@@ -76,6 +77,16 @@ var AccernFrontUI = ( function( $, wp ) {
 			},
 			function() {
 				$( this ).find( '.nav-page-name' ).fadeOut();
+			} );
+
+			// Open main menu.
+			$( '#site-navigation' ).on( 'click', '#open-accern-menu', function() {
+				$( '.main-menu-overlay' ).fadeIn();
+			} );
+
+			// Close main menu.
+			$( '#site-navigation' ).on( 'click', '#close-accern-menu', function() {
+				$( '.main-menu-overlay' ).fadeOut();
 			} );
 		},
 
@@ -114,6 +125,17 @@ var AccernFrontUI = ( function( $, wp ) {
 			$.scrollify( {
 				section : ".homepage-section",
 				scrollbars: false,
+				sectionName: false,
+				updateHash: false,
+				afterRender: function() {
+					var index = $.scrollify.currentIndex(),
+						section = parseInt( index ) + 1;
+
+					self.$animate.transitionTo( index );
+
+					$( '.home-nav-section' ).removeClass( 'current-section' );
+					$( '#section-' + section ).addClass( 'current-section' );
+				},
 				before: function (index, sections) {
 					var section = index + 1;
 
