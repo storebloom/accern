@@ -16,7 +16,7 @@ $associations = get_terms(
 	)
 );
 ?>
-<div id="company-partners-section">
+<div id="company-partners-section" class="company-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>

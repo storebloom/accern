@@ -21,6 +21,11 @@ while ( have_posts() ) :
 
 	// Pull in overlay wrap.
 	get_template_part( 'template-parts/home', 'overlay' );
+
+	// Nav icons.
+	$id = get_the_ID();
+
+	get_accern_nav_icons( $id, 3, 'company', array( 'main', 'team', 'partners' ) );
 endwhile; // End of the loop.
 
 get_footer();

@@ -9,7 +9,7 @@
 
 $section_info = get_section_info( 'company', 'main', get_the_ID() );
 ?>
-<div id="company-main-section">
+<div id="company-main-section" class="company-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>
