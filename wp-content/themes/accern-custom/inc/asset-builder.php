@@ -47,6 +47,6 @@ interface ManifestInterface {
 // Read and dynamically assign the asset path
 function asset_path($filename) {
   static $manifest;
-  isset($manifest) || $manifest = new JsonManifest(get_template_directory_uri() . '/' . Asset::$dist . '/assets.json');
+  isset($manifest) || $manifest = new JsonManifest(get_template_directory() . '/' . Asset::$dist . '/assets.json');
   return (string) new Asset($filename, $manifest);
 }
