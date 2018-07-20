@@ -6,6 +6,7 @@
   @include columnPadding();
 
   position: relative;
+  display: none !important; // REMOVE
 }
 
 %section-dashes {
