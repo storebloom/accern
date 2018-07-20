@@ -1,31 +1,31 @@
 /**
   Configuration Settings & Mixins
   ---------------------------------------------------------------------- */
-@import "config/effects";
-@import "config/animation";
-@import "config/functions";
-@import "config/grid";
-@import "config/reset";
-@import "config/colors";
-@import 'config/font-import.scss';
-@import "config/typography";
-@import "config/forms";
+@import 'config/effects';
+@import 'config/animation';
+@import 'config/functions';
+@import 'config/grid';
+@import 'config/reset';
+@import 'config/colors';
+@import 'config/font-import';
+@import 'config/typography';
+@import 'config/forms';
 
 /**
   Global Elements
   ---------------------------------------------------------------------- */
-@import "global/base";
-@import "global/navigation";
-@import "global/header";
-@import "global/footer";
+@import 'global/base';
+@import 'global/navigation';
+@import 'global/header';
+@import 'global/footer';
 
 /**
   Shared Module Components
   ---------------------------------------------------------------------- */
-@import "modules/buttons";
-@import "modules/sections";
+@import 'modules/buttons';
+@import 'modules/sections';
 
 /**
   Individual Page Styling
   ---------------------------------------------------------------------- */
-@import "pages/home";
+@import 'pages/home';
