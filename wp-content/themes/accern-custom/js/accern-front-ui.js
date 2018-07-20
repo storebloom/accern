@@ -73,14 +73,14 @@ var AccernFrontUI = ( function( $, wp ) {
 			} );
 
 			// Nav click sectin.
-			this.$pageContainer.on( 'click', '.homepage-nav-section, .company-nav-section', function() {
+			this.$pageContainer.on( 'click', '.homepage-nav-section, .company-nav-section, .usecase-nav-section', function() {
 				var section = $( this ).attr( 'data-section' );
 
 				$.scrollify.move( '#' + section );
 			} );
 
 			// Show page name in nav icons.
-			$( '.homepage-nav-section, .company-nav-section' ).hover( function() {
+			$( '.homepage-nav-section, .company-nav-section, .usecase-nav-section' ).hover( function() {
 				$( this ).find( '.nav-page-name' ).fadeIn();
 			},
 			function() {
@@ -107,6 +107,11 @@ var AccernFrontUI = ( function( $, wp ) {
 				$( this ).addClass( 'current-tab' );
 				$( '#' + tabid ).closest( '.usecase-tab-content' ).find( '.use-case-content-wrap' ).removeClass( 'active-tab' );
 				$( '#' + tabid ).addClass( 'active-tab' );
+			} );
+
+			// Scroll down to next section.
+			this.$pageContainer.on( 'click', '#scroll-down-one', function() {
+				$.scrollify.next();
 			} );
 		},
 
