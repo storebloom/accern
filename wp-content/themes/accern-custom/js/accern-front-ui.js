@@ -46,6 +46,10 @@ var AccernFrontUI = ( function( $, wp ) {
 			if ( 'Company' === this.data.page ) {
 				this.scrollifySections( 'company' );
 			}
+
+			if ( 'Use Cases' === this.data.page ) {
+				this.scrollifySections( 'usecase' );
+			}
 		},
 
 		/**
@@ -65,7 +69,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			// Close overlay.
 			this.$pageContainer.on( 'click', '#close-overlay', function() {
 				$( this ).siblings( '.accern-overlay-content' ).html( '' );
-				$( this ).parent( 'div' ).removeClass( 'open' );
+				$( '.accer-overlay-content-wrap' ).removeClass( 'open' );
 			} );
 
 			// Nav click sectin.
@@ -94,6 +98,16 @@ var AccernFrontUI = ( function( $, wp ) {
 				$( '#site-navigation' ).removeClass( 'is-active' );
 				$( 'body' ).removeClass( 'nav-active' );
 			} );
+
+			// Use case tab reveal.
+			this.$pageContainer.on( 'click', '.tab-item', function() {
+				var tabid = $( this ).attr( 'data-tab' );
+
+				$( this ).closest( '.usecase-tabs' ).find( '.tab-item' ).removeClass( 'current-tab' );
+				$( this ).addClass( 'current-tab' );
+				$( '#' + tabid ).closest( '.usecase-tab-content' ).find( '.use-case-content-wrap' ).removeClass( 'active-tab' );
+				$( '#' + tabid ).addClass( 'active-tab' );
+			} );
 		},
 
 		/**
@@ -109,7 +123,8 @@ var AccernFrontUI = ( function( $, wp ) {
 				postid: this.data.postid,
 				nonce: this.data.nonce
 			} ).always( function( results ) {
-				$( '.accern-overlay-content' ).html( results ).addClass( 'open' );
+				$( '.accern-overlay-content' ).html( results );
+				$( '.accern-overlay-content-wrap' ).addClass( 'open' );
 			} );
 		},
 
