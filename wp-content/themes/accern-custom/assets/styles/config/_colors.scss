@@ -1,13 +1,7 @@
 $white: #fff;
-$grey: #ccc;
+$grey-trans: rgba(51, 51, 51, 0.9);
+$grey-sheer: rgba(255, 255, 255, 0.15);
+$grey: #404040;
 $black: #000;
-$red: #f00;
-$blue: #00f;
-
-$color-scheme: (
-  color-white: $white,
-  color-grey: $grey,
-  color-black: $black,
-  color-red: $red,
-  color-blue: $blue
-);
+$red: #c81b1a;
+$red-light: #f44336;

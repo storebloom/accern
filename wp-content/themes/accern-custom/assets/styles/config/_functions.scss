@@ -48,60 +48,17 @@
 }
 
 /**
-  Easily Style Nav Menus
+  Quickly adhere to the 12 column grid
   ---------------------------------------------------------------------- */
-@mixin navMenu($style) {
-  @if $style == dropdown {
-    ul {
-      @include listStripped();
+$sectionColumn: 6.5vw;
+$sectionGutter: 1.25vw;
+$sectionOffset: 6.25vw;
+$sectionRemain: 2vw;
 
-      li {
-        position: relative;
-        float: left;
+@mixin columnWidth($count) {
+  width: #{($sectionColumn * $count) + ($sectionGutter * ($count - 1))};
+}
 
-        a {
-          display: block;
-          white-space: nowrap;
-        }
-
-        & > ul {
-          display: none;
-          position: absolute;
-          min-width: 100%;
-          z-index: 999;
-
-          li {
-            display: block;
-            float: none;
-            position: relative;
-          }
-
-          ul {
-            left: 100%;
-            top: 0;
-
-            li a {
-              min-width: 100%;
-            }
-          }
-        }
-
-        &:hover > ul {
-          display: block;
-        }
-      }
-    }
-  }
-
-  @else if $style == vertical {
-    ul {
-      @include listStripped();
-    }
-  }
-
-  @else if $style == horizontal {
-    ul {
-      @include listStripped(inline-block);
-    }
-  }
+@mixin columnPadding() {
+  padding: 0 $sectionRemain 0 $sectionOffset;
 }
