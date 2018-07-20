@@ -277,4 +277,34 @@ class Register {
 			register_taxonomy( $info['slug'], $type, $args );
 		}
 	}
+
+	/**
+	 * Register footer widget area.
+	 *
+	 * @action widgets_init
+	 */
+	public function footer_widgets_init() {
+		register_sidebar( array(
+			'name'          => esc_html__( 'Footer 1', 'accern-custom' ),
+		     'id'            => 'footer-1',
+			'description'   => '',
+			'class'         => '',
+			'before_widget' => '<li id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</li>',
+			'before_title'  => '<h2 class="widgettitle">',
+			'after_title'   => '</h2>',
+			)
+		);
+		register_sidebar( array(
+				'name'          => esc_html__( 'Footer 2', 'accern-custom' ),
+				'id'            => 'footer-2',
+				'description'   => '',
+				'class'         => '',
+				'before_widget' => '<li id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</li>',
+				'before_title'  => '<h2 class="widgettitle">',
+				'after_title'   => '</h2>',
+			)
+		);
+	}
 }

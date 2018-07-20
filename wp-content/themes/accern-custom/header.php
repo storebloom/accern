@@ -27,13 +27,33 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
+			<div class="accern-main-menu-open">
+				<img id="open-accern-menu" class="open-menu-icon" src="<?php echo esc_url( asset_path( 'images/menu-icon.png' ) ); ?>">
+			</div>
+			<div class="accern-main-menu-close">
+				<?php echo esc_html__( 'Close', 'accern-custom' ); ?>
+				<img id="close-accern-menu" class="menu-icon" src="<?php echo esc_url( asset_path( 'images/overlay-icon.png' ) ); ?>">
+			</div>
+
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'accern-custom' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
+
+			<div class="main-menu-overlay">
+				<ul class="accern-primary-menu">
+					<?php
+					$menu_items = wp_get_nav_menu_items( 'main-menu' );
+
+					foreach ( $menu_items as $num => $menu_item ) :
+						$num = intval( $num ) + 1;
+					?>
+					<li class="accern-primary-menu-item">
+						<a href="<?php echo esc_url( $menu_item->url ); ?>">
+							<div class="accern-menu-item-count"><?php echo esc_html( '0' . $num . '/' ); ?></div>
+							<?php echo esc_html( $menu_item->title ); ?>
+						</a>
+					</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
