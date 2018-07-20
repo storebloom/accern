@@ -15,6 +15,7 @@
   "fonts/5664114/6af0b5e8-5493-42d9-a250-777a3f2109d8.woff2": "fonts/5664114/6af0b5e8-5493-42d9-a250-777a3f2109d8_bccbca00.woff2",
   "fonts/5664114/b2b47de7-f81a-4618-8972-3d49acb98d28.eot": "fonts/5664114/b2b47de7-f81a-4618-8972-3d49acb98d28_3673a4b8.eot",
   "fonts/5664114/bb16813f-1602-42b4-98f3-068eee70eb31.woff": "fonts/5664114/bb16813f-1602-42b4-98f3-068eee70eb31_1ee82696.woff",
+  "images/accern-logo-white.svg": "images/accern-logo-white_5907e44e.svg",
   "images/api.1c30611.png": "images/api.1c30611_1c306117.png",
   "images/button-outline-left.svg": "images/button-outline-left_0936abe3.svg",
   "images/button-outline-right.svg": "images/button-outline-right_243ada65.svg",
@@ -31,12 +32,12 @@
   "images/particle.330a818.png": "images/particle.330a818_330a8182.png",
   "images/walmart.4cbf19f.png": "images/walmart.4cbf19f_4cbf19f3.png",
   "images/wordpress.d898744.png": "images/wordpress.d898744_d8987443.png",
-  "styles/admin.css": "styles/admin_4a9aaa29.css",
-  "scripts/admin.js": "scripts/admin_4a9aaa29.js",
-  "styles/editor.css": "styles/editor_4a9aaa29.css",
-  "scripts/editor.js": "scripts/editor_4a9aaa29.js",
-  "styles/login.css": "styles/login_4a9aaa29.css",
-  "scripts/login.js": "scripts/login_4a9aaa29.js",
-  "styles/main.css": "styles/main_4a9aaa29.css",
-  "scripts/main.js": "scripts/main_4a9aaa29.js"
+  "styles/admin.css": "styles/admin_a9e71a3f.css",
+  "scripts/admin.js": "scripts/admin_a9e71a3f.js",
+  "styles/editor.css": "styles/editor_a9e71a3f.css",
+  "scripts/editor.js": "scripts/editor_a9e71a3f.js",
+  "styles/login.css": "styles/login_a9e71a3f.css",
+  "scripts/login.js": "scripts/login_a9e71a3f.js",
+  "styles/main.css": "styles/main_a9e71a3f.css",
+  "scripts/main.js": "scripts/main_a9e71a3f.js"
 }

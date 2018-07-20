@@ -44,21 +44,3 @@ a {
 /**
   Responsive Breakpoints
   ---------------------------------------------------------------------- */
-@media (min-width: 1025px) {
-  .wrap {
-    width: 1150px;
-  }
-}
-
-@media (min-width: 1400px) {
-  .wrap {
-    width: 1400px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .wrap {
-    width: 100%;
-    padding: 0 2rem;
-  }
-}

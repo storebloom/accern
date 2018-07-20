@@ -70,7 +70,7 @@
   transform: scaleY(0);
   opacity: 0;
   background: radial-gradient(ellipse at center 20%, rgb(34, 37, 46) 0%, rgb(8, 11, 16) 100%);
-  transition: all 500ms ease;
+  transition: opacity 500ms ease, transform 0ms ease 500ms;
   transform-origin: top;
 
   @include grid(center, center, column);
@@ -85,9 +85,12 @@
     font-size: 4rem;
     line-height: 1;
     text-transform: uppercase;
-    margin: 1.5rem;
+    opacity: 0;
+    margin: 1.5rem 0;
+    transform: translateY(-2rem);
 
     @include fontBold();
+    @include transition();
   }
 
   a {
@@ -104,7 +107,7 @@
   .accern-menu-item-count {
     position: absolute;
     top: 0.5rem;
-    right: calc(100% + 1rem);
+    right: calc(100% + 0.5rem);
     font-size: 1rem;
 
     @include fontBold(false);
@@ -152,9 +155,42 @@ body.nav-active {
   .main-menu-overlay {
     transform: scaleY(1);
     opacity: 1;
+    transition: opacity 500ms ease, transform 0ms ease;
+  }
+
+  .accern-primary-menu li {
+    opacity: 1;
+    transform: translateY(0);
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        $time: 250 * $i;
+
+        transition-delay: #{$time}ms;
+      }
+    }
   }
 }
 
 /**
   Responsive Breakpoints
   ---------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .site-header {
+    padding: $sectionMobilePadding;
+  }
+
+  .accern-primary-menu li {
+    font-size: 1.25rem;
+  }
+
+  .accern-primary-menu .accern-menu-item-count {
+    font-size: 0.75rem;
+    top: 0;
+  }
+
+  .accern-primary-menu .accern-primary-menu-item-current .accern-menu-item-count::before {
+    right: 100%;
+    top: -0.15rem;
+  }
+}
