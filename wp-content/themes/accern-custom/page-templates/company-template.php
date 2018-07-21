@@ -10,6 +10,10 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 
+	?>
+	<div id="company-page-animations"></div>
+	<?php
+
 	// Pull in main company section.
 	get_template_part( 'template-parts/company', 'main' );
 

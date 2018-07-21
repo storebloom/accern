@@ -29,7 +29,8 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * Initialize plugin.
 		 */
 		init: function() {
-			var animateEl = document.getElementById( 'home-page-animations' );
+			var animateEl = document.getElementById( 'home-page-animations' ),
+				companyAnimateEl = document.getElementById( 'company-page-animations' );
 
 			this.$pageContainer = $( 'body.page' );
 			this.listen();
@@ -43,7 +44,15 @@ var AccernFrontUI = ( function( $, wp ) {
 				this.scrollifySections( 'homepage' );
 			}
 
-			if ( 'Company' === this.data.page ) {
+			if ( companyAnimateEl ) {
+				this.$companyAnimate = window.__mountVisualization( companyAnimateEl, {
+					sequences: [5]
+				} );
+
+				// Start company animation.
+				this.$companyAnimate.transitionTo( 5 );
+
+				// Engage scrollify.
 				this.scrollifySections( 'company' );
 			}
 
