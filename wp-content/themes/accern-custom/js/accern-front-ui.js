@@ -96,7 +96,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			// Close overlay.
 			this.$pageContainer.on( 'click', '#close-overlay', function() {
 				$( this ).siblings( '.accern-overlay-content' ).html( '' );
-				$( '.accer-overlay-content-wrap' ).removeClass( 'open' );
+				$( '.accern-overlay-content-wrap' ).removeClass( 'open' );
 			} );
 
 			// Nav click sectin.
@@ -129,8 +129,13 @@ var AccernFrontUI = ( function( $, wp ) {
 			} );
 
 			// Scroll down to next section.
-			this.$pageContainer.on( 'click', '#scroll-down-one', function() {
+			this.$pageContainer.on( 'click', '#scroll-down-one, .mobile-down-arrow', function() {
 				$.scrollify.next();
+			} );
+
+			// Scroll up to previous section.
+			this.$pageContainer.on( 'click', '.mobile-up-arrow', function() {
+				$.scrollify.previous();
 			} );
 		},
 
@@ -141,6 +146,8 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * @param overlayNum
 		 */
 		openOverlay: function( section, overlayNum ) {
+			$( '.accern-overlay-content-wrap' ).addClass( 'open' );
+
 			wp.ajax.post( 'get_overlay_content', {
 				section: section,
 				number: overlayNum,
@@ -148,7 +155,6 @@ var AccernFrontUI = ( function( $, wp ) {
 				nonce: this.data.nonce
 			} ).always( function( results ) {
 				$( '.accern-overlay-content' ).html( results );
-				$( '.accern-overlay-content-wrap' ).addClass( 'open' );
 			} );
 		},
 
@@ -159,6 +165,8 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * @param overlayNum
 		 */
 		openFooterOverlay: function( section, overlayNum ) {
+			$( '.accern-overlay-content-wrap' ).addClass( 'open' );
+
 			wp.ajax.post( 'get_overlay_content', {
 				section: section,
 				number: overlayNum,
@@ -166,7 +174,6 @@ var AccernFrontUI = ( function( $, wp ) {
 				nonce: this.data.nonce
 			} ).always( function( results ) {
 				$( '.accern-overlay-content' ).html( results );
-				$( '.accern-overlay-content-wrap' ).addClass( 'open' );
 			} );
 		},
 

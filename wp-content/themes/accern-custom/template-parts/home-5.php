@@ -43,4 +43,8 @@ $section_info = get_home_section_info( '5', get_the_ID() );
 	?>
 
 	<div id="scroll-down-one">Scroll</div>
+	<div class="mobile-scroll-buttons">
+		<span class="mobile-up-arrow"></span>
+		<span class="mobile-down-arrow"></span>
+	</div>
 </div>
