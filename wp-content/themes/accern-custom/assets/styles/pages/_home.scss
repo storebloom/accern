@@ -1,3 +1,6 @@
+/**
+  Home page specific styles
+  ---------------------------------------------------------------------- */
 .homepage-section {
   @extend %section-container;
 
@@ -9,11 +12,56 @@
     margin-bottom: 1rem;
   }
 
+  .home-case-link-wrap .accern-overlay-button {
+    margin: 0;
+    padding: 1rem 3rem;
+  }
+
   &#home-section-1 {
     .accern-overlay-button {
       @include button(red);
 
       transform-origin: left;
+    }
+  }
+}
+
+#home-section-cases {
+  width: 100%;
+
+  .section-title {
+    margin-bottom: 0;
+  }
+}
+
+.home-case-link-wrap {
+  @include grid(flex-start, center);
+
+  .home-case-link {
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    margin: 2rem 1rem 2rem 0;
+    color: $grey-evil;
+
+    @include fontBold();
+    @include transition();
+  }
+
+  .section-cta {
+    opacity: 0;
+    transform: translateX(1rem);
+
+    @include transition();
+  }
+
+  &:hover {
+    .home-case-link {
+      color: $white;
+    }
+
+    .section-cta {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 }
