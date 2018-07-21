@@ -1,4 +1,12 @@
 {
+  "fonts/1488878/0be5590f-8353-4ef3-ada1-43ac380859f8.ttf": "fonts/1488878/0be5590f-8353-4ef3-ada1-43ac380859f8_9bb46038.ttf",
+  "fonts/1488878/1b950d2a-907a-4888-8056-0d44e8e86338.eot": "fonts/1488878/1b950d2a-907a-4888-8056-0d44e8e86338_9325c672.eot",
+  "fonts/1488878/3a46542f-f429-4821-9a88-62e3be54a640.woff2": "fonts/1488878/3a46542f-f429-4821-9a88-62e3be54a640_9b361977.woff2",
+  "fonts/1488878/50ac1699-f3d2-47b6-878f-67a368a17c41.woff": "fonts/1488878/50ac1699-f3d2-47b6-878f-67a368a17c41_afc80fd3.woff",
+  "fonts/1488890/34e0e4c0-c294-49bb-9a8e-1b2cafd54e32.woff": "fonts/1488890/34e0e4c0-c294-49bb-9a8e-1b2cafd54e32_cca18f47.woff",
+  "fonts/1488890/3dac71eb-afa7-4c80-97f0-599202772905.woff2": "fonts/1488890/3dac71eb-afa7-4c80-97f0-599202772905_4a334318.woff2",
+  "fonts/1488890/8a8bfee3-197c-4942-9b11-71508cc9f406.ttf": "fonts/1488890/8a8bfee3-197c-4942-9b11-71508cc9f406_e18f9243.ttf",
+  "fonts/1488890/bf7ef4ce-de2a-4213-a9d7-826a3ee323cd.eot": "fonts/1488890/bf7ef4ce-de2a-4213-a9d7-826a3ee323cd_4a2b52a7.eot",
   "fonts/1488902/050b1948-f226-4d20-a65a-15d8ed031222.woff": "fonts/1488902/050b1948-f226-4d20-a65a-15d8ed031222_6aa6e18f.woff",
   "fonts/1488902/5b1fbd62-45dc-4433-a7df-a2b24a146411.woff2": "fonts/1488902/5b1fbd62-45dc-4433-a7df-a2b24a146411_bc69d60c.woff2",
   "fonts/1488902/beb88be6-2a60-46fe-914f-6892b3ae46ce.ttf": "fonts/1488902/beb88be6-2a60-46fe-914f-6892b3ae46ce_b13c6660.ttf",
@@ -36,12 +44,12 @@
   "images/particle.330a818.png": "images/particle.330a818_330a8182.png",
   "images/walmart.4cbf19f.png": "images/walmart.4cbf19f_4cbf19f3.png",
   "images/wordpress.d898744.png": "images/wordpress.d898744_d8987443.png",
-  "styles/admin.css": "styles/admin_1cc4ab93.css",
-  "scripts/admin.js": "scripts/admin_1cc4ab93.js",
-  "styles/editor.css": "styles/editor_1cc4ab93.css",
-  "scripts/editor.js": "scripts/editor_1cc4ab93.js",
-  "styles/login.css": "styles/login_1cc4ab93.css",
-  "scripts/login.js": "scripts/login_1cc4ab93.js",
-  "styles/main.css": "styles/main_1cc4ab93.css",
-  "scripts/main.js": "scripts/main_1cc4ab93.js"
+  "styles/admin.css": "styles/admin_22fc80f1.css",
+  "scripts/admin.js": "scripts/admin_22fc80f1.js",
+  "styles/editor.css": "styles/editor_22fc80f1.css",
+  "scripts/editor.js": "scripts/editor_22fc80f1.js",
+  "styles/login.css": "styles/login_22fc80f1.css",
+  "scripts/login.js": "scripts/login_22fc80f1.js",
+  "styles/main.css": "styles/main_22fc80f1.css",
+  "scripts/main.js": "scripts/main_22fc80f1.js"
 }

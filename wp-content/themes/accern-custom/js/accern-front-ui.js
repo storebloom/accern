@@ -79,14 +79,6 @@ var AccernFrontUI = ( function( $, wp ) {
 				$.scrollify.move( '#' + section );
 			} );
 
-			// Show page name in nav icons.
-			$( '.homepage-nav-section, .company-nav-section, .usecase-nav-section' ).hover( function() {
-				$( this ).find( '.nav-page-name' ).fadeIn();
-			},
-			function() {
-				$( this ).find( '.nav-page-name' ).fadeOut();
-			} );
-
 			// Open main menu.
 			$( '#site-navigation' ).on( 'click', '#open-accern-menu', function() {
 				$( '#site-navigation' ).addClass( 'is-active' );
