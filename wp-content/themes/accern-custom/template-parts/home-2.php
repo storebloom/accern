@@ -41,4 +41,6 @@ $section_info = get_home_section_info( '2', get_the_ID() );
 		endforeach;
 	endif;
 	?>
+
+	<div id="scroll-down-one">Scroll</div>
 </div>
