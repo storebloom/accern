@@ -59,6 +59,17 @@ var AccernFrontUI = ( function( $, wp ) {
 			if ( 'Use Cases' === this.data.page ) {
 				this.scrollifySections( 'usecase' );
 			}
+
+			// Show other field if other selected on contact page.
+			this.$pageContainer.on( 'change', '.your-firm-type select', function() {
+				var optionVal = $( this ).find( 'option:selected' ).val();
+
+				if ( 'Other' === optionVal ) {
+					$( '.your-firm-other' ).show();
+				} else {
+					$( '.your-firm-other' ).hide();
+				}
+			} );
 		},
 
 		/**
