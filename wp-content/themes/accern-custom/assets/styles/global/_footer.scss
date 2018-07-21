@@ -1,7 +1,59 @@
 /**
   Global Website Footer
   ---------------------------------------------------------------------- */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 4rem;
+  background-color: $black-almost;
+  color: $grey-evil;
+  font-size: 0.65rem;
+  transform: translateY(100%);
+
+  @include transition();
+
+  &.is-active {
+    transform: translateY(0%);
+  }
+
+  li,
+  p {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.first-footer-area {
+  position: absolute;
+  left: $sectionOffset;
+  top: 1.625rem;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  @include transition();
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.second-footer-area {
+  text-align: center;
+}
 
 /**
   Responsive Breakpoints
   ---------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .site-footer {
+    @include grid(center, center, column-reverse);
+  }
+
+  .first-footer-area {
+    position: static;
+    padding-top: 1em;
+  }
+}
