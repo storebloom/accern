@@ -46,7 +46,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			if ( companyAnimateEl ) {
 				this.$companyAnimate = window.__mountVisualization( companyAnimateEl, {
-					sequences: [5]
+					sequences: [0, 1, 2, 3, 4, 5, 6]
 				} );
 
 				// Start company animation.
