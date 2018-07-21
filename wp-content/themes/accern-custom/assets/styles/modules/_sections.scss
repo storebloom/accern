@@ -43,3 +43,24 @@
   font-size: 4rem;
   line-height: 1.25;
 }
+
+/**
+  Shared Section Element Styles
+  ---------------------------------------------------------------------- */
+@media (max-width: 1600px) {
+  .section-sub-title {
+    width: 35vw;
+  }
+}
+
+@media (max-width: 1330px) {
+  .section-sub-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  %section-container {
+    padding-top: 60vw;
+  }
+}

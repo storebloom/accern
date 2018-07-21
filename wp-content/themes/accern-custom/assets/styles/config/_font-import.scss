@@ -1,9 +1,33 @@
 @import url("https://fast.fonts.net/lt/1.css?apiType=css&c=dac97dcc-7e89-4f37-b83e-5e8bfc11b77e&fontids=1488878,1488890,1488902,1488914,1488932,5664064,5664072,5664074,5664079,5664087,5664097,5664106,5664108,5664114,5664123,5664127");
 
 @font-face {
+  font-family: "Helvetica Neue LT Light";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/1488878/1b950d2a-907a-4888-8056-0d44e8e86338.eot?#iefix");
+  src:
+    url("../fonts/1488878/1b950d2a-907a-4888-8056-0d44e8e86338.eot?#iefix") format("eot"),
+    url("../fonts/1488878/3a46542f-f429-4821-9a88-62e3be54a640.woff2") format("woff2"),
+    url("../fonts/1488878/50ac1699-f3d2-47b6-878f-67a368a17c41.woff") format("woff"),
+    url("../fonts/1488878/0be5590f-8353-4ef3-ada1-43ac380859f8.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Helvetica Neue LT Regular";
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
+  src: url("../fonts/1488890/bf7ef4ce-de2a-4213-a9d7-826a3ee323cd.eot?#iefix");
+  src:
+    url("../fonts/1488890/bf7ef4ce-de2a-4213-a9d7-826a3ee323cd.eot?#iefix") format("eot"),
+    url("../fonts/1488890/3dac71eb-afa7-4c80-97f0-599202772905.woff2") format("woff2"),
+    url("../fonts/1488890/34e0e4c0-c294-49bb-9a8e-1b2cafd54e32.woff") format("woff"),
+    url("../fonts/1488890/8a8bfee3-197c-4942-9b11-71508cc9f406.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Helvetica Neue LT Medium";
+  font-style: normal;
+  font-weight: 500;
   src: url("../fonts/1488902/f95f9fc2-ffda-431c-9d6a-2c3668f5b20b.eot?#iefix");
   src:
     url("../fonts/1488902/f95f9fc2-ffda-431c-9d6a-2c3668f5b20b.eot?#iefix") format("eot"),
@@ -13,9 +37,9 @@
 }
 
 @font-face {
-  font-family: "Helvetica Neue LT Regular Italic";
+  font-family: "Helvetica Neue LT Medium Italic";
   font-style: italic;
-  font-weight: normal;
+  font-weight: 500;
   src: url("../fonts/5664097/91dbb1d2-3c36-4fc9-881c-bd1717053795.eot?#iefix");
   src:
     url("../fonts/5664097/91dbb1d2-3c36-4fc9-881c-bd1717053795.eot?#iefix") format("eot"),
@@ -27,7 +51,7 @@
 @font-face {
   font-family: "Helvetica Neue LT Bold Italic";
   font-style: italic;
-  font-weight: bold;
+  font-weight: 700;
   src: url("../fonts/5664108/a334455f-7dd5-4fc4-9808-74f5ba7a841f.eot?#iefix");
   src:
     url("../fonts/5664108/a334455f-7dd5-4fc4-9808-74f5ba7a841f.eot?#iefix") format("eot"),
@@ -39,7 +63,7 @@
 @font-face {
   font-family: "Helvetica Neue LT Bold";
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   src: url("../fonts/5664114/b2b47de7-f81a-4618-8972-3d49acb98d28.eot?#iefix");
   src:
     url("../fonts/5664114/b2b47de7-f81a-4618-8972-3d49acb98d28.eot?#iefix") format("eot"),

@@ -6,14 +6,16 @@ $font-heading: "Helvetica Neue LT Bold", sans-serif;
 
 $font-size: 15px;
 
-$font-normal: 400;
-$font-bold: 700;
+$font-light: "Helvetica Neue LT Light", sans-serif;
+$font-normal: "Helvetica Neue LT Regular", sans-serif;
+$font-medium: "Helvetica Neue LT Medium", sans-serif;
+$font-bold: "Helvetica Neue LT Bold", sans-serif;
 
 $font-italic: italic;
 
 // Define if font weights and styles use markup or an alternate font face
-$useMarkupBold: true;
-$useMarkupItal: true;
+$useMarkupBold: false;
+$useMarkupItal: false;
 
 @mixin fontBold($undo: true, $weight: $font-bold) {
   @if $useMarkupBold {
@@ -28,7 +30,7 @@ $useMarkupItal: true;
 
   @else {
     @if $undo {
-      font-family: $weight;
+      font-family: $font-heading;
     }
 
     @else {
@@ -59,6 +61,7 @@ $useMarkupItal: true;
   }
 }
 
+b,
 strong {
   @include fontBold();
 }
