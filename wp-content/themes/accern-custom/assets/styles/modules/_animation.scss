@@ -377,6 +377,25 @@
     height: 63vh;
   }
 
+  .main-visualization__overlays {
+    width: 100%;
+
+    & > span {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: $sectionMobilePadding;
+      padding-bottom: 2rem;
+
+      @include grid(space-around, center, column);
+
+      & > div {
+        width: 95%;
+        margin-left: auto;
+      }
+    }
+  }
+
   .main-visualization {
     &::before {
       content: '';
@@ -406,6 +425,18 @@
   }
 
   .info-overlay {
-    display: none;
+    position: static;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-visualization__overlays > span > div {
+    width: 100%;
+  }
+
+  .info-overlay__icon {
+    height: 1rem;
+    width: 80%;
   }
 }

@@ -871,6 +871,219 @@ input[type="reset"]:focus {
   ---------------------------------------------------------------------- */
 
 /**
+  Shared Section Element Styles
+  ---------------------------------------------------------------------- */
+
+/* line 10, assets/styles/modules/_sections.scss */
+
+.homepage-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  padding: 0 2vw 0 6.25vw;
+  position: relative;
+}
+
+/* line 18, assets/styles/modules/_sections.scss */
+
+.section-title::before,
+.accern-primary-menu .accern-primary-menu-item-current .accern-menu-item-count::before {
+  content: '';
+  display: block;
+  margin-right: 1.25vw;
+  width: 6.5vw;
+  height: 2em;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCA5NC40IDMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDk0LjQgMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe29wYWNpdHk6MC41O2ZpbGw6bm9uZTtzdHJva2U6I0ZGRkZGRjtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtZGFzaGFycmF5OjEsMztlbmFibGUtYmFja2dyb3VuZDpuZXcgICAgO30NCgkuc3Qxe2ZpbGw6I0ZGRkZGRjt9DQo8L3N0eWxlPg0KPGcgaWQ9IlBhcnRuZXJzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgMjY1Mi4wMDAwMDApIj4NCgk8ZyBpZD0iQ29udGVudC1NYWluLUNvcHkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU2LjAwMDAwMCwgODMuMDAwMDAwKSI+DQoJCTxnIGlkPSJTdWJoZWFkLUNvcHkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQuMDAwMDAwLCAzODEuMDAwMDAwKSI+DQoJCQk8ZyBpZD0iRG90LUxpbmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCA5LjAwMDAwMCkiPg0KCQkJCTxwYXRoIGlkPSJMaW5lIiBjbGFzcz0ic3QwIiBkPSJNLTU5LjUtMzEyMy41aDkzLjQiLz4NCgkJCQk8cmVjdCBpZD0iUmVjdGFuZ2xlLTItQ29weS0xMSIgeD0iLTU5LjgiIHk9Ii0zMTI1IiBjbGFzcz0ic3QxIiB3aWR0aD0iMS45IiBoZWlnaHQ9IjMiLz4NCgkJCTwvZz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K);
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+/* line 32, assets/styles/modules/_sections.scss */
+
+.section-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  font-family: "Helvetica Neue LT Bold", sans-serif;
+  color: #c81b1a;
+  text-transform: uppercase;
+  margin: 1em 0;
+}
+
+/* line 43, assets/styles/modules/_sections.scss */
+
+.section-sub-title {
+  width: 29.75vw;
+  font-family: "Helvetica Neue LT Bold", sans-serif;
+  margin: 1.5rem 0 4.75rem 0;
+  color: #fff;
+  font-size: 4rem;
+  line-height: 1.25;
+}
+
+/* line 52, assets/styles/modules/_sections.scss */
+
+.section-sub-title::after {
+  content: '.';
+  display: inline;
+  color: #f44336;
+  margin-left: -0.25em;
+}
+
+/**
+  Scroll Down Button
+  ---------------------------------------------------------------------- */
+
+/* line 63, assets/styles/modules/_sections.scss */
+
+#scroll-down-one {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50vw;
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  -webkit-transform: translateX(-50%);
+       -o-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: all 350ms ease;
+  -o-transition: all 350ms ease;
+  transition: all 350ms ease;
+}
+
+/* line 75, assets/styles/modules/_sections.scss */
+
+#scroll-down-one::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 1rem);
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 3rem;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCA1OS43IDgxNi4zIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1OS43IDgxNi4zOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7b3BhY2l0eTowLjU7fQ0KCS5zdDF7ZmlsbDojRkZGRkZGO30NCgkuc3Qye2NsaXAtcGF0aDp1cmwoI1NWR0lEXzJfKTt9DQoJLnN0M3tjbGlwLXBhdGg6dXJsKCNTVkdJRF80Xyk7fQ0KPC9zdHlsZT4NCjxnIGNsYXNzPSJzdDAiPg0KCTxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0zMC4xLDgxNi4zYy01LjUsMC0xMC4xLTQuNS0xMC4xLTEwczQuNC0xMCw5LjktMTBoMC4yYzUuNSwwLDEwLDQuNSwxMCwxMFMzNS42LDgxNi4zLDMwLjEsODE2LjN6DQoJCSBNMjkuOSw3NTYuNmMtNS41LDAtMTAtNC41LTEwLTEwdi0xOS45YzAtNS41LDQuNS0xMCwxMC0xMHMxMCw0LjUsMTAsMTB2MTkuOUMzOS44LDc1Mi4xLDM1LjQsNzU2LjYsMjkuOSw3NTYuNnogTTI5LjksNjc2LjkNCgkJYy01LjUsMC0xMC00LjUtMTAtMTB2LTE5LjljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMFY2NjdDMzkuOCw2NzIuNSwzNS40LDY3Ni45LDI5LjksNjc2Ljl6IE0yOS45LDU5Ny4zDQoJCWMtNS41LDAtMTAtNC41LTEwLTEwdi0xOS45YzAtNS41LDQuNS0xMCwxMC0xMHMxMCw0LjUsMTAsMTB2MTkuOUMzOS44LDU5Mi45LDM1LjQsNTk3LjMsMjkuOSw1OTcuM3ogTTI5LjksNTE3LjcNCgkJYy01LjUsMC0xMC00LjUtMTAtMTB2LTE5LjljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMHYxOS45QzM5LjgsNTEzLjIsMzUuNCw1MTcuNywyOS45LDUxNy43eiBNMjkuOSw0MzgNCgkJYy01LjUsMC0xMC00LjUtMTAtMTB2LTE5LjljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMHYxOS45QzM5LjgsNDMzLjYsMzUuNCw0MzgsMjkuOSw0Mzh6IE0yOS45LDM1OC40Yy01LjUsMC0xMC00LjUtMTAtMTANCgkJdi0xOS45YzAtNS41LDQuNS0xMCwxMC0xMHMxMCw0LjUsMTAsMTB2MTkuOUMzOS44LDM1My45LDM1LjQsMzU4LjQsMjkuOSwzNTguNHogTTI5LjksMjc4LjdjLTUuNSwwLTEwLTQuNS0xMC0xMHYtMTkuOQ0KCQljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMHYxOS45QzM5LjgsMjc0LjMsMzUuNCwyNzguNywyOS45LDI3OC43eiBNMjkuOSwxOTkuMWMtNS41LDAtMTAtNC41LTEwLTEwdi0xOS45DQoJCWMwLTUuNSw0LjUtMTAsMTAtMTBzMTAsNC41LDEwLDEwdjE5LjlDMzkuOCwxOTQuNiwzNS40LDE5OS4xLDI5LjksMTk5LjF6IE0yOS45LDExOS41Yy01LjUsMC0xMC00LjUtMTAtMTBWODkuNg0KCQljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMHYxOS45QzM5LjgsMTE1LDM1LjQsMTE5LjUsMjkuOSwxMTkuNXogTTI5LjksMzkuOGMtNS41LDAtMTAtNC41LTEwLTEwVjEwYzAtNS41LDQuNS0xMCwxMC0xMA0KCQlzMTAsNC41LDEwLDEwdjE5LjlDMzkuOCwzNS40LDM1LjQsMzkuOCwyOS45LDM5Ljh6Ii8+DQo8L2c+DQo8Zz4NCgk8ZGVmcz4NCgkJPHJlY3QgaWQ9IlNWR0lEXzFfIiB5PSIzLjciIHdpZHRoPSI1OS43IiBoZWlnaHQ9IjM3LjciLz4NCgk8L2RlZnM+DQoJPGNsaXBQYXRoIGlkPSJTVkdJRF8yXyI+DQoJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzFfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJPC9jbGlwUGF0aD4NCgk8ZyBjbGFzcz0ic3QyIj4NCgkJPGRlZnM+DQoJCQk8cmVjdCBpZD0iU1ZHSURfM18iIHg9Ii0xNDMwNS40IiB5PSItMTg0MjMuMiIgd2lkdGg9IjI4NjcwLjYiIGhlaWdodD0iMjAzODgiLz4NCgkJPC9kZWZzPg0KCQk8Y2xpcFBhdGggaWQ9IlNWR0lEXzRfIj4NCgkJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzNfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJCTwvY2xpcFBhdGg+DQoJCTxnIGNsYXNzPSJzdDMiPg0KCQkJPHJlY3QgeD0iLTk5LjYiIHk9Ii05NS45IiBjbGFzcz0ic3QxIiB3aWR0aD0iMjU4LjgiIGhlaWdodD0iMjM2LjgiLz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K);
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  -webkit-transition: all 350ms ease;
+  -o-transition: all 350ms ease;
+  transition: all 350ms ease;
+}
+
+/* line 92, assets/styles/modules/_sections.scss */
+
+#scroll-down-one:hover {
+  color: #c81b1a;
+}
+
+/* line 95, assets/styles/modules/_sections.scss */
+
+#scroll-down-one:hover::before {
+  bottom: calc(100% + 0.5rem);
+}
+
+/**
+  Responsive Breakdown
+  ---------------------------------------------------------------------- */
+
+@media (max-width: 1600px) {
+  /* line 105, assets/styles/modules/_sections.scss */
+
+  .section-sub-title {
+    width: 35vw;
+  }
+}
+
+@media (max-width: 1330px) {
+  /* line 111, assets/styles/modules/_sections.scss */
+
+  .section-sub-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 960px) {
+  /* line 117, assets/styles/modules/_sections.scss */
+
+  .homepage-section {
+    padding: 6rem 1.5rem 4rem 1.5rem;
+  }
+
+  /* line 122, assets/styles/modules/_sections.scss */
+
+  .section-title::before,
+  .accern-primary-menu .accern-primary-menu-item-current .accern-menu-item-count::before {
+    width: 3rem;
+    height: 0.25rem;
+    background-size: cover;
+  }
+
+  /* line 129, assets/styles/modules/_sections.scss */
+
+  #scroll-down-one {
+    display: none;
+  }
+
+  /* line 133, assets/styles/modules/_sections.scss */
+
+  .section-title {
+    margin: auto 0 0 0;
+  }
+
+  /* line 137, assets/styles/modules/_sections.scss */
+
+  .section-sub-title {
+    width: 100%;
+    font-size: 2.5rem;
+    margin-bottom: 1em;
+    font-family: "Helvetica Neue LT Medium", sans-serif;
+  }
+}
+
+@media (max-width: 600px) {
+  /* line 146, assets/styles/modules/_sections.scss */
+
+  .section-sub-title {
+    width: 100%;
+    font-size: 2rem;
+    margin-bottom: 1em;
+    font-family: "Helvetica Neue LT Medium", sans-serif;
+  }
+}
+
+/**
   WebGL Animations
   ---------------------------------------------------------------------- */
 
@@ -1528,7 +1741,46 @@ input[type="reset"]:focus {
     height: 63vh;
   }
 
-  /* line 381, assets/styles/modules/_animation.scss */
+  /* line 380, assets/styles/modules/_animation.scss */
+
+  .main-visualization__overlays {
+    width: 100%;
+  }
+
+  /* line 383, assets/styles/modules/_animation.scss */
+
+  .main-visualization__overlays > span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 6rem 1.5rem 4rem 1.5rem;
+    padding-bottom: 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
+  }
+
+  /* line 392, assets/styles/modules/_animation.scss */
+
+  .main-visualization__overlays > span > div {
+    width: 95%;
+    margin-left: auto;
+  }
+
+  /* line 400, assets/styles/modules/_animation.scss */
 
   .main-visualization::before {
     content: '';
@@ -1545,7 +1797,7 @@ input[type="reset"]:focus {
     background-image: linear-gradient(to bottom, #000 0%, transparent 100%);
   }
 
-  /* line 393, assets/styles/modules/_animation.scss */
+  /* line 412, assets/styles/modules/_animation.scss */
 
   .main-visualization::after {
     content: '';
@@ -1566,218 +1818,32 @@ input[type="reset"]:focus {
     opacity: 0.8;
   }
 
-  /* line 408, assets/styles/modules/_animation.scss */
+  /* line 427, assets/styles/modules/_animation.scss */
 
   .info-overlay {
-    display: none;
+    position: static;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  /* line 434, assets/styles/modules/_animation.scss */
+
+  .main-visualization__overlays > span > div {
+    width: 100%;
+  }
+
+  /* line 438, assets/styles/modules/_animation.scss */
+
+  .info-overlay__icon {
+    height: 1rem;
+    width: 80%;
   }
 }
 
 /**
   Button Style Mixin
   ---------------------------------------------------------------------- */
-
-/**
-  Shared Section Element Styles
-  ---------------------------------------------------------------------- */
-
-/* line 10, assets/styles/modules/_sections.scss */
-
-.homepage-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  padding: 0 2vw 0 6.25vw;
-  position: relative;
-}
-
-/* line 18, assets/styles/modules/_sections.scss */
-
-.section-title::before,
-.accern-primary-menu .accern-primary-menu-item-current .accern-menu-item-count::before {
-  content: '';
-  display: block;
-  margin-right: 1.25vw;
-  width: 6.5vw;
-  height: 2em;
-  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCA5NC40IDMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDk0LjQgMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe29wYWNpdHk6MC41O2ZpbGw6bm9uZTtzdHJva2U6I0ZGRkZGRjtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtZGFzaGFycmF5OjEsMztlbmFibGUtYmFja2dyb3VuZDpuZXcgICAgO30NCgkuc3Qxe2ZpbGw6I0ZGRkZGRjt9DQo8L3N0eWxlPg0KPGcgaWQ9IlBhcnRuZXJzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgMjY1Mi4wMDAwMDApIj4NCgk8ZyBpZD0iQ29udGVudC1NYWluLUNvcHkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU2LjAwMDAwMCwgODMuMDAwMDAwKSI+DQoJCTxnIGlkPSJTdWJoZWFkLUNvcHkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQuMDAwMDAwLCAzODEuMDAwMDAwKSI+DQoJCQk8ZyBpZD0iRG90LUxpbmUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCA5LjAwMDAwMCkiPg0KCQkJCTxwYXRoIGlkPSJMaW5lIiBjbGFzcz0ic3QwIiBkPSJNLTU5LjUtMzEyMy41aDkzLjQiLz4NCgkJCQk8cmVjdCBpZD0iUmVjdGFuZ2xlLTItQ29weS0xMSIgeD0iLTU5LjgiIHk9Ii0zMTI1IiBjbGFzcz0ic3QxIiB3aWR0aD0iMS45IiBoZWlnaHQ9IjMiLz4NCgkJCTwvZz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K);
-  background-size: contain;
-  background-position: left center;
-  background-repeat: no-repeat;
-  background-color: transparent;
-}
-
-/* line 32, assets/styles/modules/_sections.scss */
-
-.section-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  font-family: "Helvetica Neue LT Bold", sans-serif;
-  color: #c81b1a;
-  text-transform: uppercase;
-  margin: 1em 0;
-}
-
-/* line 43, assets/styles/modules/_sections.scss */
-
-.section-sub-title {
-  width: 29.75vw;
-  font-family: "Helvetica Neue LT Bold", sans-serif;
-  margin: 1.5rem 0 4.75rem 0;
-  color: #fff;
-  font-size: 4rem;
-  line-height: 1.25;
-}
-
-/* line 52, assets/styles/modules/_sections.scss */
-
-.section-sub-title::after {
-  content: '.';
-  display: inline;
-  color: #f44336;
-  margin-left: -0.25em;
-}
-
-/**
-  Scroll Down Button
-  ---------------------------------------------------------------------- */
-
-/* line 63, assets/styles/modules/_sections.scss */
-
-#scroll-down-one {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50vw;
-  font-size: 0.75rem;
-  cursor: pointer;
-  text-transform: uppercase;
-  text-align: center;
-  -webkit-transform: translateX(-50%);
-       -o-transform: translateX(-50%);
-          transform: translateX(-50%);
-  -webkit-transition: all 350ms ease;
-  -o-transition: all 350ms ease;
-  transition: all 350ms ease;
-}
-
-/* line 75, assets/styles/modules/_sections.scss */
-
-#scroll-down-one::before {
-  content: '';
-  position: absolute;
-  bottom: calc(100% + 1rem);
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 3rem;
-  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCA1OS43IDgxNi4zIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1OS43IDgxNi4zOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7b3BhY2l0eTowLjU7fQ0KCS5zdDF7ZmlsbDojRkZGRkZGO30NCgkuc3Qye2NsaXAtcGF0aDp1cmwoI1NWR0lEXzJfKTt9DQoJLnN0M3tjbGlwLXBhdGg6dXJsKCNTVkdJRF80Xyk7fQ0KPC9zdHlsZT4NCjxnIGNsYXNzPSJzdDAiPg0KCTxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0zMC4xLDgxNi4zYy01LjUsMC0xMC4xLTQuNS0xMC4xLTEwczQuNC0xMCw5LjktMTBoMC4yYzUuNSwwLDEwLDQuNSwxMCwxMFMzNS42LDgxNi4zLDMwLjEsODE2LjN6DQoJCSBNMjkuOSw3NTYuNmMtNS41LDAtMTAtNC41LTEwLTEwdi0xOS45YzAtNS41LDQuNS0xMCwxMC0xMHMxMCw0LjUsMTAsMTB2MTkuOUMzOS44LDc1Mi4xLDM1LjQsNzU2LjYsMjkuOSw3NTYuNnogTTI5LjksNjc2LjkNCgkJYy01LjUsMC0xMC00LjUtMTAtMTB2LTE5LjljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMFY2NjdDMzkuOCw2NzIuNSwzNS40LDY3Ni45LDI5LjksNjc2Ljl6IE0yOS45LDU5Ny4zDQoJCWMtNS41LDAtMTAtNC41LTEwLTEwdi0xOS45YzAtNS41LDQuNS0xMCwxMC0xMHMxMCw0LjUsMTAsMTB2MTkuOUMzOS44LDU5Mi45LDM1LjQsNTk3LjMsMjkuOSw1OTcuM3ogTTI5LjksNTE3LjcNCgkJYy01LjUsMC0xMC00LjUtMTAtMTB2LTE5LjljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMHYxOS45QzM5LjgsNTEzLjIsMzUuNCw1MTcuNywyOS45LDUxNy43eiBNMjkuOSw0MzgNCgkJYy01LjUsMC0xMC00LjUtMTAtMTB2LTE5LjljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMHYxOS45QzM5LjgsNDMzLjYsMzUuNCw0MzgsMjkuOSw0Mzh6IE0yOS45LDM1OC40Yy01LjUsMC0xMC00LjUtMTAtMTANCgkJdi0xOS45YzAtNS41LDQuNS0xMCwxMC0xMHMxMCw0LjUsMTAsMTB2MTkuOUMzOS44LDM1My45LDM1LjQsMzU4LjQsMjkuOSwzNTguNHogTTI5LjksMjc4LjdjLTUuNSwwLTEwLTQuNS0xMC0xMHYtMTkuOQ0KCQljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMHYxOS45QzM5LjgsMjc0LjMsMzUuNCwyNzguNywyOS45LDI3OC43eiBNMjkuOSwxOTkuMWMtNS41LDAtMTAtNC41LTEwLTEwdi0xOS45DQoJCWMwLTUuNSw0LjUtMTAsMTAtMTBzMTAsNC41LDEwLDEwdjE5LjlDMzkuOCwxOTQuNiwzNS40LDE5OS4xLDI5LjksMTk5LjF6IE0yOS45LDExOS41Yy01LjUsMC0xMC00LjUtMTAtMTBWODkuNg0KCQljMC01LjUsNC41LTEwLDEwLTEwczEwLDQuNSwxMCwxMHYxOS45QzM5LjgsMTE1LDM1LjQsMTE5LjUsMjkuOSwxMTkuNXogTTI5LjksMzkuOGMtNS41LDAtMTAtNC41LTEwLTEwVjEwYzAtNS41LDQuNS0xMCwxMC0xMA0KCQlzMTAsNC41LDEwLDEwdjE5LjlDMzkuOCwzNS40LDM1LjQsMzkuOCwyOS45LDM5Ljh6Ii8+DQo8L2c+DQo8Zz4NCgk8ZGVmcz4NCgkJPHJlY3QgaWQ9IlNWR0lEXzFfIiB5PSIzLjciIHdpZHRoPSI1OS43IiBoZWlnaHQ9IjM3LjciLz4NCgk8L2RlZnM+DQoJPGNsaXBQYXRoIGlkPSJTVkdJRF8yXyI+DQoJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzFfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJPC9jbGlwUGF0aD4NCgk8ZyBjbGFzcz0ic3QyIj4NCgkJPGRlZnM+DQoJCQk8cmVjdCBpZD0iU1ZHSURfM18iIHg9Ii0xNDMwNS40IiB5PSItMTg0MjMuMiIgd2lkdGg9IjI4NjcwLjYiIGhlaWdodD0iMjAzODgiLz4NCgkJPC9kZWZzPg0KCQk8Y2xpcFBhdGggaWQ9IlNWR0lEXzRfIj4NCgkJCTx1c2UgeGxpbms6aHJlZj0iI1NWR0lEXzNfIiAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Ii8+DQoJCTwvY2xpcFBhdGg+DQoJCTxnIGNsYXNzPSJzdDMiPg0KCQkJPHJlY3QgeD0iLTk5LjYiIHk9Ii05NS45IiBjbGFzcz0ic3QxIiB3aWR0aD0iMjU4LjgiIGhlaWdodD0iMjM2LjgiLz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K);
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  -webkit-transition: all 350ms ease;
-  -o-transition: all 350ms ease;
-  transition: all 350ms ease;
-}
-
-/* line 92, assets/styles/modules/_sections.scss */
-
-#scroll-down-one:hover {
-  color: #c81b1a;
-}
-
-/* line 95, assets/styles/modules/_sections.scss */
-
-#scroll-down-one:hover::before {
-  bottom: calc(100% + 0.5rem);
-}
-
-/**
-  Responsive Breakdown
-  ---------------------------------------------------------------------- */
-
-@media (max-width: 1600px) {
-  /* line 105, assets/styles/modules/_sections.scss */
-
-  .section-sub-title {
-    width: 35vw;
-  }
-}
-
-@media (max-width: 1330px) {
-  /* line 111, assets/styles/modules/_sections.scss */
-
-  .section-sub-title {
-    font-size: 3rem;
-  }
-}
-
-@media (max-width: 960px) {
-  /* line 117, assets/styles/modules/_sections.scss */
-
-  .homepage-section {
-    padding: 6rem 1.5rem 4rem 1.5rem;
-  }
-
-  /* line 122, assets/styles/modules/_sections.scss */
-
-  .section-title::before,
-  .accern-primary-menu .accern-primary-menu-item-current .accern-menu-item-count::before {
-    width: 3rem;
-    height: 0.25rem;
-    background-size: cover;
-  }
-
-  /* line 129, assets/styles/modules/_sections.scss */
-
-  #scroll-down-one {
-    display: none;
-  }
-
-  /* line 133, assets/styles/modules/_sections.scss */
-
-  .section-title {
-    margin: auto 0 0 0;
-  }
-
-  /* line 137, assets/styles/modules/_sections.scss */
-
-  .section-sub-title {
-    width: 100%;
-    font-size: 2.5rem;
-    margin-bottom: 1em;
-    font-family: "Helvetica Neue LT Medium", sans-serif;
-  }
-}
 
 /**
   Global Elements
@@ -2145,12 +2211,9 @@ a:active {
 
 body.nav-active {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
-  height: 100%;
 }
 
-/* line 147, assets/styles/global/_header.scss */
+/* line 144, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-main-menu-open {
   -webkit-transform: scaleX(0);
@@ -2158,7 +2221,7 @@ body.nav-active {
           transform: scaleX(0);
 }
 
-/* line 151, assets/styles/global/_header.scss */
+/* line 148, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-main-menu-close {
   -webkit-transform: scaleX(1);
@@ -2166,7 +2229,7 @@ body.nav-active {
           transform: scaleX(1);
 }
 
-/* line 155, assets/styles/global/_header.scss */
+/* line 152, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .main-menu-overlay {
   -webkit-transform: scaleY(1);
@@ -2180,7 +2243,7 @@ body.nav-active {
   transition: opacity 500ms ease, transform 0ms ease, -webkit-transform 0ms ease, -o-transform 0ms ease;
 }
 
-/* line 161, assets/styles/global/_header.scss */
+/* line 158, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li {
   opacity: 1;
@@ -2189,7 +2252,7 @@ body.nav-active {
           transform: translateY(0);
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(1) {
   -webkit-transition-delay: 250ms;
@@ -2197,7 +2260,7 @@ body.nav-active {
           transition-delay: 250ms;
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(2) {
   -webkit-transition-delay: 500ms;
@@ -2205,7 +2268,7 @@ body.nav-active {
           transition-delay: 500ms;
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(3) {
   -webkit-transition-delay: 750ms;
@@ -2213,7 +2276,7 @@ body.nav-active {
           transition-delay: 750ms;
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(4) {
   -webkit-transition-delay: 1000ms;
@@ -2221,7 +2284,7 @@ body.nav-active {
           transition-delay: 1000ms;
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(5) {
   -webkit-transition-delay: 1250ms;
@@ -2229,7 +2292,7 @@ body.nav-active {
           transition-delay: 1250ms;
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(6) {
   -webkit-transition-delay: 1500ms;
@@ -2237,7 +2300,7 @@ body.nav-active {
           transition-delay: 1500ms;
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(7) {
   -webkit-transition-delay: 1750ms;
@@ -2245,7 +2308,7 @@ body.nav-active {
           transition-delay: 1750ms;
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(8) {
   -webkit-transition-delay: 2000ms;
@@ -2253,7 +2316,7 @@ body.nav-active {
           transition-delay: 2000ms;
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(9) {
   -webkit-transition-delay: 2250ms;
@@ -2261,7 +2324,7 @@ body.nav-active {
           transition-delay: 2250ms;
 }
 
-/* line 166, assets/styles/global/_header.scss */
+/* line 163, assets/styles/global/_header.scss */
 
 #site-navigation.is-active .accern-primary-menu li:nth-child(10) {
   -webkit-transition-delay: 2500ms;
@@ -2274,7 +2337,7 @@ body.nav-active {
   ---------------------------------------------------------------------- */
 
 @media (max-width: 960px) {
-  /* line 179, assets/styles/global/_header.scss */
+  /* line 176, assets/styles/global/_header.scss */
 
   .site-header {
     height: 5rem;
@@ -2286,20 +2349,20 @@ body.nav-active {
 }
 
 @media (max-width: 600px) {
-  /* line 189, assets/styles/global/_header.scss */
+  /* line 186, assets/styles/global/_header.scss */
 
   .accern-primary-menu li {
     font-size: 1.25rem;
   }
 
-  /* line 193, assets/styles/global/_header.scss */
+  /* line 190, assets/styles/global/_header.scss */
 
   .accern-primary-menu .accern-menu-item-count {
     font-size: 0.75rem;
     top: 0;
   }
 
-  /* line 198, assets/styles/global/_header.scss */
+  /* line 195, assets/styles/global/_header.scss */
 
   .accern-primary-menu .accern-primary-menu-item-current .accern-menu-item-count::before {
     right: 100%;
@@ -2885,6 +2948,14 @@ body.nav-active {
 
   .home-case-link-wrap .section-cta {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  /* line 138, assets/styles/pages/_home.scss */
+
+  .home-case-link-wrap .home-case-link {
+    font-size: 1.5rem;
   }
 }
 

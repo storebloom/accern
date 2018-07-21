@@ -141,3 +141,12 @@ $sectionMobilePadding: 6rem 1.5rem 4rem 1.5rem;
     font-family: $font-medium;
   }
 }
+
+@media (max-width: 600px) {
+  .section-sub-title {
+    width: 100%;
+    font-size: 2rem;
+    margin-bottom: 1em;
+    font-family: $font-medium;
+  }
+}
