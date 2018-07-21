@@ -1,6 +1,12 @@
 /**
   Shared Section Element Styles
   ---------------------------------------------------------------------- */
+$sectionColumn: 6.5vw;
+$sectionGutter: 1.25vw;
+$sectionOffset: 6.25vw;
+$sectionRemain: 2vw;
+$sectionMobilePadding: 6rem 1.5rem 4rem 1.5rem;
+
 %section-container {
   @include grid(center, flex-start, column);
   @include columnPadding();
@@ -42,10 +48,58 @@
   color: $white;
   font-size: 4rem;
   line-height: 1.25;
+
+  &::after {
+    content: '.';
+    display: inline;
+    color: $red-light;
+    margin-left: -0.25em;
+  }
 }
 
 /**
-  Shared Section Element Styles
+  Scroll Down Button
+  ---------------------------------------------------------------------- */
+#scroll-down-one {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50vw;
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  transform: translateX(-50%);
+
+  @include transition();
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 1rem);
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 3rem;
+    background-image: url('../images/icon-dotline-vert.svg');
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    @include transition();
+  }
+
+  &:hover {
+    color: $red;
+
+    &::before {
+      bottom: calc(100% + 0.5rem);
+    }
+  }
+}
+
+/**
+  Responsive Breakdown
   ---------------------------------------------------------------------- */
 @media (max-width: 1600px) {
   .section-sub-title {
@@ -59,8 +113,40 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 960px) {
   %section-container {
-    padding-top: 60vw;
+    padding: $sectionMobilePadding;
+  }
+
+  %section-dashes {
+    &::before {
+      width: 3rem;
+      height: 0.25rem;
+      background-size: cover;
+    }
+  }
+
+  #scroll-down-one {
+    display: none;
+  }
+
+  .section-title {
+    margin: auto 0 0 0;
+  }
+
+  .section-sub-title {
+    width: 100%;
+    font-size: 2.5rem;
+    margin-bottom: 1em;
+    font-family: $font-medium;
+  }
+}
+
+@media (max-width: 600px) {
+  .section-sub-title {
+    width: 100%;
+    font-size: 2rem;
+    margin-bottom: 1em;
+    font-family: $font-medium;
   }
 }

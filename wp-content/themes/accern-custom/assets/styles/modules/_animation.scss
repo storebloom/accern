@@ -142,7 +142,11 @@
   padding: 0.75rem 1rem;
 
   .info-overlay__list-item {
-    @include grid();
+    @include grid(flex-start, center);
+  }
+
+  &.info-overlay__list--info {
+    padding: 1rem;
   }
 }
 
@@ -215,7 +219,19 @@
   }
 
   &--grid {
-    background-image: url('../images/icon-grid.svg');
+    background-image: url('../images/icon-grid.png');
+  }
+
+  &--target {
+    background-image: url('../images/icon-target.png');
+  }
+
+  &--api {
+    background-image: url('../images/icon-api.png');
+  }
+
+  &--circuit {
+    background-image: url('../images/icon-circut.png');
   }
 
   &--plus {
@@ -229,12 +245,13 @@
 
 .info-overlay__list--info .info-overlay__icon {
   margin-right: 1rem;
-  width: 1rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .info-overlay__list-item--compact .info-overlay__icon {
   width: 0.75rem;
-  margin: 0.25rem 1.125rem 0.25rem 0.125rem;
+  margin: 0 1.125rem 0 0.65rem;
 }
 
 /**
@@ -327,18 +344,6 @@
   }
 }
 
-.info-overlay__icon--api {
-  width: 30px;
-  background-image: url(/static/img/api.1c30611.png);
-  background-size: 30px auto;
-}
-
-.info-overlay__icon--circuit {
-  width: 30px;
-  background-image: url(/static/img/circuit.4e95d66.png);
-  background-size: 30px auto;
-}
-
 /**
   Responsive Breakpoints
   ---------------------------------------------------------------------- */
@@ -372,6 +377,25 @@
     height: 63vh;
   }
 
+  .main-visualization__overlays {
+    width: 100%;
+
+    & > span {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: $sectionMobilePadding;
+      padding-bottom: 2rem;
+
+      @include grid(space-around, center, column);
+
+      & > div {
+        width: 95%;
+        margin-left: auto;
+      }
+    }
+  }
+
   .main-visualization {
     &::before {
       content: '';
@@ -401,6 +425,18 @@
   }
 
   .info-overlay {
-    display: none;
+    position: static;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-visualization__overlays > span > div {
+    width: 100%;
+  }
+
+  .info-overlay__icon {
+    height: 1rem;
+    width: 80%;
   }
 }

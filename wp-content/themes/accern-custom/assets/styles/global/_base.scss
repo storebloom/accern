@@ -44,3 +44,8 @@ a {
 /**
   Responsive Breakpoints
   ---------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  body {
+    font-size: 13px;
+  }
+}

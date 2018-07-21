@@ -50,12 +50,6 @@
 /**
   Quickly adhere to the 12 column grid
   ---------------------------------------------------------------------- */
-$sectionColumn: 6.5vw;
-$sectionGutter: 1.25vw;
-$sectionOffset: 6.25vw;
-$sectionRemain: 2vw;
-$sectionMobilePadding: 0 1.25rem;
-
 @mixin columnWidth($count) {
   width: #{($sectionColumn * $count) + ($sectionGutter * ($count - 1))};
 }
