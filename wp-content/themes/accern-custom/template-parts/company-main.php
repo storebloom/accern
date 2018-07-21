@@ -29,4 +29,7 @@ $section_info = get_section_info( 'company', 'main', get_the_ID() );
 	<?php endif; ?>
 
 	<div id="scroll-down-one">Scroll</div>
+	<div class="mobile-scroll-buttons">
+		<span class="mobile-down-arrow"></span>
+	</div>
 </div>
