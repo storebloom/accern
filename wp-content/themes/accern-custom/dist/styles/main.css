@@ -1581,7 +1581,7 @@ input[type="reset"]:focus {
   Shared Section Element Styles
   ---------------------------------------------------------------------- */
 
-/* line 4, assets/styles/modules/_sections.scss */
+/* line 10, assets/styles/modules/_sections.scss */
 
 .homepage-section {
   display: -webkit-box;
@@ -1605,7 +1605,7 @@ input[type="reset"]:focus {
   position: relative;
 }
 
-/* line 12, assets/styles/modules/_sections.scss */
+/* line 18, assets/styles/modules/_sections.scss */
 
 .section-title::before,
 .accern-primary-menu .accern-primary-menu-item-current .accern-menu-item-count::before {
@@ -1621,7 +1621,7 @@ input[type="reset"]:focus {
   background-color: transparent;
 }
 
-/* line 26, assets/styles/modules/_sections.scss */
+/* line 32, assets/styles/modules/_sections.scss */
 
 .section-title {
   display: -webkit-box;
@@ -1647,7 +1647,7 @@ input[type="reset"]:focus {
   margin: 1em 0;
 }
 
-/* line 37, assets/styles/modules/_sections.scss */
+/* line 43, assets/styles/modules/_sections.scss */
 
 .section-sub-title {
   width: 29.75vw;
@@ -1658,11 +1658,20 @@ input[type="reset"]:focus {
   line-height: 1.25;
 }
 
+/* line 52, assets/styles/modules/_sections.scss */
+
+.section-sub-title::after {
+  content: '.';
+  display: inline;
+  color: #f44336;
+  margin-left: -0.25em;
+}
+
 /**
   Scroll Down Button
   ---------------------------------------------------------------------- */
 
-/* line 50, assets/styles/modules/_sections.scss */
+/* line 63, assets/styles/modules/_sections.scss */
 
 #scroll-down-one {
   position: absolute;
@@ -1680,7 +1689,7 @@ input[type="reset"]:focus {
   transition: all 350ms ease;
 }
 
-/* line 62, assets/styles/modules/_sections.scss */
+/* line 75, assets/styles/modules/_sections.scss */
 
 #scroll-down-one::before {
   content: '';
@@ -1700,13 +1709,13 @@ input[type="reset"]:focus {
   transition: all 350ms ease;
 }
 
-/* line 79, assets/styles/modules/_sections.scss */
+/* line 92, assets/styles/modules/_sections.scss */
 
 #scroll-down-one:hover {
   color: #c81b1a;
 }
 
-/* line 82, assets/styles/modules/_sections.scss */
+/* line 95, assets/styles/modules/_sections.scss */
 
 #scroll-down-one:hover::before {
   bottom: calc(100% + 0.5rem);
@@ -1717,7 +1726,7 @@ input[type="reset"]:focus {
   ---------------------------------------------------------------------- */
 
 @media (max-width: 1600px) {
-  /* line 92, assets/styles/modules/_sections.scss */
+  /* line 105, assets/styles/modules/_sections.scss */
 
   .section-sub-title {
     width: 35vw;
@@ -1725,18 +1734,48 @@ input[type="reset"]:focus {
 }
 
 @media (max-width: 1330px) {
-  /* line 98, assets/styles/modules/_sections.scss */
+  /* line 111, assets/styles/modules/_sections.scss */
 
   .section-sub-title {
     font-size: 3rem;
   }
 }
 
-@media (max-width: 1024px) {
-  /* line 104, assets/styles/modules/_sections.scss */
+@media (max-width: 960px) {
+  /* line 117, assets/styles/modules/_sections.scss */
 
   .homepage-section {
-    padding-top: 60vw;
+    padding: 6rem 1.5rem 4rem 1.5rem;
+  }
+
+  /* line 122, assets/styles/modules/_sections.scss */
+
+  .section-title::before,
+  .accern-primary-menu .accern-primary-menu-item-current .accern-menu-item-count::before {
+    width: 3rem;
+    height: 0.25rem;
+    background-size: cover;
+  }
+
+  /* line 129, assets/styles/modules/_sections.scss */
+
+  #scroll-down-one {
+    display: none;
+  }
+
+  /* line 133, assets/styles/modules/_sections.scss */
+
+  .section-title {
+    margin: auto 0 0 0;
+  }
+
+  /* line 137, assets/styles/modules/_sections.scss */
+
+  .section-sub-title {
+    width: 100%;
+    font-size: 2.5rem;
+    margin-bottom: 1em;
+    font-family: "Helvetica Neue LT Medium", sans-serif;
   }
 }
 
@@ -1821,6 +1860,14 @@ a:active {
 /**
   Responsive Breakpoints
   ---------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  /* line 48, assets/styles/global/_base.scss */
+
+  body {
+    font-size: 13px;
+  }
+}
 
 /**
   Global Website Header
@@ -2232,25 +2279,27 @@ body.nav-active {
   .site-header {
     height: 5rem;
     background-color: #000;
-    padding: 0 1.25rem;
+    padding: 6rem 1.5rem 4rem 1.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 
 @media (max-width: 600px) {
-  /* line 187, assets/styles/global/_header.scss */
+  /* line 189, assets/styles/global/_header.scss */
 
   .accern-primary-menu li {
     font-size: 1.25rem;
   }
 
-  /* line 191, assets/styles/global/_header.scss */
+  /* line 193, assets/styles/global/_header.scss */
 
   .accern-primary-menu .accern-menu-item-count {
     font-size: 0.75rem;
     top: 0;
   }
 
-  /* line 196, assets/styles/global/_header.scss */
+  /* line 198, assets/styles/global/_header.scss */
 
   .accern-primary-menu .accern-primary-menu-item-current .accern-menu-item-count::before {
     right: 100%;
@@ -2505,7 +2554,7 @@ body.nav-active {
   Responsive Breakpoints
   ---------------------------------------------------------------------- */
 
-@media (max-width: 600px) {
+@media (max-width: 960px) {
   /* line 100, assets/styles/global/_navigation.scss */
 
   .nav-icons {
@@ -2733,6 +2782,110 @@ body.nav-active {
   -webkit-transform: translateX(0);
        -o-transform: translateX(0);
           transform: translateX(0);
+}
+
+/**
+  Responsive Breakpoints
+  ---------------------------------------------------------------------- */
+
+@media (max-width: 1330px) {
+  /* line 73, assets/styles/pages/_home.scss */
+
+  .home-case-link-wrap .home-case-link {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  /* line 79, assets/styles/pages/_home.scss */
+
+  .homepage-section {
+    width: 80%;
+  }
+
+  /* line 83, assets/styles/pages/_home.scss */
+
+  .home-case-link-wrap .home-case-link {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 960px) {
+  /* line 89, assets/styles/pages/_home.scss */
+
+  .homepage-section {
+    width: 100%;
+  }
+
+  /* line 93, assets/styles/pages/_home.scss */
+
+  #home-section-cases .section-title {
+    margin-top: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 1.5rem;
+  }
+
+  /* line 100, assets/styles/pages/_home.scss */
+
+  .home-case-link-wrap {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
+  }
+
+  /* line 105, assets/styles/pages/_home.scss */
+
+  .home-case-link-wrap .home-case-link {
+    position: relative;
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 1em 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-family: "Helvetica Neue LT Medium", sans-serif;
+  }
+
+  /* line 115, assets/styles/pages/_home.scss */
+
+  .home-case-link-wrap .home-case-link::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%) rotate(-90deg);
+         -o-transform: translateY(-50%) rotate(-90deg);
+            transform: translateY(-50%) rotate(-90deg);
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAzMTAuNyAxNjcuMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzEwLjcgMTY3LjM7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0yMzcuNiw4NS4zYy0zLjEsMC02LjEtMS4yLTguNS0zLjVjLTQuNy00LjctNC43LTEyLjIsMC0xNi45bDYxLjItNjEuNGM0LjctNC43LDEyLjItNC43LDE2LjksMA0KCQljNC43LDQuNyw0LjcsMTIuMiwwLDE2LjlMMjQ2LDgxLjhDMjQzLjcsODQuMSwyNDAuNiw4NS4zLDIzNy42LDg1LjN6Ii8+DQo8L2c+DQo8Zz4NCgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTU1LjQsMTY3LjNjLTMuMSwwLTYuMS0xLjItOC41LTMuNUwzLjUsMjAuNGMtNC43LTQuNy00LjctMTIuMiwwLTE2LjlzMTIuMi00LjcsMTYuOSwwbDEzNSwxMzVsMjIuNi0yMi41DQoJCWM0LjctNC43LDEyLjItNC43LDE2LjksMHM0LjcsMTIuMiwwLDE2LjlsLTMxLDMxQzE2MS41LDE2Ni4yLDE1OC40LDE2Ny4zLDE1NS40LDE2Ny4zeiIvPg0KPC9nPg0KPC9zdmc+DQo=);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* line 131, assets/styles/pages/_home.scss */
+
+  .home-case-link-wrap .section-cta {
+    display: none;
+  }
 }
 
 
