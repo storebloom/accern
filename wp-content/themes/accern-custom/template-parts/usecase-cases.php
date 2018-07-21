@@ -15,13 +15,14 @@ $args = array(
 
 $use_cases = get_posts( $args );
 
-foreach ( $use_cases as $case ) :
+foreach ( $use_cases as $num => $case ) :
 	$case_info = get_post_meta( $case->ID, 'page-meta', true );
+	$sectionid = count( $use_cases ) === intval( $num ) + 1 ? 'id=usecase-last-section' : '';
 	$case_name[] = $case->post_title;
 	$case_info = ! empty( $case_info ) ? $case_info : array();
 	$tabs = isset( $case_info['usecase-tab-section']['usecase-repeater'] ) ? $case_info['usecase-tab-section']['usecase-repeater'] : '';
 	?>
-	<div class="usecase-section">
+	<div <?php echo esc_attr( $sectionid ); ?> class="usecase-section">
 		<a name="<?php echo esc_attr( $case->post_title ); ?>"></a>
 
 		<?php if ( array() !== $case_info ) : ?>

@@ -66,6 +66,13 @@ var AccernFrontUI = ( function( $, wp ) {
 				self.openOverlay( section, overlayNum );
 			} );
 
+			this.$pageContainer.on( 'click', '.footer.accern-overlay-button', function() {
+				var section = $( this ).attr( 'data-section' ),
+					overlayNum = $( this ).attr( 'data-num' );
+
+				self.openFooterOverlay( section, overlayNum );
+			} );
+
 			// Close overlay.
 			this.$pageContainer.on( 'click', '#close-overlay', function() {
 				$( this ).siblings( '.accern-overlay-content' ).html( '' );
@@ -126,6 +133,24 @@ var AccernFrontUI = ( function( $, wp ) {
 		},
 
 		/**
+		 * Return the overlay content for footer links in overlay.
+		 *
+		 * @param section
+		 * @param overlayNum
+		 */
+		openFooterOverlay: function( section, overlayNum ) {
+			wp.ajax.post( 'get_overlay_content', {
+				section: section,
+				number: overlayNum,
+				footer: true,
+				nonce: this.data.nonce
+			} ).always( function( results ) {
+				$( '.accern-overlay-content' ).html( results );
+				$( '.accern-overlay-content-wrap' ).addClass( 'open' );
+			} );
+		},
+
+		/**
 		 * Set the section height to browser.
 		 *
 		 * @param page
@@ -133,9 +158,6 @@ var AccernFrontUI = ( function( $, wp ) {
 		setSectionHeight: function( page ) {
 			$( '.page-template-' + page + '-template .' + page + '-section' ).css( 'min-height', $( window ).height() );
 		},
-
-
-
 
 		/**
 		 * Auto scroll to sections.
@@ -163,14 +185,14 @@ var AccernFrontUI = ( function( $, wp ) {
 					$( '#section-' + section ).addClass( 'current-section' );
 
 					// Detect the footer
-					$(window).on( 'scroll touchstart', function() {
+					$( window ).on( 'scroll touchstart', function() {
 						var currentSection = $.scrollify.current().attr('id')
-						var footerTriggers = ['home-section-cases'];
+						var footerTriggers = ['home-section-cases', 'company-partners-section', 'usecase-last-section'];
 
-						if ($.inArray(currentSection, footerTriggers)) {
-							$('.site-footer').removeClass('is-active');
+						if ( -1 === $.inArray( currentSection, footerTriggers ) ) {
+							$( '.site-footer' ).removeClass( 'is-active' );
 						} else {
-							$('.site-footer').addClass('is-active');
+							$( '.site-footer' ).addClass( 'is-active' );
 						}
 					});
 				},
