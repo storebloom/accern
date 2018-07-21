@@ -134,6 +134,9 @@ var AccernFrontUI = ( function( $, wp ) {
 			$( '.page-template-' + page + '-template .' + page + '-section' ).css( 'min-height', $( window ).height() );
 		},
 
+
+
+
 		/**
 		 * Auto scroll to sections.
 		 *
@@ -158,6 +161,18 @@ var AccernFrontUI = ( function( $, wp ) {
 
 					$( '.' + page + '-nav-section' ).removeClass( 'current-section' );
 					$( '#section-' + section ).addClass( 'current-section' );
+
+					// Detect the footer
+					$(window).on( 'scroll touchstart', function() {
+						var currentSection = $.scrollify.current().attr('id')
+						var footerTriggers = ['home-section-cases'];
+
+						if ($.inArray(currentSection, footerTriggers)) {
+							$('.site-footer').removeClass('is-active');
+						} else {
+							$('.site-footer').addClass('is-active');
+						}
+					});
 				},
 				before: function (index, sections) {
 					var section = index + 1;
@@ -174,4 +189,5 @@ var AccernFrontUI = ( function( $, wp ) {
 			} );
 		}
 	};
+
 } )( window.jQuery, window.wp );
