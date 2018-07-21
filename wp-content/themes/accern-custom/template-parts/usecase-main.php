@@ -8,7 +8,7 @@
  */
 
 ?>
-<div id="company-main-section" class="usecase-section">
+<div id="usecase-main-section" class="usecase-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>

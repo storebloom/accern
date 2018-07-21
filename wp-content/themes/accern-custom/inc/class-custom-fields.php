@@ -177,7 +177,7 @@ class Custom_Fields {
 				remove_post_type_support( 'page', 'editor' );
 
 				// Set for 6 homepage sections.  Looping since all metaboxes have same fields.
-				for ( $x = 1; $x <= 6; $x ++ ) {
+				for ( $x = 1; $x <= 7; $x ++ ) {
 					if ( $x < 6 ) {
 						$prefix          = 'home-section-' . $x;
 						$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
@@ -192,7 +192,7 @@ class Custom_Fields {
 							'priority'    => 'high',
 							'args'        => $title_field . $sub_title_field . $overlay_field,
 						);
-					} else {
+					} elseif ( 6 === $x ) {
 						// Home Use Cases Link Section.
 						$prefix        = 'home-section-cases';
 						$title_field   = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
@@ -206,8 +206,21 @@ class Custom_Fields {
 							'priority'    => 'high',
 							'args'        => $title_field . $link_repeater,
 						);
-					}
-				}
+					} elseif ( 7 === $x ) {
+						// Home Footer Section.
+						$prefix         = 'home-section-footer';
+						$overlay_field   = $this->create_custom_field( $postid, $prefix, 'overlay-repeater', 'overlay' );
+
+						$metabox_array[] = array(
+							'id'          => $prefix . '-accern',
+							'description' => esc_html__( 'Footer Section', 'accern-custom' ),
+							'screen'      => 'page',
+							'context'     => 'normal',
+							'priority'    => 'high',
+							'args'        => $overlay_field,
+						);
+					} // End if().
+				} // End for().
 			break;
 			case 'page-templates/company-template.php' :
 				// Remove editor features for specific page.
@@ -947,17 +960,27 @@ class Custom_Fields {
 	public function get_overlay_content() {
 		check_ajax_referer( $this->theme->meta_prefix, 'nonce' );
 
+		$homeid = get_page_by_title( 'Homepage' );
+
 		if ( ! isset( $_POST['section'] ) || '' === $_POST['section'] ) { // WPCS: input var ok.
 			wp_send_json_error( 'Get overlay content failed' );
 		}
 
 		$section = sanitize_text_field( wp_unslash( $_POST['section'] ) ); // WPCS: input var ok.
 		$number = sanitize_text_field( wp_unslash( $_POST['number'] ) ); // WPCS: input var ok.
-		$postid = (int) $_POST['postid'];
+		$postid = isset( $_POST['footer'] ) ? $homeid->ID : (int) $_POST['postid'];
 
 		$post_meta = get_post_meta( $postid, 'page-meta', true );
+		$title = isset( $post_meta[ $section ]['overlay-repeater'][ $number ]['title'] ) ? $post_meta[ $section ]['overlay-repeater'][ $number ]['title'] : '';
 		$content = isset( $post_meta[ $section ]['overlay-repeater'][ $number ]['content'] ) ? $post_meta[ $section ]['overlay-repeater'][ $number ]['content'] : '';
 
-		wp_send_json_success( $content );
+		$html = '<div class="overlay-title">';
+		$html .= $title;
+		$html .= '</div>';
+		$html .= '<div class="overlay-content">';
+		$html .= $content;
+		$html .= '</div>';
+
+		wp_send_json_success( $html );
 	}
 }
