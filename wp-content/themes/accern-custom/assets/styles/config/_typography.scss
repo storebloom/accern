@@ -82,7 +82,8 @@ body {
   line-height: 1;
   font-size: $font-size;
   font-family: $font-default;
-  font-weight: $font-normal;
+
+  @include fontBold(false);
 }
 
 /**
