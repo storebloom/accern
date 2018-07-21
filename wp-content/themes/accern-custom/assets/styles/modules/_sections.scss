@@ -45,7 +45,48 @@
 }
 
 /**
-  Shared Section Element Styles
+  Scroll Down Button
+  ---------------------------------------------------------------------- */
+#scroll-down-one {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50vw;
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  transform: translateX(-50%);
+
+  @include transition();
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 1rem);
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 3rem;
+    background-image: url('../images/icon-dotline-vert.svg');
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    @include transition();
+  }
+
+  &:hover {
+    color: $red;
+
+    &::before {
+      bottom: calc(100% + 0.5rem);
+    }
+  }
+}
+
+/**
+  Responsive Breakdown
   ---------------------------------------------------------------------- */
 @media (max-width: 1600px) {
   .section-sub-title {
