@@ -30,12 +30,37 @@
     background-color: $white;
     color: $black-almost;
 
+    .section-title::before {
+      background-image: url('../images/icon-dotline-grey.svg');
+    }
+
     .section-sub-title {
       color: $black-almost;
 
       &::after {
         color: $black-almost;
       }
+    }
+  }
+}
+
+/**
+  Dot Navigation Style Toggles
+  ---------------------------------------------------------------------- */
+$whitePages: 3 5 7 9 11 13 15 17;
+
+@each $id in $whitePages {
+  .page-template-use-case-template.current-section-id-#{$id} {
+    .nav-icons ul li::before {
+      background-color: $black-almost;
+    }
+
+    .nav-icons ul li.current-section::before {
+      background: $red-light;
+    }
+
+    .nav-icons .nav-page-name {
+      color: $black-almost;
     }
   }
 }
@@ -55,6 +80,10 @@
 
   .section-title {
     color: $white;
+
+    &::before {
+      background-image: url('../images/icon-dotline.svg') !important;
+    }
   }
 
   .section-sub-title {
@@ -66,6 +95,10 @@
     &::after {
       color: $red-light;
     }
+  }
+
+  #scroll-down-one {
+    color: $white;
   }
 }
 
@@ -135,7 +168,7 @@
     padding: 1.25rem 1rem;
     text-align: center;
     text-transform: uppercase;
-    color: $grey-evil;
+    color: transparentize($white, 0.7);
     font-family: $font-medium;
     cursor: pointer;
 
@@ -166,6 +199,10 @@
     &:hover {
       color: $white;
     }
+
+    &.single-tab {
+      display: none;
+    }
   }
 }
 
@@ -190,4 +227,36 @@
   ---------------------------------------------------------------------- */
 #usecase-last-section .usecase-tabs {
   bottom: 4rem;
+}
+
+/**
+  Responsive Breakpoints
+  ---------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .page-template-use-case-template {
+    .section-title {
+      margin-top: 0;
+    }
+
+    .use-case-content-wrap {
+      padding-right: 0;
+    }
+
+    #usecase-main-section .section-sub-title {
+      width: 100%;
+    }
+  }
+
+  .use-case-content-wrap .use-case-left,
+  .use-case-content-wrap .use-case-right {
+    float: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 960px) {
+  .page-template-use-case-template .site-header {
+    background-color: transparent;
+    margin-top: 0;
+  }
 }
