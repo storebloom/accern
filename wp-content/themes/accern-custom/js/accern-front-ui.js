@@ -70,10 +70,6 @@ var AccernFrontUI = ( function( $, wp ) {
 					$( '.your-firm-other' ).hide();
 				}
 			} );
-
-			if ( this.data.mobile ) {
-				$.scrollify.disable();
-			}
 		},
 
 		/**
@@ -102,6 +98,9 @@ var AccernFrontUI = ( function( $, wp ) {
 				$( this ).siblings( '.accern-overlay-content' ).html( '' );
 				$( '.accern-overlay-content-wrap' ).removeClass( 'open' );
 				$( 'body' ).removeClass( 'modal-active' );
+
+				// Reenable when modal is closed.
+				$.scrollify.enable();
 			} );
 
 			// Nav click sectin.
@@ -128,6 +127,9 @@ var AccernFrontUI = ( function( $, wp ) {
 				if ( !$( event.target ).closest( '.footer-accern-overlay-button, .accern-overlay-button, .accern-overlay-content-wrap-inner, .accern-overlay-content' ).length ) {
 					$('body').find( '.accern-overlay-content-wrap' ).removeClass( 'open' );
 					$('body').removeClass( 'modal-active' );
+
+					// Reenable when modal is closed.
+					$.scrollify.enable();
 				}
 			} );
 
@@ -162,6 +164,9 @@ var AccernFrontUI = ( function( $, wp ) {
 			$( '.accern-overlay-content-wrap' ).addClass( 'open' );
 			$( 'body' ).addClass( 'modal-active' );
 
+			// Disable when overlay is open.
+			$.scrollify.disable();
+
 			wp.ajax.post( 'get_overlay_content', {
 				section: section,
 				number: overlayNum,
@@ -181,6 +186,9 @@ var AccernFrontUI = ( function( $, wp ) {
 		openFooterOverlay: function( section, overlayNum ) {
 			$( '.accern-overlay-content-wrap' ).addClass( 'open' );
 			$( 'body' ).addClass( 'modal-active' );
+
+			// Disable when modal is open.
+			$.scrollify.disable();
 
 			wp.ajax.post( 'get_overlay_content', {
 				section: section,
