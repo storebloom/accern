@@ -57,7 +57,7 @@ $associations = get_terms(
 
 	<?php $i = 0; foreach ( $associations as $type ) :
 		$args = array(
-			'post_per_page' => -1,
+			'posts_per_page' => -1,
 			'post_type'     => 'partner',
 			'tax_query'     => array(
 				array(
