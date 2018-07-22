@@ -13,7 +13,7 @@
       "./styles/login.scss"
     ]
   },
-  "publicPath": "/wp-content/themes/accern-custom",
+  "publicPath": "/app/themes/accern-custom",
   "devUrl": "https://accern.dev",
   "proxyUrl": "https://localhost:3000",
   "cacheBusting": "[name]_[hash:8]",
