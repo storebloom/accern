@@ -86,7 +86,7 @@ var AccernFrontUI = ( function( $, wp ) {
 				self.openOverlay( section, overlayNum );
 			} );
 
-			this.$pageContainer.on( 'click', '.footer.accern-overlay-button', function() {
+			this.$pageContainer.on( 'click', '.footer-accern-overlay-button', function() {
 				var section = $( this ).attr( 'data-section' ),
 					overlayNum = $( this ).attr( 'data-num' );
 
@@ -121,7 +121,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			$( document ).click( function( event ) {
 				// If you click on anything except the modal itself or the "open modal" link, close the modal.
-				if ( !$( event.target ).closest( '.accern-overlay-button, .accern-overlay-content-wrap, .accern-overlay-content' ).length ) {
+				if ( !$( event.target ).closest( '.footer-accern-overlay-button, .accern-overlay-button, .accern-overlay-content-wrap-inner, .accern-overlay-content' ).length ) {
 					$('body').find( '.accern-overlay-content-wrap' ).removeClass( 'open' );
 					$('body').removeClass( 'modal-active' );
 				}
