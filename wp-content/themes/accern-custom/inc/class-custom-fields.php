@@ -634,6 +634,7 @@ class Custom_Fields {
 			foreach ( $value as $field_num => $field_value ) {
 				$html .= '<div data-num="' . $field_num . '" class="accern-usecase-repeater-field">';
 				$html .= '<label class="accern-admin-label">Tab Name</label>';
+				$html .= '<button type="button" class="remove-usecase-tab-field">-</button>';
 				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][title]" value="' . $field_value['title'] . '" size="60">';
 				$html .= '<hr>';
 				$html .= '<div class="left-repeater-section">';
@@ -714,6 +715,7 @@ class Custom_Fields {
 
 			$html .= '<div data-num="1" class="accern-usecase-repeater-field">';
 			$html .= '<label class="accern-admin-label">Tab Name</label>';
+			$html .= '<button type="button" class="remove-usecase-tab-field">-</button>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
 			$html .= '<hr>';
 			$html .= '<div class="left-repeater-section">';
