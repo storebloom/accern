@@ -12,6 +12,8 @@ while ( have_posts() ) :
 
 	$id = get_the_ID();
 	$section_info = get_section_info( 'usecase', 'main', $id );
+	$thumbnail = get_the_post_thumbnail_url( $id );
+	$main_image = false !== $thumbnail ? 'background: url(' . $thumbnail . ');' : '';
 
 	// Pull in main use case section.
 	include( locate_template( 'template-parts/usecase-main.php' ) );
