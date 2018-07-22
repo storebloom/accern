@@ -60,6 +60,21 @@ var AccernFrontUI = ( function( $, wp ) {
 				this.scrollifySections( 'usecase' );
 			}
 
+			// Focus labels on forms
+			$('input').each(function() {
+				$(this).on('focus', function() {
+					$(this).closest('.form-wrap').addClass('is-focused');
+				});
+				$(this).on('blur', function() {
+					if ($(this).val().length == 0) {
+						$(this).closest('.form-wrap').removeClass('is-focused');
+					}
+				});
+				if ($(this).val() != '') {
+					$(this).closest('.form-wrap').addClass('is-focused');
+				}
+			});
+
 			// Disable "other" field on page load
 			$( '#other-firm-type' ).prop( 'disabled', true );
 
@@ -166,6 +181,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Contact form.
 			document.addEventListener( 'wpcf7mailsent', function( event ) {
+				$( '#contact-form-section' ).addClass( 'message-sent' );
 				$( '#contact-confirmation' ).addClass( 'active-message' );
 			} );
 		},

@@ -32,6 +32,7 @@
   "images/focus.0c3f7f9.png": "images/focus.0c3f7f9_0c3f7f96.png",
   "images/icon-api.png": "images/icon-api_90c38e30.png",
   "images/icon-arrow-down.svg": "images/icon-arrow-down_761b6aea.svg",
+  "images/icon-check-circle-green.svg": "images/icon-check-circle-green_5ea50f83.svg",
   "images/icon-circut.png": "images/icon-circut_ad82e094.png",
   "images/icon-close.svg": "images/icon-close_9ccac57d.svg",
   "images/icon-dotline-grey.svg": "images/icon-dotline-grey_463005c5.svg",
@@ -52,12 +53,12 @@
   "images/logo-walmart.svg": "images/logo-walmart_cc444cd1.svg",
   "images/logo-wordpress.svg": "images/logo-wordpress_1041e124.svg",
   "images/particle.330a818.png": "images/particle.330a818_330a8182.png",
-  "styles/admin.css": "styles/admin_afdd3668.css",
-  "scripts/admin.js": "scripts/admin_afdd3668.js",
-  "styles/editor.css": "styles/editor_afdd3668.css",
-  "scripts/editor.js": "scripts/editor_afdd3668.js",
-  "styles/login.css": "styles/login_afdd3668.css",
-  "scripts/login.js": "scripts/login_afdd3668.js",
-  "styles/main.css": "styles/main_afdd3668.css",
-  "scripts/main.js": "scripts/main_afdd3668.js"
+  "styles/admin.css": "styles/admin_7c416377.css",
+  "scripts/admin.js": "scripts/admin_7c416377.js",
+  "styles/editor.css": "styles/editor_7c416377.css",
+  "scripts/editor.js": "scripts/editor_7c416377.js",
+  "styles/login.css": "styles/login_7c416377.css",
+  "scripts/login.js": "scripts/login_7c416377.js",
+  "styles/main.css": "styles/main_7c416377.css",
+  "scripts/main.js": "scripts/main_7c416377.js"
 }

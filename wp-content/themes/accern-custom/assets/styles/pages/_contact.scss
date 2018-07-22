@@ -68,15 +68,31 @@
   .wpcf7-form {
     @include grid(space-between, flex-start, row, wrap);
 
-    .form-wrap {
-      width: calc(50% - 0.75rem);
-      margin-top: 1rem;
+    .wpcf7-response-output {
+      display: none !important;
     }
 
     label {
-      font-size: 0.75rem;
+      position: absolute;
+      z-index: 1;
+      top: 1.25rem;
+      font-size: 1rem;
       color: $grey-evil;
-      margin: 1rem 0 0 0;
+      margin: 0;
+
+      @include transition();
+    }
+
+    .form-wrap {
+      position: relative;
+      width: calc(50% - 0.75rem);
+      padding-top: 1rem;
+      margin-top: 2rem;
+
+      &.is-focused label {
+        top: 0.25rem;
+        font-size: 0.75rem;
+      }
     }
 
     input {
@@ -105,6 +121,61 @@
     max-height: 200px;
     transform: translateX(0);
     transition: opacity 350ms ease, transform 350ms ease, max-height 0s ease;
+  }
+}
+
+/**
+  Confirmation Message
+  ---------------------------------------------------------------------- */
+#contact-confirmation {
+  width: 60%;
+  opacity: 0;
+  transform: scaleY(0);
+  transition: transform 50ms ease, opacity 500ms ease;
+  transform-origin: top;
+  position: absolute;
+
+  &.active-message {
+    opacity: 1;
+    transform: scaleY(1);
+    position: relative;
+  }
+
+  .thank-you-title {
+    font-size: 3.25rem;
+    margin: 1em 0 2rem 0;
+
+    @include fontBold();
+    @include grid(flex-start, center);
+
+    &::before {
+      content: '';
+      display: block;
+      width: 1em;
+      height: 1em;
+      margin-right: 1rem;
+      background-image: url('../images/icon-check-circle-green.svg');
+    }
+  }
+
+  .thank-you-content {
+    line-height: 1.5;
+  }
+
+  .thank-you-cta {
+    @include button(red);
+
+    padding: 1rem 0.5rem;
+    margin-top: 4rem;
+    font-family: $font-medium;
+  }
+}
+
+#contact-form-section.message-sent {
+  .section-title,
+  .section-content,
+  .section-form {
+    display: none;
   }
 }
 
