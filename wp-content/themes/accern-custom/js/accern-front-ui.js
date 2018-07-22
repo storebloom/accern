@@ -282,8 +282,8 @@ var AccernFrontUI = ( function( $, wp ) {
 
 					if ( 'usecase' === page ) {
 						nthChild = index + 1;
-					}
-
+          }
+          
 					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
 					$( 'body' ).removeClass( 'current-section-id-' + bodyClass );
 
