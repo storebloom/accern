@@ -94,9 +94,10 @@ var AccernFrontUI = ( function( $, wp ) {
 			} );
 
 			// Close overlay.
-			this.$pageContainer.on( 'click', '#close-overlay', function() {
+			this.$pageContainer.on( 'click', '#close-overlay', function( event ) {
 				$( this ).siblings( '.accern-overlay-content' ).html( '' );
 				$( '.accern-overlay-content-wrap' ).removeClass( 'open' );
+				$( 'body' ).removeClass( 'modal-active' );
 			} );
 
 			// Nav click sectin.
@@ -116,6 +117,14 @@ var AccernFrontUI = ( function( $, wp ) {
 			$( '#site-navigation' ).on( 'click', '.accern-main-menu-close', function() {
 				$( '#site-navigation' ).removeClass( 'is-active' );
 				$( 'body' ).removeClass( 'nav-active' );
+			} );
+
+			$( document ).click( function( event ) {
+				// If you click on anything except the modal itself or the "open modal" link, close the modal.
+				if ( !$( event.target ).closest( '.accern-overlay-button, .accern-overlay-content-wrap, .accern-overlay-content' ).length ) {
+					$('body').find( '.accern-overlay-content-wrap' ).removeClass( 'open' );
+					$('body').removeClass( 'modal-active' );
+				}
 			} );
 
 			// Use case tab reveal.
@@ -147,6 +156,7 @@ var AccernFrontUI = ( function( $, wp ) {
 		 */
 		openOverlay: function( section, overlayNum ) {
 			$( '.accern-overlay-content-wrap' ).addClass( 'open' );
+			$( 'body' ).addClass( 'modal-active' );
 
 			wp.ajax.post( 'get_overlay_content', {
 				section: section,
@@ -166,6 +176,7 @@ var AccernFrontUI = ( function( $, wp ) {
 		 */
 		openFooterOverlay: function( section, overlayNum ) {
 			$( '.accern-overlay-content-wrap' ).addClass( 'open' );
+			$( 'body' ).addClass( 'modal-active' );
 
 			wp.ajax.post( 'get_overlay_content', {
 				section: section,
@@ -202,7 +213,8 @@ var AccernFrontUI = ( function( $, wp ) {
 				overflowScroll: true,
 				afterRender: function() {
 					var index = $.scrollify.currentIndex(),
-						section = parseInt( index ) + 1;
+						section = index + 1,
+						nthChild = index + 2;;
 
 					if ( 'homepage' === page ) {
 						self.$animate.transitionTo( index );
@@ -210,6 +222,10 @@ var AccernFrontUI = ( function( $, wp ) {
 
 					$( '.' + page + '-nav-section' ).removeClass( 'current-section' );
 					$( '#section-' + section ).addClass( 'current-section' );
+
+					// Add class to current section.
+					$( '#content .' + page + '-section' ).removeClass( 'currently-active-section' );
+					$( '#content .' + page + '-section:nth-of-type(' + nthChild + ')' ).addClass( 'currently-active-section' );
 
 					// Detect the footer
 					$( window ).on( 'scroll touchstart', function() {
@@ -224,7 +240,12 @@ var AccernFrontUI = ( function( $, wp ) {
 					});
 				},
 				before: function (index, sections) {
-					var section = index + 1;
+					var section = index + 1,
+					nthChild = index + 2;
+
+					// Add class to current section.
+					$( '#content .' + page + '-section' ).removeClass( 'currently-active-section' );
+					$( '#content .' + page + '-section:nth-of-type(' + nthChild + ')' ).addClass( 'currently-active-section' );
 
 					index = 5 === index ? 6 : index;
 
