@@ -1,6 +1,185 @@
+/**
+  Company page specific styles
+  ---------------------------------------------------------------------- */
 .company-section {
   @extend %section-container;
 
-  width: 50%;
+  width: 30%;
   position: relative;
+
+  .section-sub-title {
+    margin-bottom: 1rem;
+  }
+}
+
+/**
+  Globals for sub-sections
+  ---------------------------------------------------------------------- */
+#company-team-section,
+#company-partners-section {
+  display: block;
+  background-color: $black-almost;
+  padding-top: 8rem;
+  padding-right: 20vw;
+  padding-bottom: 8rem;
+  width: 100%;
+  height: auto !important;
+
+  .section-title {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  .section-sub-title {
+    @include columnWidth(6);
+  }
+
+  .section-content {
+    @include columnWidth(4);
+  }
+
+  .section-overlay,
+  .section-cta {
+    @include button(red);
+  }
+
+  .association-cta {
+    @include button(outline);
+  }
+
+  .section-overlay,
+  .section-cta,
+  .association-cta {
+    transform: translateY(-150%);
+    padding: 1rem 0;
+    text-align: center;
+    float: right;
+
+    @include columnWidth(2);
+
+    &:hover {
+      transform: translateY(-150%);
+    }
+  }
+}
+
+/**
+  Team Member section
+  ---------------------------------------------------------------------- */
+.team-member-item {
+  width: 18%;
+  margin-top: 1rem;
+  margin-right: 2%;
+  margin-bottom: 2rem;
+}
+
+.team-region-list {
+  @include grid(flex-start, flex-start, row, wrap);
+}
+
+.team-member-photo {
+  margin-bottom: 0.75rem;
+
+  a,
+  img {
+    display: block;
+  }
+
+  img {
+    @include transition();
+  }
+
+  a {
+    position: relative;
+    background-color: $red-light;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      background-image: url('../images/logo-linkedin.svg');
+      background-size: contain;
+      transform: translate(-0.75rem, -0.75rem);
+      opacity: 0;
+
+      @include transition();
+    }
+
+    &:hover {
+      img {
+        opacity: 0.25;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.team-member-info {
+  @include grid(flex-start, flex-start, row, wrap);
+
+  font-size: 0.85rem;
+
+  .member-count {
+    color: $red-light;
+    font-family: $font-medium;
+    margin-right: 0.25rem;
+  }
+
+  .member-name {
+    font-family: $font-medium;
+  }
+
+  .member-title {
+    width: 100%;
+    padding-left: 2rem;
+    font-size: 0.75rem;
+  }
+}
+
+/**
+  Partners section
+  ---------------------------------------------------------------------- */
+.associations-list {
+  @include grid(flex-start, stretch, row, wrap);
+
+  width: 100%;
+  position: relative;
+  margin-bottom: 8rem;
+
+  .parnter-item {
+    width: 20%;
+    border-top: 1px dashed $grey;
+    border-right: 1px dashed $grey;
+
+    @include grid(center, center, column);
+
+    @for $i from 3 through 8 {
+      &:nth-child(#{$i}) {
+        border-top: none;
+      }
+    }
+
+    &:nth-child(5n + 2) {
+      border-right: none;
+    }
+  }
+}
+
+#company-partners-section .associations-list .association-cta {
+  transform: translateY(0);
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  &:hover {
+    transform: translateY(0);
+  }
 }
