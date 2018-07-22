@@ -415,6 +415,10 @@
 }
 
 @media (max-width: 600px) {
+  .info-overlay__content {
+    font-size: 0.75rem;
+  }
+
   .main-visualization__overlays > span > div {
     width: 100%;
   }
