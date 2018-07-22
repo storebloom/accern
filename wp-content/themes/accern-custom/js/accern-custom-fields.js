@@ -97,8 +97,8 @@ var AccernCustomFields = ( function( $, wp ) {
 			} );
 
 			// Remove tab field from admin.
-			this.$container.on( 'click', '.remove-tab-field', function() {
-				$( this ).parent( '.accern-usecase-field' ).remove();
+			this.$container.on( 'click', '.remove-usecase-tab-field', function() {
+				$( this ).parent( '.accern-usecase-repeater-field' ).remove();
 			} );
 
 			// Remove usecase field from admin.
