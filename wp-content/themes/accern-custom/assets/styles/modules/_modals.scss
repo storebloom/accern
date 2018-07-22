@@ -84,6 +84,8 @@ body.modal-active {
   .overlay-content {
     color: $black;
     padding-bottom: #{$overlayTitleSize / 2};
+    overflow: auto;
+    max-height: calc(100vh - #{($overlayTitleSize * 2) + 4});
 
     img.aligncenter {
       width: 100%;

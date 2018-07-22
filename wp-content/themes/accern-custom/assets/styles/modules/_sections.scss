@@ -69,8 +69,8 @@ $sectionMobilePadding: 6rem 1.5rem 4rem 1.5rem;
   text-transform: uppercase;
   text-align: center;
   transform: translateX(-50%);
-
-  @include transition();
+  opacity: 0;
+  transition: opacity 350ms ease, color 350ms ease;
 
   &::before {
     content: '';
@@ -85,6 +85,7 @@ $sectionMobilePadding: 6rem 1.5rem 4rem 1.5rem;
     background-position: center top;
     background-repeat: no-repeat;
     background-color: transparent;
+    transform: translateY(-100%);
 
     @include transition();
   }
@@ -95,6 +96,15 @@ $sectionMobilePadding: 6rem 1.5rem 4rem 1.5rem;
     &::before {
       bottom: calc(100% + 0.5rem);
     }
+  }
+}
+
+.currently-active-section #scroll-down-one {
+  opacity: 1;
+  transition: opacity 500ms ease 2s, color 350ms ease;
+
+  &::before {
+    transform: translateY(0);
   }
 }
 
