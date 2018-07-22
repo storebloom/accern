@@ -24,6 +24,7 @@
   "fonts/5664114/b2b47de7-f81a-4618-8972-3d49acb98d28.eot": "fonts/5664114/b2b47de7-f81a-4618-8972-3d49acb98d28_3673a4b8.eot",
   "fonts/5664114/bb16813f-1602-42b4-98f3-068eee70eb31.woff": "fonts/5664114/bb16813f-1602-42b4-98f3-068eee70eb31_1ee82696.woff",
   "images/accern-logo-white.svg": "images/accern-logo-white_5907e44e.svg",
+  "images/bg-block.svg": "images/bg-block_b91b559d.svg",
   "images/button-outline-left.svg": "images/button-outline-left_0936abe3.svg",
   "images/button-outline-right.svg": "images/button-outline-right_243ada65.svg",
   "images/button-outline.svg": "images/button-outline_49de306b.svg",
@@ -49,12 +50,12 @@
   "images/logo-walmart.svg": "images/logo-walmart_cc444cd1.svg",
   "images/logo-wordpress.svg": "images/logo-wordpress_1041e124.svg",
   "images/particle.330a818.png": "images/particle.330a818_330a8182.png",
-  "styles/admin.css": "styles/admin_4c6ece03.css",
-  "scripts/admin.js": "scripts/admin_4c6ece03.js",
-  "styles/editor.css": "styles/editor_4c6ece03.css",
-  "scripts/editor.js": "scripts/editor_4c6ece03.js",
-  "styles/login.css": "styles/login_4c6ece03.css",
-  "scripts/login.js": "scripts/login_4c6ece03.js",
-  "styles/main.css": "styles/main_4c6ece03.css",
-  "scripts/main.js": "scripts/main_4c6ece03.js"
+  "styles/admin.css": "styles/admin_f4a63aac.css",
+  "scripts/admin.js": "scripts/admin_f4a63aac.js",
+  "styles/editor.css": "styles/editor_f4a63aac.css",
+  "scripts/editor.js": "scripts/editor_f4a63aac.js",
+  "styles/login.css": "styles/login_f4a63aac.css",
+  "scripts/login.js": "scripts/login_f4a63aac.js",
+  "styles/main.css": "styles/main_f4a63aac.css",
+  "scripts/main.js": "scripts/main_f4a63aac.js"
 }

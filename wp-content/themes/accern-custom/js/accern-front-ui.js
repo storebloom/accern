@@ -60,14 +60,19 @@ var AccernFrontUI = ( function( $, wp ) {
 				this.scrollifySections( 'usecase' );
 			}
 
+			// Disable "other" field on page load
+			$( '#other-firm-type' ).prop( 'disabled', true );
+
 			// Show other field if other selected on contact page.
 			this.$pageContainer.on( 'change', '.your-firm-type select', function() {
 				var optionVal = $( this ).find( 'option:selected' ).val();
 
 				if ( 'Other' === optionVal ) {
-					$( '.your-firm-other' ).show();
+					$( '#form-wrap-other' ).addClass( 'is-active' );
+					$( '#other-firm-type' ).prop( 'disabled', false );
 				} else {
-					$( '.your-firm-other' ).hide();
+					$( '#form-wrap-other' ).removeClass( 'is-active' );
+					$( '#other-firm-type' ).prop( 'disabled', true );
 				}
 			} );
 		},

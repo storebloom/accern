@@ -5,21 +5,18 @@
 // Font
 $fh-font-family: $font-default !default;
 $fh-font-size: $font-size !default;
-$fh-font-color: $black !default;
+$fh-font-color: $white !default;
 
 // Borders
-$fh-border-radius: 5px !default;
-$fh-border-width: 1px !default;
+$fh-border-width: 2px !default;
 $fh-border-style: solid !default;
-$fh-border-color: $black !default;
+$fh-border-color: $white !default;
 
 // Inputs, Textareas, Select, Option
-$fh-input-height: 2.5em !default;
 $fh-input-width: 100% !default;
-$fh-input-max-width: auto !default;
-$fh-input-bg-color: $white !default;
-$fh-focus-bg-color: $white !default;
-$fh-focus-border-color: $fh-border-color !default;
+$fh-input-max-width: 100% !default;
+$fh-input-bg-color: $black !default;
+$fh-focus-bg-color: $black !default;
 $fh-focus-font-color: $fh-font-color !default;
 
 // Select Vendor Styling
@@ -107,10 +104,13 @@ select,
 textarea {
   width: $fh-input-width;
   max-width: $fh-input-max-width;
-  padding: $fh-input-height / 5;
+  padding: 0 0 0.5rem 0;
+  line-height: 1.5em;
   background-color: $fh-input-bg-color;
-  border-radius: $fh-border-radius;
-  border: $fh-border-width $fh-border-style $fh-border-color;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: $fh-border-width $fh-border-style $fh-border-color;
 }
 
 /* Fields with standard height */
@@ -128,7 +128,6 @@ input[type="time"],
 input[type="url"],
 input[type="week"],
 input[list] {
-  height: $fh-input-height;
   appearance: none;
 }
 
@@ -139,18 +138,7 @@ textarea {
   overflow: auto;
 }
 
-input[type="range"] {
-  height: $fh-input-height;
-  width: $fh-input-width;
-  max-width: $fh-input-max-width;
-}
-
-input[type="file"] {
-  min-height: $fh-input-height;
-}
-
 input[type="search"] {
-  height: $fh-input-height;
   appearance: none;
 }
 
@@ -164,16 +152,13 @@ input[type="radio"] {
   display: inline-block;
   vertical-align: middle;
 }
-// For checkbox and radio to be centered, need to wrap the input and label in a span -
-// .checkbox-container {
-// 	display: block;
-// 	text-align: center;
-// }
 
 /* Select ------------------ */
 
 select {
-  height: $fh-input-height;
+  height: 2.1em;
+  line-height: 1;
+  margin-top: 0;
 
   @if $fh-allow-select-vendor-styling == false {
     appearance: none;
@@ -186,12 +171,10 @@ select {
 
 select[multiple] {
   height: auto;
-  min-height: $fh-input-height;
   padding: 0;
 
   option {
     margin: 0;
-    padding: $fh-input-height / 5;
   }
 }
 
@@ -230,22 +213,13 @@ input[type="button"],
 input[type="submit"],
 input[type="reset"],
 input[type="image"] {
-  height: $fh-button-height;
-  width: $fh-button-width;
-  max-width: $fh-button-max-width;
-  background-color: $fh-button-bg-color;
-  padding: $fh-input-height / 5;
-  cursor: pointer;
-  color: $fh-button-font-color;
-  font-weight: $font-bold;
   appearance: none;
-  border-radius: $fh-border-radius;
-  border: $fh-border-width $fh-border-style $fh-border-color;
+  border: none;
+  font-family: $font-medium;
 }
 
 input[type="image"] {
   text-align: center;
-  padding: $fh-input-height / 5;
 }
 
 /* States ------------------ */
@@ -263,12 +237,11 @@ textarea:focus,
 select:focus,
 button:focus {
   background-color: $fh-focus-bg-color;
-  border-color: $fh-focus-border-color;
 }
 
 input[type="checkbox"]:focus,
 input[type="radio"]:focus {
-  outline: $fh-focus-border-color solid 2px;
+  outline: none;
 }
 
 a.button:hover,

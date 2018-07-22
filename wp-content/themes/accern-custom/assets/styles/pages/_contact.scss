@@ -1,0 +1,151 @@
+/**
+  Contact page specific styles
+  ---------------------------------------------------------------------- */
+.page-template-contact-template {
+  .site-content {
+    @include grid(space-between, stretch);
+
+    min-height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 3.25rem;
+    color: $white;
+    text-transform: none;
+    margin-bottom: 1rem;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .section-content {
+    margin-bottom: 0;
+  }
+
+  .site-footer {
+    position: static;
+    transform: translateY(0);
+    background-color: $black;
+  }
+}
+
+/**
+  Locations Column
+  ---------------------------------------------------------------------- */
+#contact-locations-section {
+  padding: 20vh 4vw 2rem 4vw;
+  min-width: 39vw;
+  background-image: url('../images/bg-block.svg');
+  background-position: right center;
+  background-size: 10px auto;
+}
+
+.location-wrap {
+  margin: 2rem 0 1rem 0;
+
+  h2 {
+    font-size: 1.75rem;
+    font-family: $font-medium;
+    margin-bottom: 0.75em;
+  }
+
+  p {
+    padding-bottom: 0;
+  }
+}
+
+/**
+  Contact Form Column
+  ---------------------------------------------------------------------- */
+#contact-form-section {
+  padding: 20vh 12vw 2rem 4vw;
+  flex-grow: 1;
+
+  .wpcf7-form {
+    @include grid(space-between, flex-start, row, wrap);
+
+    .form-wrap {
+      width: calc(50% - 0.75rem);
+      margin-top: 1rem;
+    }
+
+    label {
+      font-size: 0.75rem;
+      color: $grey-evil;
+      margin: 1rem 0 0 0;
+    }
+
+    input {
+      margin: 0;
+    }
+
+    button {
+      @include button(red);
+
+      padding: 1rem 3rem;
+      line-height: 1;
+      margin-top: 4rem;
+    }
+  }
+}
+
+#form-wrap-other {
+  opacity: 0;
+  max-height: 1px;
+  overflow: hidden;
+  transform: translateX(2rem);
+  transition: opacity 350ms ease, transform 350ms ease, max-height 0s ease 350ms;
+
+  &.is-active {
+    opacity: 1;
+    max-height: 200px;
+    transform: translateX(0);
+    transition: opacity 350ms ease, transform 350ms ease, max-height 0s ease;
+  }
+}
+
+/**
+  Responsive Breakpoints
+  ---------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  #contact-form-section {
+    padding-right: 4vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .page-template-contact-template {
+    .site-content {
+      display: block;
+    }
+
+    .section-title {
+      font-family: $font-medium;
+      font-size: 2.5rem;
+    }
+  }
+
+  #contact-locations-section,
+  #contact-form-section {
+    padding: $sectionMobilePadding;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  #contact-form-section {
+    .wpcf7-form {
+      .form-wrap {
+        width: 100%;
+      }
+
+      button {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
