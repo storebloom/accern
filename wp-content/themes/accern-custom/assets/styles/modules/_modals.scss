@@ -83,7 +83,7 @@ body.modal-active {
 
   .overlay-content {
     color: $black;
-    padding-bottom: #{$overlayTitleSize / 2};
+    padding-bottom: #{$overlayTitleSize / 1.5};
     overflow: auto;
     max-height: calc(100vh - #{($overlayTitleSize * 2) + 4});
 
@@ -95,7 +95,7 @@ body.modal-active {
 
     p,
     ul {
-      padding: #{$overlayTitleSize / 2} #{$overlayTitleSize};
+      padding: #{$overlayTitleSize / 4} #{$overlayTitleSize};
     }
   }
 
