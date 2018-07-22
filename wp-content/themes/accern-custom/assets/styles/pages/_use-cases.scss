@@ -1,0 +1,193 @@
+/**
+  Use Cases page specific styles
+  ---------------------------------------------------------------------- */
+.usecase-section {
+  background-color: $black-almost;
+  padding-top: 8rem;
+  padding-bottom: 10rem;
+  position: relative;
+  height: auto !important;
+  min-height: 100vh;
+
+  @include clearfix();
+
+  .section-title,
+  .section-sub-title,
+  .usecase-tab-content {
+    @include columnPadding();
+  }
+
+  .section-sub-title {
+    width: 100%;
+    font-size: 3.5rem;
+
+    &::after {
+      color: $white;
+    }
+  }
+
+  &:nth-child(odd) {
+    background-color: $white;
+    color: $black-almost;
+
+    .section-sub-title {
+      color: $black-almost;
+
+      &::after {
+        color: $black-almost;
+      }
+    }
+  }
+}
+
+/**
+  Heading Section
+  ---------------------------------------------------------------------- */
+#usecase-main-section {
+  @extend %section-container;
+
+  @include columnPadding();
+
+  background-image: url('../images/bg-redwaves.jpg');
+  background-position: center center;
+  background-size: cover;
+  height: 100vh !important;
+
+  .section-title {
+    color: $white;
+  }
+
+  .section-sub-title {
+    width: 50vw;
+    margin: 0;
+    font-size: 4rem;
+    color: $white;
+
+    &::after {
+      color: $red-light;
+    }
+  }
+}
+
+/**
+  Tab Column Styles
+  ---------------------------------------------------------------------- */
+.use-case-content-wrap {
+  @include clearfix();
+
+  padding-right: $sectionColumn;
+  max-height: 0;
+  overflow: hidden;
+
+  @include transition(all 1s ease-in-out);
+
+  &.active-tab {
+    max-height: 300vh;
+  }
+
+  h2,
+  h4,
+  h4 b {
+    font-family: $font-medium;
+    font-size: 1.75rem;
+  }
+
+  h4 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  hr {
+    height: 0;
+    border: 1px dashed $grey;
+  }
+
+  .use-case-left {
+    @include columnWidth(5);
+
+    float: left;
+  }
+
+  .use-case-right {
+    @include columnWidth(5);
+
+    float: right;
+  }
+}
+
+/**
+  Tab Styles
+  ---------------------------------------------------------------------- */
+.usecase-tabs {
+  @include listStripped();
+  @include grid(center, stretch);
+
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  .tab-item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    flex: 1 0 0;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: $grey-evil;
+    font-family: $font-medium;
+    cursor: pointer;
+
+    @include grid(center, center);
+    @include transition();
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: calc(100% + 5px);
+      background-color: transparentize($white, 0.7);
+      border-top: 5px solid $red-light;
+
+      @include transition();
+    }
+
+    &.current-tab {
+      color: $white;
+
+      &::before {
+        bottom: -100%;
+      }
+    }
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.usecase-section:nth-child(odd) .tab-item {
+  color: transparentize($black-almost, 0.7);
+
+  &::before {
+    background-color: transparentize($black-almost, 0.7);
+  }
+
+  &.current-tab {
+    color: $black-almost;
+  }
+
+  &:hover {
+    color: $black-almost;
+  }
+}
+
+/**
+  Final Panel Layout
+  ---------------------------------------------------------------------- */
+#usecase-last-section .usecase-tabs {
+  bottom: 4rem;
+}

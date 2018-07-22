@@ -52,11 +52,11 @@ $useMarkupItal: false;
 
   @else {
     @if $undo {
-      font-family: $style;
+      font-family: "Helvetica Neue LT Medium Italic", sans-serif;
     }
 
     @else {
-      font-family: $font-default;
+      font-family: "Helvetica Neue LT Regular", sans-serif;
     }
   }
 }
@@ -126,7 +126,6 @@ h6 {
   padding: 0;
   margin: 0;
   line-height: 1;
-  font-family: $font-heading;
 
   @include fontBold();
 }
