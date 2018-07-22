@@ -282,7 +282,7 @@ var AccernFrontUI = ( function( $, wp ) {
 						nthChild = index + 1;
 					}
 
-					if ( 'homepage' !== page && self.data.mobile && index > 0 ) {
+					if ( 'homepage' !== page && self.data.mobile ) {
 						$.scrollify.disable();
 					} else {
 						if ( $.scrollify.isDisabled() ) {

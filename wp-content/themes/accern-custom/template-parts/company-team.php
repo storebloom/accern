@@ -18,6 +18,10 @@ $team_regions = get_terms(
 ?>
 <div data-section="2" id="company-team-section" class="company-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
+		<?php if ( wp_is_mobile() ) : ?>
+			<a name="<?php echo esc_attr( $section_info['title'] ); ?>"></a>
+		<?php endif; ?>
+
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>
 		</div>
