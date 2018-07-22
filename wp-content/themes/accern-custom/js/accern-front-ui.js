@@ -125,9 +125,12 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Nav click sectin.
 			this.$pageContainer.on( 'click', '.homepage-nav-section, .company-nav-section, .usecase-nav-section', function() {
-				var section = $( this ).attr( 'data-section' );
+				var section = $( this ).attr( 'data-section' ),
+					homepage = $( this ).hasClass( 'homepage-nav-section' );
 
-				$.scrollify.move( '#' + section );
+				if ( homepage && false === self.data.mobile ) {
+					$.scrollify.move( '#' + section );
+				}
 			} );
 
 			// Open main menu.
