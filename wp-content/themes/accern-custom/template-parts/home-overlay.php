@@ -9,6 +9,8 @@
 
 ?>
 <div class="accern-overlay-content-wrap">
-	<img id="close-overlay" class="overlay-icon" src="<?php echo esc_url( asset_path( 'images/overlay-icon.png' ) ); ?>">
-	<div class="accern-overlay-content"></div>
+	<div class="accern-overlay-content-wrap-inner">
+		<span id="close-overlay" class="overlay-icon"><i>Close</i></span>
+		<div class="accern-overlay-content"></div>
+	</div>
 </div>
