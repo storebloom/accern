@@ -166,6 +166,13 @@ var AccernFrontUI = ( function( $, wp ) {
 			this.$pageContainer.on( 'click', '.mobile-up-arrow', function() {
 				$.scrollify.previous();
 			} );
+
+			// If user reaches top reenable scrollify.
+			$( window ).scroll( function() {
+				if ( $( window ).scrollTop() === 0 && $.scrollify.isDisabled() ) {
+					$.scrollify.enable();
+				}
+			} );
 		},
 
 		/**
