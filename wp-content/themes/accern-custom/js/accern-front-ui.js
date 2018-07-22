@@ -269,6 +269,14 @@ var AccernFrontUI = ( function( $, wp ) {
 					var section = index + 1,
 					nthChild = index + 2;
 
+					if ( 'homepage' !== page && self.data.mobile && index > 0 ) {
+						$.scrollify.disable();
+					} else {
+						if ( $.scrollify.isDisabled() ) {
+							$.scrollify.enable();
+						}
+					}
+
 					// Add class to current section.
 					$( '#content .' + page + '-section' ).removeClass( 'currently-active-section' );
 					$( '#content .' + page + '-section:nth-of-type(' + nthChild + ')' ).addClass( 'currently-active-section' );
