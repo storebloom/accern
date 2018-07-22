@@ -162,10 +162,15 @@ $sectionMobilePadding: 6rem 4rem 4rem 1.5rem;
 }
 
 @media (max-width: 600px) {
+  .section-title {
+    margin-bottom: 1rem;
+  }
+
   .section-sub-title {
     width: 100%;
     font-size: 2rem;
-    margin-bottom: 1em;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
     font-family: $font-medium;
   }
 }

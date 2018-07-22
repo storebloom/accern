@@ -155,6 +155,9 @@
       height: 1em;
       margin-right: 1rem;
       background-image: url('../images/icon-check-circle-green.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
     }
   }
 
@@ -205,6 +208,10 @@
     padding: $sectionMobilePadding;
     width: 100%;
   }
+
+  #contact-confirmation {
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -218,5 +225,9 @@
         margin-top: 1rem;
       }
     }
+  }
+
+  #contact-confirmation .thank-you-title {
+    font-size: 2.5rem;
   }
 }
