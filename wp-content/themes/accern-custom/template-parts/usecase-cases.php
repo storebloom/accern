@@ -16,13 +16,14 @@ $args = array(
 $use_cases = get_posts( $args );
 
 foreach ( $use_cases as $num => $case ) :
+	$section_num = intval( $num ) + 2;
 	$case_info = get_post_meta( $case->ID, 'page-meta', true );
 	$sectionid = count( $use_cases ) === intval( $num ) + 1 ? 'id=usecase-last-section' : '';
 	$case_name[] = $case->post_title;
 	$case_info = ! empty( $case_info ) ? $case_info : array();
 	$tabs = isset( $case_info['usecase-tab-section']['usecase-repeater'] ) ? $case_info['usecase-tab-section']['usecase-repeater'] : '';
 	?>
-	<div <?php echo esc_attr( $sectionid ); ?> class="usecase-section">
+	<div data-section="<?php echo esc_attr( $section_num ); ?> "<?php echo esc_attr( $sectionid ); ?> class="usecase-section">
 		<a name="<?php echo esc_attr( $case->post_title ); ?>"></a>
 
 		<?php if ( array() !== $case_info ) : ?>
@@ -39,9 +40,10 @@ foreach ( $use_cases as $num => $case ) :
 				<?php
 				foreach ( $tabs as $num2 => $tab_info ) :
 						$current_tab = 1 === $num2 ? 'current-tab' : '';
+						$single_tab = count( $tabs ) === 1 ? 'single-tab' : '';
 						$tab_id = strtolower( str_replace( ' ', '-', $tab_info['title'] ) ) . '-' . strtolower( str_replace( ' ', '-', $case->post_title ) );
 					?>
-						<li data-tab="<?php echo esc_attr( $tab_id ); ?>" class="tab-item <?php echo esc_attr( $current_tab ); ?>">
+						<li data-tab="<?php echo esc_attr( $tab_id ); ?>" class="tab-item <?php echo esc_attr( $current_tab ); ?> <?php echo esc_attr( $single_tab ); ?>">
 							<?php echo esc_html( $tab_info['title'] ); ?>
 						</li>
 				<?php endforeach; ?>

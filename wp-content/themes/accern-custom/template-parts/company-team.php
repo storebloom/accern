@@ -16,7 +16,7 @@ $team_regions = get_terms(
 	)
 );
 ?>
-<div id="company-team-section" class="company-section">
+<div data-section="2" id="company-team-section" class="company-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>

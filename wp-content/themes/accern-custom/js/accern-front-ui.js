@@ -244,7 +244,11 @@ var AccernFrontUI = ( function( $, wp ) {
 				afterRender: function() {
 					var index = $.scrollify.currentIndex(),
 						section = index + 1,
-						nthChild = index + 2;;
+						nthChild = index + 2;
+
+					if ( 'usecase' === page ) {
+						nthChild = index + 1;
+					}
 
 					if ( 'homepage' === page ) {
 						self.$animate.transitionTo( index );
@@ -271,7 +275,12 @@ var AccernFrontUI = ( function( $, wp ) {
 				},
 				before: function (index, sections) {
 					var section = index + 1,
-					nthChild = index + 2;
+						bodyClass,
+						nthChild = index + 2;
+
+					if ( 'usecase' === page ) {
+						nthChild = index + 1;
+					}
 
 					if ( 'homepage' !== page && self.data.mobile && index > 0 ) {
 						$.scrollify.disable();
@@ -281,9 +290,16 @@ var AccernFrontUI = ( function( $, wp ) {
 						}
 					}
 
+					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
+					$( 'body' ).removeClass( 'current-section-id-' + bodyClass );
+
 					// Add class to current section.
 					$( '#content .' + page + '-section' ).removeClass( 'currently-active-section' );
 					$( '#content .' + page + '-section:nth-of-type(' + nthChild + ')' ).addClass( 'currently-active-section' );
+
+					// Add class to body of current section.
+					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
+					$( 'body' ).addClass( 'current-section-id-' + bodyClass );
 
 					index = 5 === index ? 6 : index;
 
