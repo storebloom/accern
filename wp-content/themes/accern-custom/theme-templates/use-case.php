@@ -9,8 +9,9 @@
 
 foreach ( $tabs as $num => $tab_info ) :
 	$tab_id = strtolower( str_replace( ' ', '-', $tab_info['title'] ) );
+	$active_tab = 1 === $num ? 'active-tab' : '';
 ?>
-	<div id="<?php echo esc_attr( $tab_id ); ?>" class="use-case-content-wrap">
+	<div id="<?php echo esc_attr( $tab_id ); ?>" class="use-case-content-wrap <?php echo esc_attr( $active_tab ); ?>">
 		<div class="use-case-left">
 			<?php if ( ! empty( $tab_info['left'][1] ) && is_array( $tab_info['left'] ) ) : ?>
 				<?php foreach ( $tab_info['left'] as $num => $usecase_content ) : ?>
