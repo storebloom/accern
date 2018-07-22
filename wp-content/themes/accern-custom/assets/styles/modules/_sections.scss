@@ -5,7 +5,7 @@ $sectionColumn: 6.5vw;
 $sectionGutter: 1.25vw;
 $sectionOffset: 4vw;
 $sectionRemain: 4vw;
-$sectionMobilePadding: 6rem 1.5rem 4rem 1.5rem;
+$sectionMobilePadding: 6rem 4rem 4rem 1.5rem;
 
 %section-container {
   @include grid(center, flex-start, column);

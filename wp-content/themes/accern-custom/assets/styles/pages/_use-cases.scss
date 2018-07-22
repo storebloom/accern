@@ -71,8 +71,6 @@ $whitePages: 3 5 7 9 11 13 15 17;
 #usecase-main-section {
   @extend %section-container;
 
-  @include columnPadding();
-
   background-image: url('../images/bg-redwaves.jpg');
   background-position: center center;
   background-size: cover;
@@ -118,7 +116,11 @@ $whitePages: 3 5 7 9 11 13 15 17;
     max-height: 300vh;
   }
 
-  h2,
+  h2 {
+    font-family: $font-bold;
+    font-size: 2.5rem;
+  }
+
   h4,
   h4 b {
     font-family: $font-medium;
