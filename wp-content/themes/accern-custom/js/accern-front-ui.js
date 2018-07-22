@@ -84,6 +84,12 @@ var AccernFrontUI = ( function( $, wp ) {
 			var self = this,
 				timer = '';
 
+			// Contact form.
+			document.addEventListener( 'wpcf7mailsent', function( event ) {
+				$( '#wpcf7-f27-p25-o1' ).addClass( 'form-sent' );
+				$( '#contact-confirmation' ).addClass( 'active-message' );
+			} );
+
 			this.$pageContainer.on( 'click', '.accern-overlay-button', function() {
 				var section = $( this ).attr( 'data-section' ),
 					overlayNum = $( this ).attr( 'data-num' );

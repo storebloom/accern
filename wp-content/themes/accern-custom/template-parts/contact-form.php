@@ -27,4 +27,12 @@ $section_info = get_section_info( 'contact', 'form', get_the_ID() );
 			<?php echo do_shortcode( $section_info['shortcode'] ); ?>
 		</div>
 	<?php endif; ?>
+
+	<div id="contact-confirmation">
+		<div class="thank-you-title"><?php echo esc_html__( 'Thank You!', 'accern-custom' ); ?></div>
+		<div class="thank-you-content"><?php echo esc_html__( 'Thank you so much for requesting access. We will be in touch in the next 30 minutes to go over the details with you.', 'accern-custom' ); ?></div>
+		<div class="thank-you-cta">
+			<a class="accern-button" href="/use-cases"><?php echo esc_html__( 'Explore Case Studies', 'accern-custom' ); ?></a>
+		</div>
+	</div>
 </div>
