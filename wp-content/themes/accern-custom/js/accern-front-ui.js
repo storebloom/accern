@@ -133,8 +133,11 @@ var AccernFrontUI = ( function( $, wp ) {
 					$('body').find( '.accern-overlay-content-wrap' ).removeClass( 'open' );
 					$('body').removeClass( 'modal-active' );
 
-					// Reenable when modal is closed.
-					$.scrollify.enable();
+					if ( $.scrollify.isDisabled() ) {
+
+						// Reenable when modal is closed.
+						$.scrollify.enable();
+					}
 				}
 			} );
 
