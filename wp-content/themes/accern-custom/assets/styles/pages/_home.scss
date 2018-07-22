@@ -5,6 +5,11 @@
   .main-visualization,
   .main-visualization__scene {
     position: fixed;
+
+    &::before,
+    &::after {
+      position: fixed;
+    }
   }
 }
 

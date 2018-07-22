@@ -183,3 +183,110 @@
     transform: translateY(0);
   }
 }
+
+/**
+  Responsive Breakpoints
+  ---------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .company-section {
+    width: 100%;
+    padding: $sectionMobilePadding;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  #company-team-section,
+  #company-partners-section {
+    background-color: $black;
+    padding: $sectionMobilePadding;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+
+    .section-sub-title,
+    .section-content {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .section-overlay,
+    .section-cta {
+      position: static !important;
+      width: auto;
+      padding: 1rem 3rem !important;
+      margin-bottom: 2rem;
+      float: none;
+      transform: translateY(0);
+
+      &:hover {
+        transform: translateY(0);
+      }
+    }
+
+    .associations-list {
+      padding-bottom: 6rem;
+      margin-bottom: 2rem;
+
+      .association-cta {
+        width: auto;
+        align-self: flex-end;
+        right: auto;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        padding: 1rem 3rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .team-region-list {
+    @include grid(space-between, stretch, row, column);
+  }
+
+  .team-member-item {
+    width: calc(50% - 0.75rem);
+
+    .member-title {
+      padding-left: 1.5rem;
+      font-size: 0.65rem;
+    }
+  }
+
+  .team-member-info {
+    font-size: 0.75rem;
+  }
+
+  .associations-list .parnter-item {
+    border-top: 1px dashed $grey;
+    width: 50%;
+
+    &:nth-child(3),
+    &:nth-child(4) {
+      border-top: none;
+    }
+
+    @for $i from 5 through 8 {
+      &:nth-child(#{$i}) {
+        border-top: 1px dashed $grey;
+      }
+    }
+
+    &:nth-child(odd) {
+      border-right: 1px dashed $grey;
+    }
+
+    &:nth-child(even) {
+      border-right: none;
+    }
+
+    &:nth-child(2) {
+      width: auto;
+      align-self: baseline;
+    }
+  }
+}
