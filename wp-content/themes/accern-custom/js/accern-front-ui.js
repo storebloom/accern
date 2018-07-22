@@ -70,6 +70,10 @@ var AccernFrontUI = ( function( $, wp ) {
 					$( '.your-firm-other' ).hide();
 				}
 			} );
+
+			if ( this.data.mobile ) {
+				$.scrollify.disable();
+			}
 		},
 
 		/**

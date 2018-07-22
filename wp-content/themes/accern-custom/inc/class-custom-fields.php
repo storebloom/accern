@@ -63,6 +63,7 @@ class Custom_Fields {
 		wp_add_inline_script( "{$this->theme->assets_prefix}-front-ui", sprintf( 'AccernFrontUI.boot( %s );',
 			wp_json_encode( array(
 				'nonce'  => wp_create_nonce( $this->theme->meta_prefix ),
+				'mobile' => wp_is_mobile(),
 				'postid' => $post->ID,
 				'page'   => $post->post_title,
 			) )
