@@ -35,8 +35,7 @@
     }
 
     &:hover {
-      transform: scale(0.99);
-      opacity: 0.95;
+      opacity: 0.9;
 
       &::before {
         transform: scale(1.15);

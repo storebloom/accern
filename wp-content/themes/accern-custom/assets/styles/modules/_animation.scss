@@ -146,7 +146,7 @@
   }
 
   &.info-overlay__list--info {
-    padding: 1rem;
+    padding: 0.25rem 1rem;
   }
 }
 
@@ -164,6 +164,10 @@
   margin: 0.5rem 1rem;
 
   @include grid();
+}
+
+.info-overlay__list--info .info-overlay__list-item {
+  margin: 0.75rem 0.25rem;
 }
 
 /**
@@ -249,9 +253,14 @@
   height: 2rem;
 }
 
-.info-overlay__list-item--compact .info-overlay__icon {
-  width: 0.75rem;
-  margin: 0 1.125rem 0 0.65rem;
+.info-overlay__list-item.info-overlay__list-item--compact {
+  margin: 0 0 0 0.25rem;
+
+  .info-overlay__icon {
+    width: 0.75rem;
+    height: 1rem;
+    margin: 0 1.125rem 0 0.65rem;
+  }
 }
 
 /**
@@ -318,33 +327,6 @@
 }
 
 /**
-  WebGL Animations (Unmodified Code)
-  ---------------------------------------------------------------------- */
-@media screen and (max-width: 480px) {
-  .info-overlay--top-center,
-  .info-overlay--top-right {
-    top: 10px;
-    right: 10px;
-  }
-
-  .info-overlay--bottom-center,
-  .info-overlay--bottom-right {
-    bottom: 10px;
-    right: 10px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .info-overlay__header {
-    margin-bottom: 8px;
-  }
-
-  .info-overlay__header__background {
-    width: 50px;
-  }
-}
-
-/**
   Responsive Breakpoints
   ---------------------------------------------------------------------- */
 @media (max-width: 1440px) {
@@ -397,12 +379,14 @@
   }
 
   .main-visualization {
+    z-index: 0;
+
     &::before {
       content: '';
       display: block;
-      position: fixed;
+      position: absolute;
       z-index: 998;
-      top: 5rem;
+      top: 4.5rem;
       left: 0;
       width: 100%;
       height: 15vh;
@@ -412,7 +396,7 @@
     &::after {
       content: '';
       display: block;
-      position: fixed;
+      position: absolute;
       z-index: 998;
       top: calc(63vh - 6rem);
       left: 0;
