@@ -8,7 +8,7 @@
  */
 
 foreach ( $tabs as $num => $tab_info ) :
-	$tab_id = strtolower( str_replace( ' ', '-', $tab_info['title'] ) );
+	$tab_id = strtolower( str_replace( ' ', '-', $tab_info['title'] ) ) . $num;
 	$active_tab = 1 === $num ? 'active-tab' : '';
 ?>
 	<div id="<?php echo esc_attr( $tab_id ); ?>" class="use-case-content-wrap <?php echo esc_attr( $active_tab ); ?>">
