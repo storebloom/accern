@@ -20,9 +20,6 @@ while ( have_posts() ) :
 	// Pull in use cases link list section.
 	get_template_part( 'template-parts/home', 'cases' );
 
-	// Pull in overlay wrap.
-	get_template_part( 'template-parts/home', 'overlay' );
-
 	// Nav icons.
 	$id = get_the_ID();
 
