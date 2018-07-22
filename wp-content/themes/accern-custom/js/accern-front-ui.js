@@ -164,11 +164,9 @@ var AccernFrontUI = ( function( $, wp ) {
 				$.scrollify.previous();
 			} );
 
-			// If user reaches top reenable scrollify.
-			$( window ).scroll( function() {
-				if ( $( window ).scrollTop() === 0 && $.scrollify.isDisabled() ) {
-					$.scrollify.enable();
-				}
+			// Contact form.
+			document.addEventListener( 'wpcf7mailsent', function( event ) {
+				$( '#contact-confirmation' ).addClass( 'active-message' );
 			} );
 		},
 
