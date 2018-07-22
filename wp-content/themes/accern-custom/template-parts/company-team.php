@@ -57,7 +57,7 @@ $team_regions = get_terms(
 
 	<?php $i = 0; foreach ( $team_regions as $region ) :
 			$args = array(
-				'post_per_page' => -1,
+				'posts_per_page' => -1,
 				'post_type'     => 'team',
 				'tax_query'     => array(
 					array(
