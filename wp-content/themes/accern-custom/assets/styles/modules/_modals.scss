@@ -1,0 +1,154 @@
+/**
+  Modal Windows
+  ---------------------------------------------------------------------- */
+$overlayTitleSize: 3.5rem;
+$overlayTitleSizeMobile: 2.5rem;
+
+body.modal-active {
+  overflow: hidden;
+}
+
+.accern-overlay-content-wrap {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparentize($black, 0.2);
+  transform: scaleY(0);
+  opacity: 0;
+  transition: opacity 500ms ease, transform 0ms ease 500ms;
+  transform-origin: top;
+
+  @include grid(center, center);
+
+  .accern-overlay-content {
+    position: relative;
+    z-index: 0;
+    opacity: 1;
+
+    @include transition();
+  }
+
+  .overlay-icon {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: $overlayTitleSize;
+    height: $overlayTitleSize;
+    top: #{$overlayTitleSize / 2};
+    right: #{$overlayTitleSize / 2};
+    background-color: $black;
+    border-radius: 100%;
+    cursor: pointer;
+
+    @include transition();
+
+    i {
+      display: none;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: calc(50% - 0.5rem);
+      left: calc(50% - 0.5rem);
+      width: 1rem;
+      height: 1rem;
+      background-image: url('../images/icon-close.svg');
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+
+    &:hover {
+      transform: scale(0.9);
+
+      & + .accern-overlay-content {
+        opacity: 0.4;
+        transition-delay: 750ms;
+      }
+    }
+  }
+
+  .overlay-title {
+    font-size: $overlayTitleSize;
+    padding: 0.5em 2em 0.5em 1em;
+    color: $black-almost;
+    font-family: $font-bold;
+    border-bottom: 2px solid transparentize($black, 0.85);
+  }
+
+  .overlay-content {
+    color: $black;
+    padding-bottom: #{$overlayTitleSize / 2};
+
+    img.aligncenter {
+      width: 100%;
+      height: auto;
+      margin: 0 0 #{$overlayTitleSize / 2} 0;
+    }
+
+    p,
+    ul {
+      padding: #{$overlayTitleSize / 2} #{$overlayTitleSize};
+    }
+  }
+
+  &.open {
+    transform: scaleY(1);
+    opacity: 1;
+    transition: opacity 500ms ease, transform 0ms ease;
+  }
+}
+
+.accern-overlay-content-wrap-inner {
+  position: relative;
+  max-width: 60vw;
+  max-height: calc(100vh - 4rem);
+  background-color: $white;
+}
+
+/**
+  Modal Windows
+  ---------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .accern-overlay-content-wrap {
+    padding: $sectionMobilePadding;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+    .overlay-title {
+      font-size: $overlayTitleSizeMobile;
+      padding: 0.5em #{$overlayTitleSizeMobile * 2} 0.5em 0.5em;
+    }
+
+    .overlay-icon {
+      width: $overlayTitleSizeMobile;
+      height: $overlayTitleSizeMobile;
+      top: #{$overlayTitleSizeMobile / 2};
+      right: #{$overlayTitleSizeMobile / 2};
+    }
+
+    .overlay-content {
+      padding-bottom: #{$overlayTitleSizeMobile / 2};
+
+      img.aligncenter {
+        margin: 0 0 #{$overlayTitleSizeMobile / 2} 0;
+      }
+
+      p {
+        padding: #{$overlayTitleSizeMobile / 4};
+      }
+    }
+  }
+
+  .accern-overlay-content-wrap-inner {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+  }
+}
