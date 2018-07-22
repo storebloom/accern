@@ -250,6 +250,10 @@ var AccernFrontUI = ( function( $, wp ) {
 
 					if ( 'homepage' === page ) {
 						self.$animate.transitionTo( index );
+					} else {
+						if ( self.data.mobile ) {
+							$.scrollify.disable();
+						}
 					}
 
 					$( '.' + page + '-nav-section' ).removeClass( 'current-section' );
@@ -278,14 +282,6 @@ var AccernFrontUI = ( function( $, wp ) {
 
 					if ( 'usecase' === page ) {
 						nthChild = index + 1;
-					}
-
-					if ( 'homepage' !== page && self.data.mobile ) {
-						$.scrollify.disable();
-					} else {
-						if ( $.scrollify.isDisabled() ) {
-							$.scrollify.enable();
-						}
 					}
 
 					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
