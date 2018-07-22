@@ -39,7 +39,7 @@ foreach ( $use_cases as $num => $case ) :
 				<?php
 				foreach ( $tabs as $num2 => $tab_info ) :
 						$current_tab = 1 === $num2 ? 'current-tab' : '';
-						$tab_id = strtolower( str_replace( ' ', '-', $tab_info['title'] ) ) . $num2;
+						$tab_id = strtolower( str_replace( ' ', '-', $tab_info['title'] ) ) . '-' . strtolower( str_replace( ' ', '-', $case->post_title ) );
 					?>
 						<li data-tab="<?php echo esc_attr( $tab_id ); ?>" class="tab-item <?php echo esc_attr( $current_tab ); ?>">
 							<?php echo esc_html( $tab_info['title'] ); ?>

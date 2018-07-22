@@ -23,9 +23,6 @@ while ( have_posts() ) :
 	// Pull in partner section.
 	get_template_part( 'template-parts/company', 'partners' );
 
-	// Pull in overlay wrap.
-	get_template_part( 'template-parts/home', 'overlay' );
-
 	// Nav icons.
 	$id = get_the_ID();
 
