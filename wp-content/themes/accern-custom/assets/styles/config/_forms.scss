@@ -106,11 +106,12 @@ textarea {
   max-width: $fh-input-max-width;
   padding: 0 0 0.5rem 0;
   line-height: 1.5em;
-  background-color: $fh-input-bg-color;
+  background-color: transparent;
   border-left: 0;
   border-right: 0;
   border-top: 0;
   border-bottom: $fh-border-width $fh-border-style $fh-border-color;
+  appearance: none;
 }
 
 /* Fields with standard height */
@@ -236,24 +237,10 @@ input:focus,
 textarea:focus,
 select:focus,
 button:focus {
-  background-color: $fh-focus-bg-color;
+  background-color: transparent;
 }
 
 input[type="checkbox"]:focus,
 input[type="radio"]:focus {
   outline: none;
-}
-
-a.button:hover,
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-a.button:focus,
-button:focus,
-input[type="button"]:focus,
-input[type="submit"]:focus,
-input[type="reset"]:focus {
-  background-color: $fh-button-hover-bg-color;
-  color: $fh-button-hover-font-color;
 }

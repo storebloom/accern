@@ -79,12 +79,19 @@ var AccernFrontUI = ( function( $, wp ) {
 			});
 
 			// Disable "other" field on page load
-			$( '#other-firm-type' ).prop( 'disabled', true );
+			$( '#other-firm-type, .form-select-value input' ).prop( 'disabled', true );
 
-			// Show other field if other selected on contact page.
-			this.$pageContainer.on( 'change', '.your-firm-type select', function() {
-				var optionVal = $( this ).find( 'option:selected' ).val();
-
+			// Create select menu GUI & Toggle other field if selected
+			$( '.form-select-chosen' ).on( 'click', function() {
+				$(this).parent().addClass('is-active');
+			});
+			$( '.form-select-menu li' ).not(':first').on( 'click', function() {
+				var optionVal = $( this ).text();
+				$( this ).parent().prev( '.form-select-value' ).find( 'input' ).val( optionVal );
+				$( this ).parent().find( 'li' ).removeClass( 'is-selected' );
+				$( this ).addClass( 'is-selected' );
+				$( this ).closest( '.form-wrap' ).addClass( 'is-focused' );
+				$( this ).parent().removeClass( 'is-active' );
 				if ( 'Other' === optionVal ) {
 					$( '#form-wrap-other' ).addClass( 'is-active' );
 					$( '#other-firm-type' ).prop( 'disabled', false );
@@ -92,7 +99,7 @@ var AccernFrontUI = ( function( $, wp ) {
 					$( '#form-wrap-other' ).removeClass( 'is-active' );
 					$( '#other-firm-type' ).prop( 'disabled', true );
 				}
-			} );
+			});
 		},
 
 		/**
@@ -211,7 +218,7 @@ var AccernFrontUI = ( function( $, wp ) {
 				$.scrollify.previous();
 			} );
 
-			// Contact form.
+			// Contact form Success Message
 			document.addEventListener( 'wpcf7mailsent', function( event ) {
 				$( '#contact-form-section' ).addClass( 'message-sent' );
 				$( '#contact-confirmation' ).addClass( 'active-message' );
@@ -331,7 +338,7 @@ var AccernFrontUI = ( function( $, wp ) {
 					if ( 'usecase' === page ) {
 						nthChild = index + 1;
           }
-          
+
 					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
 					$( 'body' ).removeClass( 'current-section-id-' + bodyClass );
 
