@@ -56,12 +56,12 @@
   "images/logo-walmart.svg": "images/logo-walmart_cc444cd1.svg",
   "images/logo-wordpress.svg": "images/logo-wordpress_1041e124.svg",
   "images/particle.330a818.png": "images/particle.330a818_330a8182.png",
-  "styles/admin.css": "styles/admin_43be06d6.css",
-  "scripts/admin.js": "scripts/admin_43be06d6.js",
-  "styles/editor.css": "styles/editor_43be06d6.css",
-  "scripts/editor.js": "scripts/editor_43be06d6.js",
-  "styles/login.css": "styles/login_43be06d6.css",
-  "scripts/login.js": "scripts/login_43be06d6.js",
-  "styles/main.css": "styles/main_43be06d6.css",
-  "scripts/main.js": "scripts/main_43be06d6.js"
+  "styles/admin.css": "styles/admin_b6fa87aa.css",
+  "scripts/admin.js": "scripts/admin_b6fa87aa.js",
+  "styles/editor.css": "styles/editor_b6fa87aa.css",
+  "scripts/editor.js": "scripts/editor_b6fa87aa.js",
+  "styles/login.css": "styles/login_b6fa87aa.css",
+  "scripts/login.js": "scripts/login_b6fa87aa.js",
+  "styles/main.css": "styles/main_b6fa87aa.css",
+  "scripts/main.js": "scripts/main_b6fa87aa.js"
 }
