@@ -9,6 +9,7 @@
     max-width: 100%;
     overflow-x: hidden;
     width: 100%;
+    padding-bottom: 5rem;
   }
 
   .section-title {
@@ -27,7 +28,6 @@
   }
 
   .site-footer {
-    position: static;
     transform: translateY(0);
     background-color: $black;
   }
@@ -178,11 +178,11 @@
       content: '';
       position: absolute;
       z-index: 1;
-      bottom: 1px;
-      right: 2rem;
+      top: 1px;
+      right: 1.75rem;
       display: block;
-      width: 2rem;
-      height: 2rem;
+      width: 1.75rem;
+      height: 1.75rem;
       background: $black-grad;
       transform: rotate(90deg);
     }

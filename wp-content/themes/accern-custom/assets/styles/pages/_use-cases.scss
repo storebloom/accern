@@ -132,7 +132,6 @@ $whitePages: 3 5 7 9 11 13 15 17;
   }
 
   h4 {
-    margin-top: 2rem;
     margin-bottom: 1rem;
   }
 
@@ -226,6 +225,65 @@ $whitePages: 3 5 7 9 11 13 15 17;
 
   &:hover {
     color: $black-almost;
+  }
+}
+
+/**
+  Graph Styles
+  ---------------------------------------------------------------------- */
+.usecase-graph-wrap {
+  margin-bottom: 3rem;
+}
+
+.usecase-graph-single {
+  display: block;
+  margin-bottom: 1rem;
+
+  @include grid(flex-start, center);
+}
+
+.use-case-graph-text {
+  font-size: 0.65rem;
+  line-height: 1;
+  padding-left: 1rem;
+  white-space: nowrap;
+}
+
+.usecase-graph {
+  height: 0.55rem;
+
+  &-first {
+    background-color: $red-light;
+
+    & + .use-case-graph-text {
+      color: $red-light;
+    }
+  }
+}
+
+.usecase-graph-second {
+  background-color: transparentize($white, 0.85);
+
+  & + .use-case-graph-text {
+    color: transparentize($white, 0.6);
+  }
+}
+
+.usecase-section:nth-child(odd) .usecase-graph-second {
+  background-color: transparentize($black-almost, 0.85);
+
+  & + .use-case-graph-text {
+    color: transparentize($black-almost, 0.4);
+  }
+}
+
+.usecase-graph-content {
+  font-size: 0.65rem;
+  line-height: 1.25;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 

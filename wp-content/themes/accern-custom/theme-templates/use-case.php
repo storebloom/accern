@@ -18,13 +18,17 @@ foreach ( $tabs as $num => $tab_info ) :
 				<?php foreach ( $tab_info['left'] as $num => $usecase_content ) : ?>
 					<?php if ( ! empty( $usecase_content['graph-first'] ) ) : ?>
 						<div class="usecase-graph-wrap">
-							<div class="usecase-graph usecase-graph-first" style="width: <?php echo esc_attr( $usecase_content['graph-first'] ); ?>;"></div>
-							<div class="use-case-graph-text">
-								<?php echo esc_html( $usecase_content['graph-first-text'] ); ?>
+							<div class="usecase-graph-single">
+								<div class="usecase-graph usecase-graph-first" style="width: <?php echo esc_attr( $usecase_content['graph-first'] ); ?>%;"></div>
+								<div class="use-case-graph-text">
+									<?php echo esc_html( $usecase_content['graph-first-text'] ); ?>
+								</div>
 							</div>
-							<div class="usecase-graph usecase-graph-second" style="width: <?php echo esc_attr( $usecase_content['graph-second'] ); ?>;"></div>
-							<div class="use-case-graph-text">
-								<?php echo esc_html( $usecase_content['graph-second-text'] ); ?>
+							<div class="usecase-graph-single">
+								<div class="usecase-graph usecase-graph-second" style="width: <?php echo esc_attr( $usecase_content['graph-second'] ); ?>%;"></div>
+								<div class="use-case-graph-text">
+									<?php echo esc_html( $usecase_content['graph-second-text'] ); ?>
+								</div>
 							</div>
 							<div class="usecase-graph-content">
 								<?php echo wp_kses_post( $usecase_content['graph-content'] ); ?>
@@ -45,13 +49,17 @@ foreach ( $tabs as $num => $tab_info ) :
 				<?php foreach ( $tab_info['right'] as $num2 => $usecase_content2 ) : ?>
 					<?php if ( ! empty( $usecase_content2['graph-first'] ) ) : ?>
 						<div class="usecase-graph-wrap">
-							<div class="usecase-graph usecase-graph-first" style="width: <?php echo esc_attr( $usecase_content2['graph-first'] ); ?>;"></div>
-							<div class="use-case-graph-text">
-								<?php echo esc_html( $usecase_content2['graph-first-text'] ); ?>
+							<div class="usecase-graph-single">
+								<div class="usecase-graph usecase-graph-first" style="width: <?php echo esc_attr( $usecase_content2['graph-first'] ); ?>%;"></div>
+								<div class="use-case-graph-text">
+									<?php echo esc_html( $usecase_content2['graph-first-text'] ); ?>
+								</div>
 							</div>
-							<div class="usecase-graph usecase-graph-second" style="width: <?php echo esc_attr( $usecase_content2['graph-second'] ); ?>;"></div>
-							<div class="use-case-graph-text">
-								<?php echo esc_html( $usecase_content2['graph-second-text'] ); ?>
+							<div class="usecase-graph-single">
+								<div class="usecase-graph usecase-graph-second" style="width: <?php echo esc_attr( $usecase_content2['graph-second'] ); ?>%;"></div>
+								<div class="use-case-graph-text">
+									<?php echo esc_html( $usecase_content2['graph-second-text'] ); ?>
+								</div>
 							</div>
 							<div class="usecase-graph-content">
 								<?php echo wp_kses_post( $usecase_content2['graph-content'] ); ?>
