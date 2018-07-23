@@ -8,6 +8,7 @@
  */
 
 foreach ( $tabs as $num => $tab_info ) :
+	// Tab id for usecase.
 	$tab_id = strtolower( preg_replace( '/[^\w]/', '', $tab_info['title'] ) ) . '-' . strtolower( preg_replace( '/[^\w]/', '', $case->post_title ) );
 	$active_tab = 1 === $num ? 'active-tab' : '';
 ?>
