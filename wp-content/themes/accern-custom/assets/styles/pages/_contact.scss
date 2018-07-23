@@ -95,7 +95,10 @@
       }
     }
 
+    select,
     input {
+      position: relative;
+      z-index: 1;
       margin: 0;
     }
 
@@ -105,6 +108,29 @@
       padding: 1rem 3rem;
       line-height: 1;
       margin-top: 4rem;
+    }
+
+    .wpcf7-not-valid-tip {
+      color: $red-light;
+      line-height: 1rem;
+      font-size: 0.65rem;
+
+      &::before {
+        content: '!';
+        position: absolute;
+        right: 0;
+        top: 0.25rem;
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        font-size: 1.25rem;
+        text-align: center;
+        font-family: $font-medium;
+      }
+    }
+
+    .wpcf7-not-valid {
+      border-color: $red-light;
     }
   }
 }
@@ -121,6 +147,27 @@
     max-height: 200px;
     transform: translateX(0);
     transition: opacity 350ms ease, transform 350ms ease, max-height 0s ease;
+  }
+}
+
+.wpcf7-form-control-wrap {
+  position: relative;
+  display: block;
+
+  &.your-firm-type::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    opacity: 0.3;
+    background-image: url('../images/icon-arrow-down.svg');
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 

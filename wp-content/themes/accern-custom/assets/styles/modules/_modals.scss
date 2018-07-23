@@ -141,7 +141,8 @@ body.modal-active {
         margin: 0 0 #{$overlayTitleSizeMobile / 2} 0;
       }
 
-      p {
+      p,
+      ul {
         padding: #{$overlayTitleSizeMobile / 4};
       }
     }
