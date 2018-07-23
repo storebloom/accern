@@ -52,11 +52,14 @@ var AccernFrontUI = ( function( $, wp ) {
 				// Start company animation.
 				this.$companyAnimate.transitionTo( 5 );
 
-				// Engage scrollify.
-				this.scrollifySections( 'company' );
+				if ( false === this.data.mobile ) {
+
+					// Engage scrollify.
+					this.scrollifySections( 'company' );
+				}
 			}
 
-			if ( 'Use Cases' === this.data.page ) {
+			if ( 'Use Cases' === this.data.page && false === this.data.mobile ) {
 				this.scrollifySections( 'usecase' );
 			}
 
@@ -76,12 +79,19 @@ var AccernFrontUI = ( function( $, wp ) {
 			});
 
 			// Disable "other" field on page load
-			$( '#other-firm-type' ).prop( 'disabled', true );
+			$( '#other-firm-type, .form-select-value input' ).prop( 'disabled', true );
 
-			// Show other field if other selected on contact page.
-			this.$pageContainer.on( 'change', '.your-firm-type select', function() {
-				var optionVal = $( this ).find( 'option:selected' ).val();
-
+			// Create select menu GUI & Toggle other field if selected
+			$( '.form-select-chosen' ).on( 'click', function() {
+				$(this).parent().addClass('is-active');
+			});
+			$( '.form-select-menu li' ).not(':first').on( 'click', function() {
+				var optionVal = $( this ).text();
+				$( this ).parent().prev( '.form-select-value' ).find( 'input' ).val( optionVal );
+				$( this ).parent().find( 'li' ).removeClass( 'is-selected' );
+				$( this ).addClass( 'is-selected' );
+				$( this ).closest( '.form-wrap' ).addClass( 'is-focused' );
+				$( this ).parent().removeClass( 'is-active' );
 				if ( 'Other' === optionVal ) {
 					$( '#form-wrap-other' ).addClass( 'is-active' );
 					$( '#other-firm-type' ).prop( 'disabled', false );
@@ -89,7 +99,7 @@ var AccernFrontUI = ( function( $, wp ) {
 					$( '#form-wrap-other' ).removeClass( 'is-active' );
 					$( '#other-firm-type' ).prop( 'disabled', true );
 				}
-			} );
+			});
 		},
 
 		/**
@@ -126,9 +136,35 @@ var AccernFrontUI = ( function( $, wp ) {
 			// Nav click sectin.
 			this.$pageContainer.on( 'click', '.homepage-nav-section, .company-nav-section, .usecase-nav-section', function() {
 				var section = $( this ).attr( 'data-section' ),
-					homepage = $( this ).hasClass( 'homepage-nav-section' );
+					homepage = $( this ).hasClass( 'homepage-nav-section' ),
+					bodyClass,
+					page;
 
-				if ( homepage && false === self.data.mobile ) {
+				if ( 'Company' === self.data.page ) {
+					page = 'company';
+				}
+
+				if ( 'Use Cases' === self.data.page ) {
+					page = 'usecase';
+				}
+
+				if ( false === homepage && self.data.mobile ) {
+					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
+					$( 'body' ).removeClass( 'current-section-id-' + bodyClass );
+
+					// Add class to current section.
+					$( '#content .' + page + '-section' ).removeClass( 'currently-active-section' );
+					$( '#content .' + page + '-section:nth-of-type(' + section + ')' ).addClass( 'currently-active-section' );
+
+					// Add class to body of current section.
+					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
+					$( 'body' ).addClass( 'current-section-id-' + bodyClass );
+
+					$( '.' + page + '-nav-section' ).removeClass( 'current-section' );
+					$( '#section-' + section ).addClass( 'current-section' );
+				}
+
+				if ( false === self.data.mobile || homepage ) {
 					$.scrollify.move( '#' + section );
 				}
 			} );
@@ -182,7 +218,7 @@ var AccernFrontUI = ( function( $, wp ) {
 				$.scrollify.previous();
 			} );
 
-			// Contact form.
+			// Contact form Success Message
 			document.addEventListener( 'wpcf7mailsent', function( event ) {
 				$( '#contact-form-section' ).addClass( 'message-sent' );
 				$( '#contact-confirmation' ).addClass( 'active-message' );
@@ -302,7 +338,7 @@ var AccernFrontUI = ( function( $, wp ) {
 					if ( 'usecase' === page ) {
 						nthChild = index + 1;
           }
-          
+
 					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
 					$( 'body' ).removeClass( 'current-section-id-' + bodyClass );
 
