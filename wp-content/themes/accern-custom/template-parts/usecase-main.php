@@ -33,6 +33,8 @@
 
 	<div id="scroll-down-one">Scroll</div>
 	<div class="mobile-scroll-buttons">
-		<span class="mobile-down-arrow"></span>
+		<a href="#next-section">
+			<span class="mobile-down-arrow"></span>
+		</a>
 	</div>
 </div>

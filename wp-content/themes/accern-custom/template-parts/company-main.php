@@ -11,10 +11,6 @@ $section_info = get_section_info( 'company', 'main', get_the_ID() );
 ?>
 <div data-section="1" id="company-main-section" class="company-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
-		<?php if ( wp_is_mobile() ) : ?>
-			<a name="main"></a>
-		<?php endif; ?>
-
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>
 		</div>
@@ -34,6 +30,8 @@ $section_info = get_section_info( 'company', 'main', get_the_ID() );
 
 	<div id="scroll-down-one">Scroll</div>
 	<div class="mobile-scroll-buttons">
-		<span class="mobile-down-arrow"></span>
+		<a href="#next-section">
+			<span class="mobile-down-arrow"></span>
+		</a>
 	</div>
 </div>

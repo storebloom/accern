@@ -17,11 +17,11 @@ $team_regions = get_terms(
 );
 ?>
 <div data-section="2" id="company-team-section" class="company-section">
-	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
-		<?php if ( wp_is_mobile() ) : ?>
-			<a name="team"></a>
-		<?php endif; ?>
+	<?php if ( wp_is_mobile() ) : ?>
+		<a name="next-section"></a>
+	<?php endif; ?>
 
+	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>
 		</div>
