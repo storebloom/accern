@@ -12,7 +12,7 @@ $section_info = get_section_info( 'company', 'main', get_the_ID() );
 <div data-section="1" id="company-main-section" class="company-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<?php if ( wp_is_mobile() ) : ?>
-			<a name="<?php echo esc_attr( $section_info['title'] ); ?>"></a>
+			<a name="main"></a>
 		<?php endif; ?>
 
 		<div class="section-title">
