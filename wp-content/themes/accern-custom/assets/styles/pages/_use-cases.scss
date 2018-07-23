@@ -45,7 +45,7 @@
 }
 
 /**
-  Dot Navigation Style Toggles
+  Dot Navigation & Header Style Toggles
   ---------------------------------------------------------------------- */
 $whitePages: 3 5 7 9 11 13 15 17;
 
@@ -61,6 +61,10 @@ $whitePages: 3 5 7 9 11 13 15 17;
 
     .nav-icons .nav-page-name {
       color: $black-almost;
+    }
+
+    .site-header {
+      background-color: $black-almost;
     }
   }
 }
@@ -257,8 +261,14 @@ $whitePages: 3 5 7 9 11 13 15 17;
 }
 
 @media (max-width: 960px) {
-  .page-template-use-case-template .site-header {
-    background-color: transparent;
-    margin-top: 0;
+  .page-template-use-case-template {
+    .section-sub-title {
+      font-size: 2.5rem !important;
+    }
+
+    .site-header {
+      background-color: transparent;
+      margin-top: 0;
+    }
   }
 }
