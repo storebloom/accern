@@ -90,10 +90,10 @@ function get_accern_nav_icons( $id, $count, $page, $sections, $page_names = fals
 				$current = 1 === $x ? 'current-section' : '';
 				$is_mobile = wp_is_mobile();
 			?>
+			<?php if ( wp_is_mobile() && in_array( $page, array( 'company', 'usecase' ), true ) ) : ?>
+				<a href="#<?php echo esc_attr( $sections[ $section_num ] ); ?>">
+			<?php endif; ?>
 				<li data-section="<?php echo esc_attr( $x ); ?>" id="section-<?php echo esc_attr( $x ); ?>" class="<?php echo esc_attr( $current ); ?> <?php echo esc_attr( $page ); ?>-nav-section">
-					<?php if ( in_array( $page, array( 'company', 'usecase' ), true ) ) : ?>
-						<a href="#<?php echo esc_attr( $sections[ $section_num ] ); ?>">
-					<?php endif; ?>
 					<div class="nav-page-name">
 						<?php
 						if ( $page_names ) {
@@ -103,10 +103,10 @@ function get_accern_nav_icons( $id, $count, $page, $sections, $page_names = fals
 						}
 						?>
 					</div>
-					<?php if ( $is_mobile ) : ?>
-						</a>
-					<?php endif; ?>
 				</li>
+			<?php if ( $is_mobile ) : ?>
+				</a>
+			<?php endif; ?>
 			<?php endfor; ?>
 		</ul>
 	</div>
