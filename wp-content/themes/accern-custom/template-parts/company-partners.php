@@ -18,10 +18,6 @@ $associations = get_terms(
 ?>
 <div data-section="3" id="company-partners-section" class="company-section">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
-		<?php if ( wp_is_mobile() ) : ?>
-			<a name="partners"></a>
-		<?php endif; ?>
-
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>
 		</div>

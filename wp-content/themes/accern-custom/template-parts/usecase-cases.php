@@ -19,12 +19,13 @@ foreach ( $use_cases as $num => $case ) :
 	$section_num = intval( $num ) + 2;
 	$case_info = get_post_meta( $case->ID, 'page-meta', true );
 	$sectionid = count( $use_cases ) === intval( $num ) + 1 ? 'id=usecase-last-section' : '';
+	$next_section = 0 === $num ? '<a name="next-section"></a>' : '';
 	$case_name[] = $case->post_title;
 	$case_info = ! empty( $case_info ) ? $case_info : array();
 	$tabs = isset( $case_info['usecase-tab-section']['usecase-repeater'] ) ? $case_info['usecase-tab-section']['usecase-repeater'] : '';
 	?>
 	<div data-section="<?php echo esc_attr( $section_num ); ?> "<?php echo esc_attr( $sectionid ); ?> class="usecase-section">
-		<a name="<?php echo esc_attr( $case->post_title ); ?>"></a>
+		<?php echo wp_kses_post( $next_section ); ?>
 
 		<?php if ( array() !== $case_info ) : ?>
 			<div class="section-title">

@@ -32,4 +32,7 @@ $section_info = get_home_section_info( 'cases', get_the_ID() );
 		endforeach;
 	endif;
 	?>
+	<div class="mobile-scroll-buttons">
+		<span class="mobile-up-arrow"></span>
+	</div>
 </div>

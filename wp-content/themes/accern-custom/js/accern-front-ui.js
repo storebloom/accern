@@ -137,34 +137,9 @@ var AccernFrontUI = ( function( $, wp ) {
 			this.$pageContainer.on( 'click', '.homepage-nav-section, .company-nav-section, .usecase-nav-section', function() {
 				var section = $( this ).attr( 'data-section' ),
 					homepage = $( this ).hasClass( 'homepage-nav-section' ),
-					bodyClass,
-					page;
+					bodyClass;
 
-				if ( 'Company' === self.data.page ) {
-					page = 'company';
-				}
-
-				if ( 'Use Cases' === self.data.page ) {
-					page = 'usecase';
-				}
-
-				if ( false === homepage && self.data.mobile ) {
-					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
-					$( 'body' ).removeClass( 'current-section-id-' + bodyClass );
-
-					// Add class to current section.
-					$( '#content .' + page + '-section' ).removeClass( 'currently-active-section' );
-					$( '#content .' + page + '-section:nth-of-type(' + section + ')' ).addClass( 'currently-active-section' );
-
-					// Add class to body of current section.
-					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
-					$( 'body' ).addClass( 'current-section-id-' + bodyClass );
-
-					$( '.' + page + '-nav-section' ).removeClass( 'current-section' );
-					$( '#section-' + section ).addClass( 'current-section' );
-				}
-
-				if ( false === self.data.mobile || homepage ) {
+				if ( homepage ) {
 					$.scrollify.move( '#' + section );
 				}
 			} );
