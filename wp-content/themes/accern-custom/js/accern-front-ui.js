@@ -79,7 +79,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			});
 
 			// Disable "other" field on page load
-			$( '#other-firm-type, .form-select-value input' ).prop( 'disabled', true );
+			$( '#other-firm-type' ).prop( 'disabled', true );
 
 			// Create select menu GUI & Toggle other field if selected
 			$( '.form-select-chosen' ).on( 'click', function() {
