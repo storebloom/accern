@@ -172,6 +172,7 @@ $whitePages: 3 5 7 9 11 13 15 17;
     width: 100%;
     flex: 1 0 0;
     padding: 1.25rem 1rem;
+    min-height: 6rem;
     text-align: center;
     text-transform: uppercase;
     color: transparentize($white, 0.7);

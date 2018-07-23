@@ -160,8 +160,8 @@
 }
 
 .info-overlay__list--icons .info-overlay__list-item {
-  width: 100%;
-  margin: 0.5rem 1rem;
+  width: auto;
+  margin: 0.5rem 0.5rem;
 
   @include grid();
 }
@@ -184,42 +184,53 @@
   background-position: center center;
   background-repeat: no-repeat;
   height: 1.5rem;
-  width: 100%;
+  font-size: 1rem;
 
   &--ibm {
     background-image: url('../images/logo-ibm.svg');
+    width: 3em;
   }
 
-  &--moodys {
-    background-image: url('../images/logo-moodys.svg');
+  &--creditsuisse {
+    background-image: url('../images/logo-creditsuisse.svg');
+    width: 7em;
+    margin-top: -0.6em;
   }
 
   &--jpmorgan {
     background-image: url('../images/logo-jpmorgan.svg');
+    background-position: center bottom;
+    width: 5.5em;
   }
 
   &--walmart {
     background-image: url('../images/logo-walmart.svg');
+    width: 5.5em;
   }
 
   &--dow {
     background-image: url('../images/logo-dowjones.svg');
+    width: 2em;
   }
 
   &--wordpress {
     background-image: url('../images/logo-wordpress.svg');
+    width: 2em;
   }
 
   &--tumblr {
     background-image: url('../images/logo-tumblr.svg');
+    width: 2em;
   }
 
   &--facebook {
     background-image: url('../images/logo-facebook.svg');
+    width: 2em;
   }
 
-  &--twitter {
-    background-image: url('../images/logo-twitter.svg');
+  &--rss {
+    background-image: url('../images/icon-rss.svg');
+    width: 2em;
   }
 
   &--grid {
@@ -429,7 +440,7 @@
 
   .info-overlay__icon {
     height: 1rem;
-    width: 80%;
+    font-size: 0.75rem;
   }
 
   .info-overlay__header {
@@ -438,5 +449,15 @@
 
   .info-overlay__list--info .info-overlay__list-item {
     margin: 0;
+  }
+
+  .info-overlay__list.info-overlay__list--icons {
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .info-overlay {
+    transform: scale(0.9);
   }
 }
