@@ -41,6 +41,8 @@ foreach ( $use_cases as $num => $case ) :
 				foreach ( $tabs as $num2 => $tab_info ) :
 						$current_tab = 1 === $num2 ? 'current-tab' : '';
 						$single_tab = count( $tabs ) === 1 ? 'single-tab' : '';
+
+						// Tab Id for usecase.
 						$tab_id = strtolower( preg_replace( '/[^\w]/', '', $tab_info['title'] ) ) . '-' . strtolower( preg_replace( '/[^\w]/', '', $case->post_title ) );
 					?>
 						<li data-tab="<?php echo esc_attr( $tab_id ); ?>" class="tab-item <?php echo esc_attr( $current_tab ); ?> <?php echo esc_attr( $single_tab ); ?>">
