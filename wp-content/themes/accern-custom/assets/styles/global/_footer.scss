@@ -52,6 +52,8 @@
 @media (max-width: 960px) {
   .site-footer {
     @include grid(center, center, column-reverse);
+
+    padding: 1.5rem;
   }
 
   .first-footer-area {
