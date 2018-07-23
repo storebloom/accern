@@ -211,6 +211,11 @@
   Responsive Breakpoints
   ---------------------------------------------------------------------- */
 @media (max-width: 960px) {
+  .page-template-company-template .site-footer {
+    transform: translateY(0);
+    position: static;
+  }
+
   .company-section {
     width: 100%;
     padding: $sectionMobilePadding;
