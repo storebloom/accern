@@ -203,3 +203,9 @@ require get_template_directory() . '/inc/class-theme-base.php';
 require get_template_directory() . '/inc/class-theme.php';
 
 $accern_custom_theme = new AccernCustom\Theme();
+
+add_action( 'post_edit_form_tag' , 'post_edit_form_tag' );
+
+function post_edit_form_tag() {
+	echo ' enctype="multipart/form-data"';
+}

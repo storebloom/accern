@@ -151,7 +151,7 @@ class Custom_Fields {
 					} elseif ( 'usecase-repeater' === $field_name ) {
 						foreach ( $field_value as $num => $usecase_values ) {
 							$value[ $section ][ $field_name ][ $num ]['title'] = sanitize_text_field( wp_unslash( $usecase_values['title'] ) );
-							$value[ $section ][ $field_name ][ $num ]['left'] = array_map( 'wp_kses_post', wp_unslash( $usecase_values['left'] ) );
+							$value[ $section ][ $field_name ][ $num ]['left']  = array_map( 'wp_kses_post', wp_unslash( $usecase_values['left'] ) );
 							$value[ $section ][ $field_name ][ $num ]['right'] = array_map( 'wp_kses_post', wp_unslash( $usecase_values['right'] ) );
 						}
 					} else {
@@ -159,6 +159,32 @@ class Custom_Fields {
 					}
 				}
 			}
+
+			// Make sure the file array isn't empty
+			if ( ! empty( $_FILES['page-meta']['name'] ) ) {
+
+				// Setup the array of supported file types. In this case, it's just PDF.
+				$supported_types = array( 'application/pdf' );
+
+				// Get the file type of the upload
+				$arr_file_type = wp_check_filetype( basename( $_FILES['page-meta']['name'] ) );
+				$uploaded_type = $arr_file_type['type'];
+
+				// Check if the type is supported. If not, throw an error.
+				if ( in_array( $uploaded_type, $supported_types, true ) ) {
+
+					// Use the WordPress API to upload the file
+					$upload = wp_upload_bits( $_FILES['page-meta']['name'], null, wp_safe_remote_get( $_FILES['page-meta']['tmp_name'] ) );
+
+					if ( isset( $upload['error'] ) && false !== $upload['error'] ) {
+						wp_die( 'There was an error uploading your file. The error is: ' . $upload['error'] );
+					} else {
+						$value['article-fields-section']['file'] = $upload['url'];
+					} // End if().
+				} else {
+					wp_die( 'The file type that you\'ve uploaded is not a PDF.' );
+				} // End if().
+			} // End if().
 		}
 
 		update_post_meta( $post->ID, 'page-meta', $value );
@@ -352,7 +378,7 @@ class Custom_Fields {
 				break;
 		} // End switch().
 
-		// CPT switch case.
+		// Post Type switch case.
 		switch ( $post_type ) {
 			case 'team' :
 				$url_field = $this->create_custom_field( $postid, 'team-section-accern', 'linkedin', 'text' );
@@ -412,6 +438,24 @@ class Custom_Fields {
 					),
 				);
 				break;
+			case 'post' :
+				// Custom Article Fields.
+				$prefix = 'article-fields-section';
+				$publisher_field = $this->create_custom_field( $postid, $prefix, 'publisher', 'text' );
+				$author_field = $this->create_custom_field( $postid, $prefix, 'author', 'text' );
+				$file_field = $this->create_custom_field( $postid, $prefix, 'file', 'file' );
+
+				$metabox_array = array(
+					array(
+						'id'          => $prefix . '-accern',
+						'description' => 'Custom Article Fields ( Optional )',
+						'screen'      => 'post',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $publisher_field . $author_field . $file_field,
+					),
+				);
+				break;
 		} // End switch().
 
 		return $metabox_array;
@@ -453,8 +497,10 @@ class Custom_Fields {
 		);
 
 		$html = '<div class="accern-text-field">';
+		$html .= '<div class="field-label-wrap">';
 		$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . '</label>';
 		$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . ']" value="' . esc_html( $value ) . '" size="60">';
+		$html .= '</div>';
 		$html .= '</div>';
 
 		return wp_kses( $html, $allowed_tags );
@@ -477,6 +523,7 @@ class Custom_Fields {
 		$id = $section . '_' . $name . '_1';
 
 		$html .= '<div class="accern-wysiwyg-field">';
+		$html .= '<div class="field-label-wrap">';
 		$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . '</label>';
 
 		ob_start();
@@ -485,6 +532,8 @@ class Custom_Fields {
 		$html .= ob_get_clean();
 		$html .= \_WP_Editors::enqueue_scripts();
 		$html .= \_WP_Editors::editor_js();
+		$html .= '</div>';
+		$html .= '</div>';
 		$html .= '</div>';
 
 		return $html;
@@ -517,6 +566,7 @@ class Custom_Fields {
 					$html .= '<button type="button" class="remove-wysiwyg-repeater-field">-</button>';
 				}
 
+				$html .= '<div class="field-label-wrap">';
 				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
 
 				ob_start();
@@ -535,6 +585,7 @@ class Custom_Fields {
 			$id = $section . '_' . $name . '_1';
 
 			$html .= '<div data-num="1" class="accern-wysiwyg-repeater-field">';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
 
 			ob_start();
@@ -543,6 +594,7 @@ class Custom_Fields {
 			$html .= ob_get_clean();
 			$html .= \_WP_Editors::enqueue_scripts();
 			$html .= \_WP_Editors::editor_js();
+			$html .= '</div>';
 			$html .= '</div>';
 		} // End if().
 
@@ -578,10 +630,15 @@ class Custom_Fields {
 					$html .= '<button type="button" class="remove-overlay-field">-</button>';
 				}
 
+				$html .= '<div class="field-label-wrap">';
 				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
 				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][title]" value="' . esc_attr( $title ) . '" size="60">';
+				$html .= '</div>';
+				$html .= '<div class="field-label-wrap">';
 				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL (Leave empty if overlay)</label>';
 				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][url]" value="' . esc_attr( $url ) . '" size="60">';
+				$html .= '</div>';
+				$html .= '<div class="field-label-wrap">';
 				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
 
 				ob_start();
@@ -591,7 +648,8 @@ class Custom_Fields {
 				$html .= \_WP_Editors::enqueue_scripts();
 				$html .= \_WP_Editors::editor_js();
 				$html .= '</div>';
-			}
+				$html .= '</div>';
+			} // End foreach().
 		} else {
 			$options = array(
 				'media_buttons' => true,
@@ -600,10 +658,15 @@ class Custom_Fields {
 			$id = $section . '_' . $name . '_1';
 
 			$html .= '<div data-num="1" class="accern-overlay-field">';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL (Leave empty if overlay)</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][url]" value="" size="60">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Content</label>';
 
 			ob_start();
@@ -612,6 +675,7 @@ class Custom_Fields {
 			$html .= ob_get_clean();
 			$html .= \_WP_Editors::enqueue_scripts();
 			$html .= \_WP_Editors::editor_js();
+			$html .= '</div>';
 			$html .= '</div>';
 		} // End if().
 
@@ -633,9 +697,11 @@ class Custom_Fields {
 		if ( is_array( $value ) ) {
 			foreach ( $value as $field_num => $field_value ) {
 				$html .= '<div data-num="' . $field_num . '" class="accern-usecase-repeater-field">';
+				$html .= '<div class="field-label-wrap">';
 				$html .= '<label class="accern-admin-label">Tab Name</label>';
 				$html .= '<button type="button" class="remove-usecase-tab-field">-</button>';
 				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][title]" value="' . $field_value['title'] . '" size="60">';
+				$html .= '</div>';
 				$html .= '<hr>';
 				$html .= '<div class="left-repeater-section">';
 				$html .= '<div class="side-title">Left Side</div>';
@@ -649,15 +715,24 @@ class Custom_Fields {
 
 					$html .= '<div data-num="' . $left_num . '" data-side="left" class="accern-tab-content-overlay">';
 					$html .= '<button data-side="left" type="button" class="remove-usecase-field">-</button>';
+
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">First Graph Number</label>';
 					$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][left][' . $left_num . '][graph-first]" value="' . $left_value['graph-first'] . '">';
+					$html .= '</div>';
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">First Graph Text</label>';
 					$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][left][' . $left_num . '][graph-first-text]" value="' . $left_value['graph-first-text'] . '" size="60">';
-
+					$html .= '</div>';
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">Second Graph Number</label>';
 					$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][left][' . $left_num . '][graph-second]" value="' . $left_value['graph-second'] . '">';
+					$html .= '</div>';
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">Second Graph Text</label>';
 					$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][left][' . $left_num . '][graph-second-text]" value="' . $left_value['graph-second-text'] . '" size="60">';
+					$html .= '</div>';
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>';
 					ob_start();
 					wp_editor( $left_value['graph-content'], $id_left_graph, $options_left_graph );
@@ -666,7 +741,8 @@ class Custom_Fields {
 					$html .= \_WP_Editors::enqueue_scripts();
 					$html .= \_WP_Editors::editor_js();
 					$html .= '</div>';
-				}
+					$html .= '</div>';
+				} // End foreach().
 
 				$html .= '<button data-side="left" type="button" class="add-usecase-content-field">+</button>';
 				$html .= '</div>';
@@ -682,15 +758,24 @@ class Custom_Fields {
 
 					$html .= '<div data-num="' . $right_num . '" data-side="right" class="accern-tab-content-overlay">';
 					$html .= '<button data-side="right" type="button" class="remove-usecase-field">-</button>';
+
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">First Graph Number</label>';
 					$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][right][' . $right_num . '][graph-first]" value="' . $right_value['graph-first'] . '">';
+					$html .= '</div>';
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">First Graph Text</label>';
 					$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][right][' . $right_num . '][graph-first-text]" value="' . $right_value['graph-first-text'] . '" size="60">';
-
+					$html .= '</div>';
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">Second Graph Number</label>';
 					$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][right][' . $right_num . '][graph-second]" value="' . $right_value['graph-second'] . '">';
+					$html .= '</div>';
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">Second Graph Text</label>';
 					$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][right][' . $right_num . '][graph-second-text]" value="' . $right_value['graph-second-text'] . '" size="60">';
+					$html .= '</div>';
+					$html .= '<div class="field-label-wrap">';
 					$html .= '<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>';
 					ob_start();
 					wp_editor( $right_value['graph-content'], $id_right_graph, $options_right_graph );
@@ -699,7 +784,8 @@ class Custom_Fields {
 					$html .= \_WP_Editors::enqueue_scripts();
 					$html .= \_WP_Editors::editor_js();
 					$html .= '</div>';
-				}
+					$html .= '</div>';
+				} // End foreach().
 
 				$html .= '<hr>';
 				$html .= '<button data-side="right" type="button" class="add-usecase-content-field">+</button>';
@@ -714,21 +800,32 @@ class Custom_Fields {
 			$id_left_graph = $section . '_' . $name . '_1_left_1_graph_content';
 
 			$html .= '<div data-num="1" class="accern-usecase-repeater-field">';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">Tab Name</label>';
 			$html .= '<button type="button" class="remove-usecase-tab-field">-</button>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
+			$html .= '</div>';
 			$html .= '<hr>';
 			$html .= '<div class="left-repeater-section">';
 			$html .= '<div class="side-title">Left Side</div>';
 			$html .= '<div data-num="1" data-side="left" class="accern-tab-content-overlay">';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">First Graph Number</label>';
 			$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][1][left][1][graph-first]" value="">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">First Graph Text</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][left][1][graph-first-text]" value="" size="60">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">Second Graph Number</label>';
 			$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][1][left][1][graph-second]" value="">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">Second Graph Text</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][left][1][graph-second-text]" value="" size="60">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>';
 			ob_start();
 			wp_editor( '', $id_left_graph, $options_left_graph );
@@ -736,6 +833,7 @@ class Custom_Fields {
 			$html .= ob_get_clean();
 			$html .= \_WP_Editors::enqueue_scripts();
 			$html .= \_WP_Editors::editor_js();
+			$html .= '</div>';
 			$html .= '</div>';
 			$html .= '<button data-side="left" type="button" class="add-usecase-content-field">+</button>';
 			$html .= '</div>';
@@ -749,14 +847,23 @@ class Custom_Fields {
 			$html .= '<div class="right-repeater-section">';
 			$html .= '<div class="side-title">Right Side</div>';
 			$html .= '<div data-num="1" data-side="right" class="accern-tab-content-overlay">';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">First Graph Number</label>';
 			$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][1][right][1][graph-first]" value="">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">First Graph Text</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][right][1][graph-first-text]" value="" size="60">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">Second Graph Number</label>';
 			$html .= '<input type="number" name="page-meta[' . $section . '][' . $name . '][1][right][1][graph-second]" value="">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">Second Graph Text</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][right][1][graph-second-text]" value="" size="60">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">Graph Content (To use for non graph content simply do not fill out any graph numbers above)</label>';
 			ob_start();
 			wp_editor( '', $id_right_graph, $options_right_graph );
@@ -764,6 +871,7 @@ class Custom_Fields {
 			$html .= ob_get_clean();
 			$html .= \_WP_Editors::enqueue_scripts();
 			$html .= \_WP_Editors::editor_js();
+			$html .= '</div>';
 			$html .= '</div>';
 			$html .= '<button data-side="right" type="button" class="add-usecase-content-field">+</button>';
 			$html .= '</div>';
@@ -796,18 +904,26 @@ class Custom_Fields {
 					$html .= '<button type="button" class="remove-link-field">-</button>';
 				}
 
+				$html .= '<div class="field-label-wrap">';
 				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
 				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][title]" value="' . esc_attr( $title ) . '" size="60">';
+				$html .= '</div>';
+				$html .= '<div class="field-label-wrap">';
 				$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL</label>';
 				$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][' . $field_num . '][url]" value="' . esc_attr( $url ) . '" size="60">';
+				$html .= '</div>';
 				$html .= '</div>';
 			}
 		} else {
 			$html .= '<div data-num="1" class="accern-link-field">';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' Title</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][title]" value="" size="60">';
+			$html .= '</div>';
+			$html .= '<div class="field-label-wrap">';
 			$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . ' URL</label>';
 			$html .= '<input type="text" name="page-meta[' . $section . '][' . $name . '][1][url]" value="" size="60">';
+			$html .= '</div>';
 			$html .= '</div>';
 		} // End if().
 
@@ -817,7 +933,30 @@ class Custom_Fields {
 	}
 
 	/**
-	 * Call back function for returning custom image repeater field html
+	 * Call back for file uploader field html.
+	 *
+	 * @param string $section The metabox section.
+	 * @param string $name The field name.
+	 * @param string $value The custom field value if any.
+	 */
+	private function get_file_field_html( $section, $name, $value = array() ) {
+		$html = '<div class="accern-field-field">';
+
+		if ( ! empty( $value ) ) {
+			$html .= '<div class="file-name">' . esc_html( $value ) . '</div>';
+		}
+
+		$html .= '<div class="field-label-wrap">';
+		$html .= '<label class="accern-admin-label">' . ucfirst( str_replace( '-', ' ', $name ) ) . '</label>';
+		$html .= '<input type="file" name="page-meta" value="" size="60">';
+		$html .= '</div>';
+		$html .= '</div>';
+
+		return $html;
+	}
+
+	/**
+	 * Call back function for returning custom image repeater field html.
 	 *
 	 * @param string $section The metabox section.
 	 * @param string $name The field name.
@@ -988,5 +1127,90 @@ class Custom_Fields {
 		$html .= '</div>';
 
 		wp_send_json_success( $html );
+	}
+
+	/**
+	 * AJAX Call back to get articles based on search query.
+	 *
+	 * @action wp_ajax_get_articles
+	 * @action wp_ajax_nopriv_get_articles
+	 */
+	public function get_articles() {
+		check_ajax_referer( $this->theme->meta_prefix, 'nonce' );
+
+		if ( ! isset( $_POST['query'] ) ) { // WPCS: input var ok.
+			wp_send_json_error( 'Article return failed.' );
+		}
+
+		$query = sanitize_text_field( wp_unslash( $_POST['query'] ) ); // WPCS: input var ok.
+		$type = isset( $_POST['type'] ) ? sanitize_text_field( wp_unslash( $_POST['type'] ) ) : ''; // WPCS: input var ok.
+
+		if ( 'white' === $type ) {
+			$type = 'white-paper';
+		}
+
+		if ( 'education' === $type ) {
+			$type = 'education-center';
+		}
+
+		$sort = isset( $_POST['sort'] ) ? $_POST['sort'] : 'ASC';
+		$args = array(
+			's'              => $query,
+			'post_type'      => 'post',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'order'          => $sort,
+			'orderby'        => 'publish_date',
+			'tax_query'      => array(
+				array(
+					'taxonomy' => 'category',
+					'field'    => 'slug',
+					'terms'    => array( $type ),
+				),
+			),
+		);
+
+		$results = get_posts( $args );
+		$html = $this->get_result_html( $results, $type );
+
+		wp_send_json_success( $html );
+	}
+
+	/**
+	 * Helper function to build html of article results.
+	 *
+	 * @param array  $articles The array of results.
+	 * @param string $type The type of html to return
+	 */
+	private function get_result_html( $articles, $type ) {
+		$html = '';
+
+		if ( is_array( $articles ) ) {
+			switch ( $type ) {
+				case 'white-paper' :
+					foreach ( $articles as $white ) {
+						ob_start();
+						include( get_template_directory() . '/theme-templates/white-paper.php' );
+						$html .= ob_get_clean();
+					}
+				break;
+				case 'education-center' :
+					foreach ( $articles as $education ) {
+						ob_start();
+						include( get_template_directory() . '/theme-templates/education-center.php' );
+						$html .= ob_get_clean();
+					}
+				break;
+				case 'media' :
+					foreach ( $articles as $media ) {
+						ob_start();
+						include( get_template_directory() . '/theme-templates/media.php' );
+						$html .= ob_get_clean();
+					}
+				break;
+			}
+		}
+
+		return $html;
 	}
 }

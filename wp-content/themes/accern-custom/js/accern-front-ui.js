@@ -64,45 +64,22 @@ var AccernFrontUI = ( function( $, wp ) {
 			}
 
 			// Focus labels on forms
-			$('input').each(function() {
-				$(this).on('focus', function() {
-					$(this).closest('.form-wrap').addClass('is-focused');
-				});
-				$(this).on('blur', function() {
-					if ($(this).val().length == 0) {
-						$(this).closest('.form-wrap').removeClass('is-focused');
+			$( 'input' ).each( function() {
+				$( this ).on( 'focus', function() {
+					$(this).closest('.form-wrap' ).addClass( 'is-focused' );
+				} );
+				$( this).on('blur', function() {
+					if ( undefined !== $( this ).val() && $( this ).val().length === 0 ) {
+						$( this ).closest( '.form-wrap' ).removeClass( 'is-focused' );
 					}
 				});
-				if ($(this).val() != '') {
-					$(this).closest('.form-wrap').addClass('is-focused');
+				if ( $( this ).val() !== '') {
+					$( this ).closest( '.form-wrap' ).addClass( 'is-focused' );
 				}
 			});
 
 			// Disable "other" field on page load
 			$( '#other-firm-type' ).prop( 'disabled', true );
-
-			// Create select menu GUI & Toggle other field if selected
-			$( '.form-select-chosen' ).on( 'click', function() {
-				$( this ).parent().toggleClass( 'is-active' );
-			});
-			$( '.form-select-menu li' ).not(':first').on( 'click', function() {
-				var optionVal = $( this ).text();
-				$( this ).parent().prev( '.form-select-value' ).find( 'input' ).val( optionVal );
-				$( this ).parent().find( 'li' ).removeClass( 'is-selected' );
-				$( this ).addClass( 'is-selected' );
-				$( this ).closest( '.form-wrap' ).addClass( 'is-focused' );
-				$( this ).parent().removeClass( 'is-active' );
-				if ( 'Other' === optionVal ) {
-					$( '#form-wrap-other' ).addClass( 'is-active' );
-					$( '#other-firm-type' ).prop( 'disabled', false );
-				} else {
-					$( '#form-wrap-other' ).removeClass( 'is-active' );
-					$( '#other-firm-type' ).prop( 'disabled', true );
-				}
-			});
-			$( '.form-select-menu' ).on( 'click', function() {
-				$( this ).scrollTop( 0 );
-			});
 		},
 
 		/**
@@ -200,6 +177,81 @@ var AccernFrontUI = ( function( $, wp ) {
 			document.addEventListener( 'wpcf7mailsent', function( event ) {
 				$( '#contact-form-section' ).addClass( 'message-sent' );
 				$( '#contact-confirmation' ).addClass( 'active-message' );
+			} );
+
+			// Create select menu GUI & Toggle other field if selected
+			$( '.form-select-chosen' ).on( 'click', function() {
+				$( this ).parent().toggleClass( 'is-active' );
+			});
+			$( '.form-select-menu li' ).not(':first').on( 'click', function() {
+				var optionVal = $( this ).text();
+				$( this ).parent().prev( '.form-select-value' ).find( 'input' ).val( optionVal );
+				$( this ).parent().find( 'li' ).removeClass( 'is-selected' );
+				$( this ).addClass( 'is-selected' );
+				$( this ).closest( '.form-wrap' ).addClass( 'is-focused' );
+				$( this ).parent().removeClass( 'is-active' );
+				if ( 'Other' === optionVal ) {
+					$( '#form-wrap-other' ).addClass( 'is-active' );
+					$( '#other-firm-type' ).prop( 'disabled', false );
+				} else {
+					$( '#form-wrap-other' ).removeClass( 'is-active' );
+					$( '#other-firm-type' ).prop( 'disabled', true );
+				}
+			});
+			$( '.form-select-menu' ).on( 'click', function() {
+				$( this ).scrollTop( 0 );
+			} );
+
+			// Community Center tab click.
+			this.$pageContainer.on( 'click', '.community-tab-wrapper li', function() {
+				var tabid = $( this ).attr( 'data-tab' );
+
+				$( '.community-tab-wrapper li' ).removeClass( 'active-tab' );
+				$( this ).addClass( 'active-tab' );
+				$( '.community-content' ).removeClass( 'current-community-tab' );
+				$( '#' + tabid ).addClass( 'current-community-tab' );
+			} );
+
+			// Send user input to search queries AFTER they stop typing.
+			this.$pageContainer.on( 'keyup', '.accern-article-search', function( e ) {
+				var query = $( this ).val(),
+					type = $( this ).attr( 'data-type' ),
+					count,
+					sort = $( this ).parent( '.community-search' ).siblings( '.community-sort' ).find( 'select option:selected' ).val();
+
+				clearTimeout( timer );
+
+				timer = setTimeout( function () {
+					self.searchAccern( query, type, sort );
+
+					if ( 'education' === type ) {
+						type = 'education-center';
+					}
+
+					if ( 'white' === type ) {
+						type = 'white-paper';
+					}
+
+					setTimeout( function () {
+						count = $( '.community-items-list-wrap .' + type + '-item' ).length;
+
+						$( this ).parent( '.community-search' ).siblings( '.community-count' ).html(
+							 '<div class="count-number">' +
+							 count +
+							 '</div>' +
+							 ' Results Showing'
+						);
+					}.bind( this ), 1000 );
+				}.bind( this ), 1000 );
+			} );
+
+			// Sort articles.
+			this.$pageContainer.on( 'change', '.community-sort select', function() {
+				var type = $( this ).closest( '.community-content' ).attr( 'id' ),
+					query = $( this ).parent( '.community-sort' ).siblings( '.community-search' ).find( 'input' ).val(),
+					sort = $( this ).find( 'option:selected' ).val();
+
+				self.searchAccern( query, type.replace( 'community-', '' ), sort )
 			} );
 		},
 
@@ -315,7 +367,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 					if ( 'usecase' === page ) {
 						nthChild = index + 1;
-          }
+                    }
 
 					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
 					$( 'body' ).removeClass( 'current-section-id-' + bodyClass );
@@ -338,7 +390,22 @@ var AccernFrontUI = ( function( $, wp ) {
 					}
 				},
 			} );
+		},
+
+		/**
+		 * Submit search for support pages.
+		 *
+		 * @param query
+		 */
+		searchAccern: function( query, type, sort ) {
+			wp.ajax.post( 'get_articles', {
+				query: query,
+				type: type,
+				sort: sort,
+				nonce: this.data.nonce
+			} ).always( function ( response ) {
+				$( '#community-' + type ).find( '.community-items-list-wrap' ).html( response );
+			} );
 		}
 	};
-
 } )( window.jQuery, window.wp );
