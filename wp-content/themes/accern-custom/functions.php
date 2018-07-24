@@ -139,12 +139,6 @@ function accern_custom_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	// Custom admin and editor CSS
-	if ( is_admin()) {
-		wp_enqueue_style( 'accern-custom-admin-styles', asset_path('styles/admin.css') );
-		add_editor_style( asset_path('styles/editor.css') );
-	}
-
 	if (!is_admin()) {
 		// comment out the next two lines to load the local copy of jQuery
 		wp_deregister_script('jquery');
@@ -152,12 +146,28 @@ function accern_custom_scripts() {
 		wp_enqueue_script('jquery');
 	}
 
+
 	// Custom login stylesheet
 	if ( $GLOBALS['pagenow'] === 'wp-login.php' ) {
 		wp_enqueue_style('custom-login', asset_path('styles/login.css'));
 	}
 }
 add_action( 'wp_enqueue_scripts', 'accern_custom_scripts' );
+
+// Custom Admin Panel CSS
+function accern_custom_admin() {
+	if ( is_admin()) {
+		wp_enqueue_style( 'accern-custom-admin-styles', asset_path( 'styles/admin.css' ) );
+	}
+}
+add_action('admin_head', 'accern_custom_admin');
+
+
+// Custom WYSIWYG Editor CSS
+function my_theme_add_editor_styles() {
+	add_editor_style( asset_path('styles/editor.css' ) );
+}
+add_action( 'init', 'my_theme_add_editor_styles' );
 
 /**
  * Implement the Custom Header feature.
