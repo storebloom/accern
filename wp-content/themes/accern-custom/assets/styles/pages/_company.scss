@@ -161,7 +161,7 @@
 
   .member-title {
     width: 100%;
-    padding-left: 1.5rem;
+    padding-left: 1.75rem;
     font-size: 0.65rem;
     margin-top: 0.25rem;
   }
@@ -184,7 +184,7 @@
 
     @include grid(center, center, column);
 
-    @for $i from 3 through 8 {
+    @for $i from 3 through 7 {
       &:nth-child(#{$i}) {
         border-top: none;
       }

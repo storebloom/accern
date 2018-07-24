@@ -10,7 +10,7 @@ $fh-font-color: $white !default;
 // Borders
 $fh-border-width: 1px !default;
 $fh-border-style: solid !default;
-$fh-border-color: $white !default;
+$fh-border-color: $grey-evil !default;
 
 // Inputs, Textareas, Select, Option
 $fh-input-width: 100% !default;
@@ -112,6 +112,7 @@ textarea {
   border-top: 0;
   border-bottom: $fh-border-width $fh-border-style $fh-border-color;
   appearance: none;
+  border-radius: 0;
 }
 
 /* Fields with standard height */
