@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: transparent;
+  background-color: $black-almost;
 
   @include grid(space-between, center);
   @include columnPadding();

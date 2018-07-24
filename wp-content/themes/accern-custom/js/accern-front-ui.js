@@ -83,7 +83,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Create select menu GUI & Toggle other field if selected
 			$( '.form-select-chosen' ).on( 'click', function() {
-				$(this).parent().addClass('is-active');
+				$( this ).parent().toggleClass( 'is-active' );
 			});
 			$( '.form-select-menu li' ).not(':first').on( 'click', function() {
 				var optionVal = $( this ).text();
@@ -99,6 +99,9 @@ var AccernFrontUI = ( function( $, wp ) {
 					$( '#form-wrap-other' ).removeClass( 'is-active' );
 					$( '#other-firm-type' ).prop( 'disabled', true );
 				}
+			});
+			$( '.form-select-menu' ).on( 'click', function() {
+				$( this ).scrollTop( 0 );
 			});
 		},
 
