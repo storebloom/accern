@@ -9,7 +9,7 @@
 
 $section_info = get_section_info( 'community', 'main', get_the_ID() );
 ?>
-<div id="community-main-section">
+<div id="community-main-section" style="<?php echo esc_attr( $main_image ); ?>">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>
@@ -41,11 +41,17 @@ $section_info = get_section_info( 'community', 'main', get_the_ID() );
 		endforeach;
 	endif;
 	?>
+	<div id="scroll-down-one">Scroll</div>
+	<div class="mobile-scroll-buttons">
+		<a href="#next-section">
+			<span class="mobile-down-arrow"></span>
+		</a>
+	</div>
 </div>
 <div class="community-tab-wrapper">
 	<ul>
-		<li><?php echo esc_html__( 'White Papers', 'accern-custom' ); ?></li>
-		<li><?php echo esc_html__( 'Education Center', 'accern-custom' ); ?></li>
-		<li><?php echo esc_html__( 'Media', 'accern-custom' ); ?></li>
+		<li data-tab="community-white-papers" class="active-tab"><?php echo esc_html__( 'White Papers', 'accern-custom' ); ?></li>
+		<li data-tab="community-education-center"><?php echo esc_html__( 'Education Center', 'accern-custom' ); ?></li>
+		<li data-tab="community-media"><?php echo esc_html__( 'Media', 'accern-custom' ); ?></li>
 	</ul>
 </div>
