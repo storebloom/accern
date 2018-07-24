@@ -1,0 +1,64 @@
+$admin-border: transparentize($black-almost, 0.9);
+
+/**
+  Things to hide
+  ---------------------------------------------------------------------- */
+#wp-admin-bar-wp-logo,
+#footer-thankyou {
+  display: none;
+}
+
+/**
+  Baseline admin styling
+  ---------------------------------------------------------------------- */
+body {
+  background-color: $white;
+  color: $black-almost;
+  font-family: $font-light;
+
+  @include linkColor($red-light);
+}
+
+#wpadminbar,
+#adminmenuback,
+#adminmenuwrap,
+#adminmenu,
+#adminmenu .wp-submenu {
+  background-color: $black-almost;
+  font-family: $font-medium;
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+#wpadminbar * {
+  font-family: $font-medium;
+}
+
+#wpadminbar .menupop .ab-sub-wrapper,
+#wpadminbar .shortlink-input {
+  background-color: $black;
+}
+
+h1 {
+  color: $black-almost;
+}
+
+.wrap .add-new-h2,
+.wrap .add-new-h2:active,
+.wrap .page-title-action,
+.wrap .page-title-action:active {
+  @include button(outline);
+
+  background-color: $black-almost;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+#edit-slug-box,
+#comment-link-box {
+  color: $grey-evil;
+  font-size: 0.75rem;
+}

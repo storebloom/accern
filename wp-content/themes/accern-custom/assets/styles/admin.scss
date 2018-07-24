@@ -1,3 +1,19 @@
-.hide-if-no-customize {
-  display: none;
-}
+/**
+  Configuration Settings & Mixins
+  ---------------------------------------------------------------------- */
+@import 'config/effects';
+@import 'config/functions';
+@import 'config/grid';
+@import 'config/reset';
+@import 'config/colors';
+@import 'config/font-import';
+@import 'config/typography';
+@import 'modules/buttons';
+
+/**
+  Components
+  ---------------------------------------------------------------------- */
+@import 'admin/base';
+@import 'admin/forms';
+@import 'admin/wrappers';
+@import 'admin/fields';

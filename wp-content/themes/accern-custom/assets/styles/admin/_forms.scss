@@ -1,0 +1,39 @@
+/**
+  Global Form Styling
+  ---------------------------------------------------------------------- */
+input,
+input[type],
+select,
+textarea {
+  border-color: $admin-border;
+  box-shadow: none;
+  border-width: 1px;
+  padding: 0.5em;
+
+  &:focus {
+    border-color: $black-almost;
+    box-shadow: none;
+  }
+}
+
+.wp-core-ui .button-primary {
+  box-shadow: none;
+  text-shadow: none;
+  border: none;
+  border-radius: 0;
+  background-color: $red-light;
+  text-transform: uppercase;
+  font-family: $font-medium;
+  height: auto;
+  padding: 1rem 2rem;
+  line-height: 1;
+
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    background-color: $red;
+  }
+}

@@ -1,0 +1,105 @@
+/**
+  Post Metabox Wrappers
+  ---------------------------------------------------------------------- */
+.postbox {
+  border-color: $admin-border;
+
+  .handlediv {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .toggle-indicator {
+    color: $red;
+  }
+
+  .inside {
+    padding: 0;
+  }
+}
+
+#poststuff h3.hndle,
+#poststuff .stuffbox > h3,
+#poststuff h2 {
+  background-color: $admin-border;
+  font-size: 1rem;
+}
+
+.post-attributes-label-wrapper {
+  padding-bottom: 0;
+}
+
+/**
+  TinyMCE Styling (not editor styles)
+  ---------------------------------------------------------------------- */
+.wp-editor-container {
+  border-color: $admin-border;
+}
+
+.wp-editor-tabs {
+  font-family: $font-medium;
+}
+
+.wp-switch-editor {
+  background: transparentize($black-almost, 0.75);
+}
+
+div.mce-toolbar-grp,
+.tmce-active .switch-tmce,
+.html-active .switch-html,
+.quicktags-toolbar {
+  background: $admin-border;
+  border: none;
+}
+
+/**
+  Add/Remove Buttons
+  ---------------------------------------------------------------------- */
+.remove-overlay-field,
+.remove-link-field {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: $white;
+  appearance: none;
+  border: none;
+  background-color: $red-light;
+  padding: 0.5em 1em;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-family: $font-medium;
+  cursor: pointer;
+
+  &::after {
+    content: ' Remove';
+    display: inline;
+  }
+
+  &:hover {
+    background-color: $red;
+  }
+}
+
+.add-link-field,
+.add-overlay-field {
+  appearance: none;
+  padding: 1rem;
+  background-color: $red-light;
+  color: $white;
+  font-family: $font-medium;
+  text-transform: uppercase;
+  font-size: 1rem;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $red;
+  }
+
+  &::after {
+    content: ' Add Another';
+    display: inline;
+  }
+}
