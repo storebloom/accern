@@ -81,7 +81,7 @@ $team_regions = get_terms(
 
 			foreach ( $team_members as $count => $member ) {
 				$i ++;
-				include( get_template_directory() . '/theme-templates/company-member.php' );
+				include( get_template_directory() . '/single-templates/company-member.php' );
 			}
 			?>
 		</div>

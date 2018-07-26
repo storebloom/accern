@@ -376,6 +376,24 @@ class Custom_Fields {
 					),
 				);
 				break;
+			case 'page-templates/careers-template.php' :
+
+				$prefix                = 'careers-main-section';
+				$sub_title_field       = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
+				$apply_now_text_field = $this->create_custom_field( $postid, $prefix, 'apply-now-text', 'text' );
+				$apply_now_field       = $this->create_custom_field( $postid, $prefix, 'apply-now-url', 'text' );
+
+				$metabox_array = array(
+					array(
+						'id'          => $prefix . '-accern',
+						'description' => esc_html__( 'Page Dependencies', 'accern-custom' ),
+						'screen'      => 'page',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $sub_title_field . $apply_now_text_field . $apply_now_field,
+					),
+				);
+				break;
 		} // End switch().
 
 		// Post Type switch case.
@@ -394,7 +412,6 @@ class Custom_Fields {
 					),
 				);
 				break;
-
 			case 'partner' :
 				$url_field = $this->create_custom_field( $postid, 'partner-section-accern', 'link', 'text' );
 
@@ -409,7 +426,6 @@ class Custom_Fields {
 					),
 				);
 				break;
-
 			case 'usecase' :
 				// Main Section.
 				$prefix = 'usecase-main-section';
@@ -453,6 +469,20 @@ class Custom_Fields {
 						'context'     => 'normal',
 						'priority'    => 'high',
 						'args'        => $publisher_field . $author_field . $file_field,
+					),
+				);
+				break;
+			case 'career' :
+				$url_field = $this->create_custom_field( $postid, 'career-section-accern', 'apply-link', 'text' );
+
+				$metabox_array = array(
+					array(
+						'id'          => 'career-section-accern',
+						'description' => 'Add Apply Now Url',
+						'screen'      => 'career',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $url_field,
 					),
 				);
 				break;

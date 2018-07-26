@@ -39,7 +39,7 @@ $education_centers = get_posts(
 	<div class="community-items-list-wrap">
 		<?php
 		foreach ( $education_centers as $education ) {
-			include( get_template_directory() . '/theme-templates/education-center.php' );
+			include( get_template_directory() . '/single-templates/education-center.php' );
 		}
 		?>
 	</div>

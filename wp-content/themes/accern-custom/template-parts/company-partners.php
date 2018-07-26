@@ -86,7 +86,7 @@ $associations = get_terms(
 
 			foreach ( $partners as $partner ) {
 				$i ++;
-				include( get_template_directory() . '/theme-templates/company-partner.php' );
+				include( get_template_directory() . '/single-templates/company-partner.php' );
 			}
 			?>
 		</div>

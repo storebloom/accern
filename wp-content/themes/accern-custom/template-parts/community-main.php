@@ -7,7 +7,6 @@
  * @package Accern_Custom
  */
 
-$section_info = get_section_info( 'community', 'main', get_the_ID() );
 ?>
 <div id="community-main-section" style="<?php echo esc_attr( $main_image ); ?>">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>

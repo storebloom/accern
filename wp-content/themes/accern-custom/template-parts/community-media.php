@@ -39,7 +39,7 @@ $medias = get_posts(
 	<div class="community-items-list-wrap">
 		<?php
 		foreach ( $medias as $media ) {
-			include( get_template_directory() . '/theme-templates/media.php' );
+			include( get_template_directory() . '/single-templates/media.php' );
 		}
 		?>
 	</div>

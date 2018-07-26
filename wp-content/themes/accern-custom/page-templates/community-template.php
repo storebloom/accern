@@ -15,7 +15,7 @@ while ( have_posts() ) :
 	$thumbnail = get_the_post_thumbnail_url( $id );
 	$main_image = false !== $thumbnail ? 'background: url(' . $thumbnail . ');' : '';
 
-	// Pull in main use case section.
+	// Pull in main community section.
 	include( locate_template( 'template-parts/community-main.php' ) );
 
 	// Pull in white papers community section.

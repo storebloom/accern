@@ -91,6 +91,66 @@ class Register {
 	}
 
 	/**
+	 * Register the Career post type.
+	 *
+	 * @action init
+	 */
+	public function register_career() {
+		$supports = array( 'title', 'editor', 'thumbnail' );
+		$labels = array(
+			'name'                  => esc_html__( ' Careers', 'accern-custom' ),
+			'singular_name'         => esc_html__( ' Career', 'accern-custom' ),
+			'all_items'             => esc_html__( ' Careers', 'accern-custom' ),
+			'menu_name'             => _x( ' Careers', 'Admin menu name', 'accern-custom' ),
+			'add_new'               => esc_html__( 'Add New', 'accern-custom' ),
+			'add_new_item'          => esc_html__( 'Add new career', 'accern-custom' ),
+			'edit'                  => esc_html__( 'Edit', 'accern-custom' ),
+			'edit_item'             => esc_html__( 'Edit career', 'accern-custom' ),
+			'new_item'              => esc_html__( 'New career', 'accern-custom' ),
+			'view'                  => esc_html__( 'View career', 'accern-custom' ),
+			'view_item'             => esc_html__( 'View career', 'accern-custom' ),
+			'search_items'          => esc_html__( 'Search careers', 'accern-custom' ),
+			'not_found'             => esc_html__( 'No careers found', 'accern-custom' ),
+			'not_found_in_trash'    => esc_html__( 'No careers found in trash', 'accern-custom' ),
+			'parent'                => esc_html__( 'Parent career', 'accern-custom' ),
+			'featured_image'        => esc_html__( ' Career image', 'accern-custom' ),
+			'set_featured_image'    => esc_html__( 'Set career image', 'accern-custom' ),
+			'remove_featured_image' => esc_html__( 'Remove career image', 'accern-custom' ),
+			'use_featured_image'    => esc_html__( 'Use as career image', 'accern-custom' ),
+			'insert_into_item'      => esc_html__( 'Insert into career', 'accern-custom' ),
+			'uploaded_to_this_item' => esc_html__( 'Uploaded to this career', 'accern-custom' ),
+			'filter_items_list'     => esc_html__( 'Filter careers', 'accern-custom' ),
+			'items_list_navigation' => esc_html__( ' Careers navigation', 'accern-custom' ),
+			'items_list'            => esc_html__( ' Careers list', 'accern-custom' ),
+		);
+
+		$args = array(
+			'labels'             => $labels,
+			'description'        => esc_html__( 'Career Options', 'accern-custom' ),
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'menu_icon'          => 'dashicons-businessman',
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array(
+				'slug' => 'career',
+			),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => $supports,
+			'show_in_rest'       => true,
+			'taxonomy'           => array(
+				'department',
+			),
+		);
+
+		register_post_type( 'career', $args );
+	}
+
+	/**
 	 * Register the Partner post type.
 	 *
 	 * @action init
@@ -245,6 +305,22 @@ class Register {
 			'not_found'         => esc_html__( 'No association found.', 'accern-custom' ),
 		);
 
+		// Department labels.
+		$department_labels = array(
+			'name'              => _x( 'Departments', 'taxonomy general name', 'accern-custom' ),
+			'singular_name'     => _x( 'Department', 'taxonomy singular name', 'accern-custom' ),
+			'search_items'      => esc_html__( 'Search Departments', 'accern-custom' ),
+			'all_items'         => esc_html__( 'All Departments', 'accern-custom' ),
+			'parent_item'       => esc_html__( 'Parent Department', 'accern-custom' ),
+			'parent_item_colon' => esc_html__( 'Parent Department:', 'accern-custom' ),
+			'edit_item'         => esc_html__( 'Edit Department', 'accern-custom' ),
+			'update_item'       => esc_html__( 'Update Department', 'accern-custom' ),
+			'add_new_item'      => esc_html__( 'Add New Department', 'accern-custom' ),
+			'new_item_name'     => esc_html__( 'New Department', 'accern-custom' ),
+			'menu_name'         => esc_html__( 'Departments', 'accern-custom' ),
+			'not_found'         => esc_html__( 'No department found.', 'accern-custom' ),
+		);
+
 		$taxonomies = array(
 			'team' => array(
 				'slug'         => 'team_region',
@@ -254,6 +330,11 @@ class Register {
 			'partner' => array(
 				'slug'         => 'association',
 				'labels'       => $association_labels,
+				'hierarchical' => true,
+			),
+			'career' => array(
+				'slug'         => 'department',
+				'labels'       => $department_labels,
 				'hierarchical' => true,
 			),
 		);
