@@ -39,7 +39,7 @@ $white_papers = get_posts(
 	<div class="community-items-list-wrap">
 		<?php
 		foreach ( $white_papers as $white ) {
-			include( get_template_directory() . '/theme-templates/white-paper.php' );
+			include( get_template_directory() . '/single-templates/white-paper.php' );
 		}
 		?>
 	</div>

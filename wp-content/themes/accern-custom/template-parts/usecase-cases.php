@@ -35,7 +35,7 @@ foreach ( $use_cases as $num => $case ) :
 				<?php echo esc_html( $case_info['usecase-main-section']['sub-title'] ); ?>
 			</div>
 			<div class="usecase-tab-content">
-				<?php include( get_template_directory() . '/theme-templates/use-case.php' ); ?>
+				<?php include( get_template_directory() . '/single-templates/use-case.php' ); ?>
 			</div>
 			<div class="usecase-tabs">
 				<?php
