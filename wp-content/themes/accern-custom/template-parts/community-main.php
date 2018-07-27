@@ -8,7 +8,7 @@
  */
 
 ?>
-<div id="community-main-section" style="<?php echo esc_attr( $main_image ); ?>">
+<div class="currently-active-section community-section" id="community-main-section" style="<?php echo esc_attr( $main_image ); ?>">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>
@@ -47,10 +47,10 @@
 		</a>
 	</div>
 </div>
-<div class="community-tab-wrapper">
+<div class="community-tab-wrapper next-section">
 	<ul>
-		<li data-tab="community-white-papers" class="active-tab"><?php echo esc_html__( 'White Papers', 'accern-custom' ); ?></li>
-		<li data-tab="community-education-center"><?php echo esc_html__( 'Education Center', 'accern-custom' ); ?></li>
+		<li data-tab="community-white" class="active-tab"><?php echo esc_html__( 'White Papers', 'accern-custom' ); ?></li>
+		<li data-tab="community-education"><?php echo esc_html__( 'Education Center', 'accern-custom' ); ?></li>
 		<li data-tab="community-media"><?php echo esc_html__( 'Media', 'accern-custom' ); ?></li>
 	</ul>
 </div>

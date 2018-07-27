@@ -30,7 +30,8 @@ var AccernFrontUI = ( function( $, wp ) {
 		 */
 		init: function() {
 			var animateEl = document.getElementById( 'home-page-animations' ),
-				companyAnimateEl = document.getElementById( 'company-page-animations' );
+				companyAnimateEl = document.getElementById( 'company-page-animations' ),
+				itemWidth;
 
 			this.$pageContainer = $( 'body.page' );
 			this.listen();
@@ -80,6 +81,13 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Disable "other" field on page load
 			$( '#other-firm-type' ).prop( 'disabled', true );
+
+			// Make community items squares.
+			if ( 'Community' === this.data.page ) {
+				itemWidth = $( '.white-paper-item' ).outerWidth();
+
+				$( '.white-paper-item' ).css( 'height', itemWidth + 'px' );
+			}
 		},
 
 		/**
@@ -104,7 +112,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			} );
 
 			// Close overlay.
-			this.$pageContainer.on( 'click', '#close-overlay', function( event ) {
+			this.$pageContainer.on( 'click', '#close-overlay', function() {
 				$( this ).siblings( '.accern-overlay-content' ).html( '' );
 				$( '.accern-overlay-content-wrap' ).removeClass( 'open' );
 				$( 'body' ).removeClass( 'modal-active' );
@@ -116,8 +124,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			// Nav click sectin.
 			this.$pageContainer.on( 'click', '.homepage-nav-section, .company-nav-section, .usecase-nav-section', function() {
 				var section = $( this ).attr( 'data-section' ),
-					homepage = $( this ).hasClass( 'homepage-nav-section' ),
-					bodyClass;
+					homepage = $( this ).hasClass( 'homepage-nav-section' );
 
 				if ( homepage ) {
 					$.scrollify.move( '#' + section );
@@ -137,6 +144,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			} );
 
 			$( document ).click( function( event ) {
+
 				// If you click on anything except the modal itself or the "open modal" link, close the modal.
 				if ( !$( event.target ).closest( '.footer-accern-overlay-button, .accern-overlay-button, .accern-overlay-content-wrap-inner, .accern-overlay-content' ).length ) {
 					$('body').find( '.accern-overlay-content-wrap' ).removeClass( 'open' );
@@ -165,6 +173,11 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Scroll down to next section.
 			this.$pageContainer.on( 'click', '#scroll-down-one, .mobile-down-arrow', function() {
+				if ( 'Community' === self.data.page ) {
+					$( 'html, body' ).animate({
+						scrollTop: $( this ).parent( '.currently-active-section' ).siblings( '.next-section' ).offset().top,
+					}, 1000);
+				}
 				$.scrollify.next();
 			} );
 
@@ -174,7 +187,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			} );
 
 			// Contact form Success Message
-			document.addEventListener( 'wpcf7mailsent', function( event ) {
+			document.addEventListener( 'wpcf7mailsent', function() {
 				$( '#contact-form-section' ).addClass( 'message-sent' );
 				$( '#contact-confirmation' ).addClass( 'active-message' );
 			} );
@@ -183,7 +196,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			$( '.form-select-chosen' ).on( 'click', function() {
 				$( this ).parent().toggleClass( 'is-active' );
 			});
-			$( '.form-select-menu li' ).not(':first').on( 'click', function() {
+			$( '.form-select-menu li' ).not(':first-of-type').on( 'click', function() {
 				var optionVal = $( this ).text();
 				$( this ).parent().prev( '.form-select-value' ).find( 'input' ).val( optionVal );
 				$( this ).parent().find( 'li' ).removeClass( 'is-selected' );
@@ -217,7 +230,8 @@ var AccernFrontUI = ( function( $, wp ) {
 				var query = $( this ).val(),
 					type = $( this ).attr( 'data-type' ),
 					count,
-					sort = $( this ).parent( '.community-search' ).siblings( '.community-sort' ).find( 'select option:selected' ).val();
+					result,
+					sort = $( this ).parent( '.community-search' ).siblings( '.community-sort' ).find( '.form-select-chosen' ).attr( 'data-val' );
 
 				clearTimeout( timer );
 
@@ -233,25 +247,33 @@ var AccernFrontUI = ( function( $, wp ) {
 					}
 
 					setTimeout( function () {
-						count = $( '.community-items-list-wrap .' + type + '-item' ).length;
+						count = $( '.community-items-list-wrap .' + type + '-item' ).length,
+						result = 1 === count ? 'Result' : 'Results';
 
-						$( this ).parent( '.community-search' ).siblings( '.community-count' ).html(
-							 '<div class="count-number">' +
-							 count +
-							 '</div>' +
-							 ' Results Showing'
-						);
+						if ( '' !== query ) {
+                            $( this ).parent( '.community-search' ).siblings( '.community-count' ).html(
+                                '<div class="count-number">' +
+                                count +
+                                '</div>' +
+                                ' ' + result + ' Showing'
+                            );
+                        } else {
+                            $( this ).parent( '.community-search' ).siblings( '.community-count' ).html( '' );
+						}
 					}.bind( this ), 1000 );
 				}.bind( this ), 1000 );
 			} );
 
 			// Sort articles.
-			this.$pageContainer.on( 'change', '.community-sort select', function() {
-				var type = $( this ).closest( '.community-content' ).attr( 'id' ),
-					query = $( this ).parent( '.community-sort' ).siblings( '.community-search' ).find( 'input' ).val(),
-					sort = $( this ).find( 'option:selected' ).val();
+			this.$pageContainer.on( 'click', '.community-sort li:not(.form-select-chosen)', function() {
+				var type = $( this ).closest( '.community-content' ).attr( 'id' ).replace( 'community-', '' ),
+					query = $( this ).closest( '.community-sort' ).siblings( '.community-search' ).find( 'input' ).val(),
+					sort = $( this ).attr( 'data-val' ),
+					sortName = $( this ).html();
 
-				self.searchAccern( query, type.replace( 'community-', '' ), sort )
+				$( '.form-select-chosen' ).html( sortName );
+
+				self.searchAccern( query, type, sort );
 			} );
 		},
 
@@ -367,7 +389,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 					if ( 'usecase' === page ) {
 						nthChild = index + 1;
-                    }
+					}
 
 					bodyClass = $( '.currently-active-section' ).attr( 'data-section' );
 					$( 'body' ).removeClass( 'current-section-id-' + bodyClass );
@@ -404,7 +426,13 @@ var AccernFrontUI = ( function( $, wp ) {
 				sort: sort,
 				nonce: this.data.nonce
 			} ).always( function ( response ) {
+				var itemWidth;
+
 				$( '#community-' + type ).find( '.community-items-list-wrap' ).html( response );
+
+				itemWidth = $( '.white-paper-item' ).outerWidth();
+
+                $( '.white-paper-item' ).css( 'height', itemWidth + 'px' );
 			} );
 		}
 	};

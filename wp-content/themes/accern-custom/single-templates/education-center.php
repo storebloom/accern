@@ -8,7 +8,8 @@
  */
 
 $page_meta = get_post_meta( $education->ID, 'page-meta', true );
-$author = ! empty( $page_meta['article-fields-section']['author'] ) ? $page_meta['article-fields-section']['author'] : get_the_author( $education->ID );
+$post_author = $education->post_author;
+$author = ! empty( $page_meta['article-fields-section']['author'] ) ? $page_meta['article-fields-section']['author'] : get_the_author_meta( 'display_name', $post_author );
 $tags = get_the_tags( $education->ID );
 ?>
 <div class="education-center-item">

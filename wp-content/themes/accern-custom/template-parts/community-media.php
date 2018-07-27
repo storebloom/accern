@@ -25,17 +25,23 @@ $medias = get_posts(
 	<div class="community-title">
 		<?php echo esc_html__( 'Our Media', 'accern-custom' ); ?>
 	</div>
-	<div class="community-count">
+	<div class="community-search-wrap">
+		<div class="community-count">
+		</div>
+		<div class="community-sort">
+			<ul class="form-select-menu">
+				<li data-val="DESC" class="form-select-chosen">Newest</li>
+				<li data-val="DESC">Newest</li>
+				<li data-val="ASC">Oldest</li>
+			</ul>
+		</div>
+		<div class="community-search">
+			<input data-type="media" class="accern-article-search" type="text" placeholder="Search Media">
+		</div>
 	</div>
-	<div class="community-sort">
-		<select id="sort-community-items">
-			<option value="DESC"><?php echo esc_html__( 'Newest', 'accern-custom' ); ?></option>
-			<option value="ASC"><?php echo esc_html__( 'Oldest', 'accern-custom' ); ?></option>
-		</select>
-	</div>
-	<div class="community-search">
-		<input data-type="media" class="accern-article-search" type="text" placeholder="Search Media">
-	</div>
+
+	<hr>
+
 	<div class="community-items-list-wrap">
 		<?php
 		foreach ( $medias as $media ) {
