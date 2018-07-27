@@ -21,8 +21,6 @@ $categories = wp_get_post_terms( $white->ID, 'category' );
 		<?php echo esc_html( $white->post_content ); ?>
 	</div>
 	<div class="download-file">
-		<span class="download-icon"></span>
-
 		<?php if ( ! empty( $download_file['article-fields-section']['file'] ) ) : ?>
 			<a href="<?php echo esc_url( $download_file['article-fields-section']['file'] ); ?>">
 		<?php endif; ?>

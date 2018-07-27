@@ -1220,21 +1220,21 @@ class Custom_Fields {
 				case 'white-paper' :
 					foreach ( $articles as $white ) {
 						ob_start();
-						include( get_template_directory() . '/theme-templates/white-paper.php' );
+						include( get_template_directory() . '/single-templates/white-paper.php' );
 						$html .= ob_get_clean();
 					}
 				break;
 				case 'education-center' :
 					foreach ( $articles as $education ) {
 						ob_start();
-						include( get_template_directory() . '/theme-templates/education-center.php' );
+						include( get_template_directory() . '/single-templates/education-center.php' );
 						$html .= ob_get_clean();
 					}
 				break;
 				case 'media' :
 					foreach ( $articles as $media ) {
 						ob_start();
-						include( get_template_directory() . '/theme-templates/media.php' );
+						include( get_template_directory() . '/single-templates/media.php' );
 						$html .= ob_get_clean();
 					}
 				break;

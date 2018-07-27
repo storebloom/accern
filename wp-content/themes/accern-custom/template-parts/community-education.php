@@ -25,17 +25,23 @@ $education_centers = get_posts(
 	<div class="community-title">
 		<?php echo esc_html__( 'Education Center', 'accern-custom' ); ?>
 	</div>
-	<div class="community-count">
+	<div class="community-search-wrap">
+		<div class="community-count">
+		</div>
+		<div class="community-sort">
+			<ul class="form-select-menu">
+				<li data-val="DESC" class="form-select-chosen">Newest</li>
+				<li data-val="DESC">Newest</li>
+				<li data-val="ASC">Oldest</li>
+			</ul>
+		</div>
+		<div class="community-search">
+			<input data-type="education" class="accern-article-search" type="text" placeholder="Search Education Center">
+		</div>
 	</div>
-	<div class="community-sort">
-		<select id="sort-community-items">
-			<option value="DESC"><?php echo esc_html__( 'Newest', 'accern-custom' ); ?></option>
-			<option value="ASC"><?php echo esc_html__( 'Oldest', 'accern-custom' ); ?></option>
-		</select>
-	</div>
-	<div class="community-search">
-		<input data-type="education" class="accern-article-search" type="text" placeholder="Search Education Center">
-	</div>
+
+	<hr>
+
 	<div class="community-items-list-wrap">
 		<?php
 		foreach ( $education_centers as $education ) {
