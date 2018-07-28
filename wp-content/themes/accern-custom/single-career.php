@@ -14,8 +14,6 @@ while ( have_posts() ) :
 	$id = get_the_ID();
 	$section_info = get_post_meta( $id, 'page-meta', true );
 	$section_info = ! empty( $section_info['career-section-accern'] ) ? $section_info['career-section-accern'] : '';
-	$thumbnail = get_the_post_thumbnail_url( $id );
-	$main_image = false !== $thumbnail ? 'background: url(' . $thumbnail . ');' : '';
 
 	// Pull in main career section.
 	include( get_template_directory() . '/template-parts/career-main.php' );

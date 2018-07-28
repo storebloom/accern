@@ -8,7 +8,7 @@
  */
 
 ?>
-<div id="career-main-section" class="career-section" style="<?php echo esc_attr( $main_image ); ?>">
+<div id="career-main-section" class="career-section">
 	<div class="section-title">
 		<?php echo esc_html__( 'Careers', 'accern-custom' ); ?>
 	</div>

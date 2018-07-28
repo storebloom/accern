@@ -39,7 +39,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			this.setSectionHeight( this.data.page.toLowerCase() );
 
 			// Article main section.
-			if ( $( '#article-main-section' ) ) {
+			if ( 0 !== $( '#article-main-section' ).length ) {
                 $( '#article-main-section' ).css( 'min-height', $( window ).height() );
             }
 

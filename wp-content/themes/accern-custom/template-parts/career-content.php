@@ -12,11 +12,13 @@
 	<div class="section-content">
 		<?php the_content() ?>
 	</div>
-	<?php if ( ! empty( $section_info['apply-link'] ) ) : ?>
-		<div class="section-cta">
-			<a href="<?php echo esc_url( $section_info['apply-link'] ); ?>" class="accern-button">
-				<?php echo esc_html__( 'Apply Now' ); ?>
-			</a>
-		</div>
-	<?php endif; ?>
 </div>
+
+<?php if ( ! empty( $section_info['apply-link'] ) ) : ?>
+	<div class="section-cta">
+		<a href="<?php echo esc_url( $section_info['apply-link'] ); ?>" class="accern-button">
+			<?php echo esc_html__( 'Apply Now' ); ?>
+		</a>
+	</div>
+<?php endif; ?>
+

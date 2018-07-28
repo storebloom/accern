@@ -158,3 +158,60 @@
     position: relative;
   }
 }
+
+/* Single Career Styling */
+.career-template-default {
+  background-image: url('../images/careers-single-back.svg');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: $black-almost;
+  background-position: left top;
+
+  .section-cta {
+    @include columnPadding();
+
+    .accern-button {
+      @include button(outline);
+
+      padding: 1rem 3rem;
+    }
+  }
+
+  .site-header {
+    background-color: transparent;
+    position: absolute;
+  }
+
+  #career-main-section,
+  #career-content-section {
+    padding-top: 14rem;
+    padding-bottom: 10rem;
+    position: relative;
+    height: auto !important;
+    min-height: 100vh;
+
+    .section-title,
+    .section-sub-title {
+      @include columnPadding();
+    }
+
+    .section-sub-title {
+      width: 55vw;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  #career-content-section {
+    @include columnPadding();
+
+    margin: 8em 0 4em;
+  }
+
+  footer {
+    position: relative;
+  }
+}
