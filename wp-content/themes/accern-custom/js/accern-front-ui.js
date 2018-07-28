@@ -178,7 +178,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Scroll down to next section.
 			this.$pageContainer.on( 'click', '#scroll-down-one, .mobile-down-arrow', function() {
-				if ( $.inArray( self.data.page, ['Community', 'Careers'] ) || 0 !== $( '#article-main-section' ).length ) {
+				if ( -1 !== $.inArray( self.data.page, ['Community', 'Careers'] ) || 0 !== $( '#article-main-section' ).length ) {
 					$( 'html, body' ).animate({
 						scrollTop: $( this ).parent( '.currently-active-section' ).siblings( '.next-section' ).offset().top,
 					}, 1000);
@@ -334,7 +334,7 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * @param page
 		 */
 		setSectionHeight: function( page ) {
-			if ( $.inArray( page, ['white-paper', 'community', 'usecase', 'company'] ) ) {
+			if ( -1 !== $.inArray( page, ['white-paper', 'community', 'usecase', 'company'] ) ) {
                 $( '.page-template-' + page + '-template .' + page + '-section' ).css( 'min-height', $( window ).height() );
             }
 		},
