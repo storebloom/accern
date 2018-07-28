@@ -1,0 +1,139 @@
+/**
+  Community page specific styles
+  ---------------------------------------------------------------------- */
+.page-template-careers-template {
+  background: $white;
+  padding-bottom: 4em;
+
+  .site-header {
+    background-color: transparent;
+    position: absolute;
+  }
+
+  .careers-section {
+    background-color: $black-almost;
+    padding-top: 14rem;
+    padding-bottom: 10rem;
+    position: relative;
+    height: auto !important;
+    min-height: 100vh;
+    color: $white;
+
+    @include clearfix();
+
+    .section-title,
+    .section-sub-title,
+    .section-overlay {
+      @include columnPadding();
+    }
+
+    .section-sub-title {
+      width: 50vw;
+    }
+
+    .section-content {
+      @include columnPadding();
+
+      width: 33vw;
+    }
+
+    .accern-overlay-button {
+      @include button(outline);
+
+      padding: 1rem 3rem;
+    }
+  }
+
+  .community-content {
+    @include columnPadding();
+
+    display: none;
+    color: $black-almost;
+
+    .career-items-list-wrap {
+      @include clearfix();
+
+      .career-item {
+        background-color: $grey-lightish;
+        width: 22%;
+        margin-right: 1%;
+        padding: 3em 2em;
+        cursor: pointer;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+
+        &:nth-child(4n+4) {
+          margin-right: 0;
+        }
+
+        .article-subcat {
+          text-transform: uppercase;
+          margin-bottom: 15%;
+          color: $red-light;
+        }
+
+        .article-title {
+          font-size: 1.5em;
+          font-weight: 700;
+          text-transform: uppercase;
+          margin-bottom: 0.5em;
+        }
+
+        .article-content {
+          margin-bottom: 4em;
+        }
+
+        .download-file {
+          font-weight: 700;
+          padding-left: 3em;
+          padding-top: 0.7em;
+          position: absolute;
+          bottom: 5em;
+          text-transform: uppercase;
+
+          &::before {
+            content: '';
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 2.3rem;
+            height: 2.3rem;
+            opacity: 1;
+            background-image: url('../images/download-icon.svg');
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+        }
+
+        &:hover {
+          @include transition();
+
+          background: $red-light;
+          color: $white;
+
+          .article-subcat {
+            color: $white;
+          }
+
+          .download-file {
+            &::before {
+              background-image: url('../images/download-icon-white.svg');
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #community-career .career-items-list-wrap {
+    margin-top: 4em;
+  }
+
+  footer {
+    position: relative;
+  }
+}
