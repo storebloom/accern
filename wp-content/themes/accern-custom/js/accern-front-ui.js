@@ -334,7 +334,9 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * @param page
 		 */
 		setSectionHeight: function( page ) {
-			$( '.page-template-' + page + '-template .' + page + '-section' ).css( 'min-height', $( window ).height() );
+			if ( $.inArray( page, ['white-paper', 'community', 'usecase', 'company'] ) ) {
+                $( '.page-template-' + page + '-template .' + page + '-section' ).css( 'min-height', $( window ).height() );
+            }
 		},
 
 		/**
@@ -437,7 +439,9 @@ var AccernFrontUI = ( function( $, wp ) {
 
 				itemWidth = $( '.white-paper-item' ).outerWidth();
 
-                $( '.white-paper-item' ).css( 'height', itemWidth + 'px' );
+				if ( type === 'white' ) {
+                    $( '.white-paper-item' ).css( 'height', itemWidth + 'px' );
+                }
 			} );
 		}
 	};
