@@ -84,4 +84,46 @@
       }
     }
   }
+
+  @else if ($color == white_outline) {
+    background-color: transparent;
+    border: 1px solid $black-almost;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      @include transition();
+    }
+
+    &::before {
+      background-image: url('../images/left-outline-black.svg');
+      background-position: left center;
+    }
+
+    &::after {
+      background-image: url('../images/right-outline-black.svg');
+      background-position: right center;
+    }
+
+    &:hover {
+      background-color: $red-light;
+      border-color: $red-light;
+      transform: scale(0.99);
+      opacity: 0.95;
+      color: $white;
+
+      &::before,
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
 }
