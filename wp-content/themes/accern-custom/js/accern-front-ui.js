@@ -33,9 +33,14 @@ var AccernFrontUI = ( function( $, wp ) {
 				companyAnimateEl = document.getElementById( 'company-page-animations' ),
 				itemWidth;
 
-			this.$pageContainer = $( 'body.page' );
+			this.$pageContainer = $( 'body' );
 			this.listen();
 			this.setSectionHeight( this.data.page.toLowerCase() );
+
+			// Article main section.
+			if ( $( '#article-main-section' ) ) {
+                $( '#article-main-section' ).css( 'min-height', $( window ).height() );
+            }
 
 			if ( animateEl ) {
 				this.$animate = window.__mountVisualization( animateEl, {
@@ -121,12 +126,12 @@ var AccernFrontUI = ( function( $, wp ) {
 				$.scrollify.enable();
 			} );
 
-			// Nav click sectin.
+			// Nav click section.
 			this.$pageContainer.on( 'click', '.homepage-nav-section, .company-nav-section, .usecase-nav-section', function() {
 				var section = $( this ).attr( 'data-section' ),
 					homepage = $( this ).hasClass( 'homepage-nav-section' );
 
-				if ( homepage ) {
+				if ( homepage || false === self.data.mobile ) {
 					$.scrollify.move( '#' + section );
 				}
 			} );
@@ -173,7 +178,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Scroll down to next section.
 			this.$pageContainer.on( 'click', '#scroll-down-one, .mobile-down-arrow', function() {
-				if ( 'Community' === self.data.page ) {
+				if ( 'Community' === self.data.page || 0 !== $( '#article-main-section' ).length ) {
 					$( 'html, body' ).animate({
 						scrollTop: $( this ).parent( '.currently-active-section' ).siblings( '.next-section' ).offset().top,
 					}, 1000);
