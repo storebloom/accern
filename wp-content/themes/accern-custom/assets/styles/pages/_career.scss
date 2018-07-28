@@ -44,10 +44,9 @@
     }
   }
 
-  .community-content {
+  .careers-content {
     @include columnPadding();
 
-    display: none;
     color: $black-almost;
 
     .career-items-list-wrap {
@@ -84,7 +83,7 @@
           margin-bottom: 4em;
         }
 
-        .download-file {
+        .learn-more-link {
           font-weight: 700;
           padding-left: 3em;
           padding-top: 0.7em;

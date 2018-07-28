@@ -31,7 +31,8 @@ var AccernFrontUI = ( function( $, wp ) {
 		init: function() {
 			var animateEl = document.getElementById( 'home-page-animations' ),
 				companyAnimateEl = document.getElementById( 'company-page-animations' ),
-				itemWidth;
+				itemWidth,
+				itemType;
 
 			this.$pageContainer = $( 'body' );
 			this.listen();
@@ -88,10 +89,11 @@ var AccernFrontUI = ( function( $, wp ) {
 			$( '#other-firm-type' ).prop( 'disabled', true );
 
 			// Make community items squares.
-			if ( 'Community' === this.data.page ) {
-				itemWidth = $( '.white-paper-item' ).outerWidth();
+			if ( 'Community' === this.data.page || 'Careers' === this.data.page ) {
+                itemType = 'Community' === this.data.page ? 'white-paper' : 'career';
+				itemWidth = $( '.' + itemType + '-item' ).outerWidth();
 
-				$( '.white-paper-item' ).css( 'height', itemWidth + 'px' );
+				$( '.' + itemType + '-item' ).css( 'height', itemWidth + 'px' );
 			}
 		},
 
