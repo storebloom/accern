@@ -6,381 +6,389 @@
   color: $black-almost;
   padding-bottom: 4em;
 
-  .site-header {
-    background-color: transparent;
-    position: absolute;
-  }
-
-  .community-section {
-    background-color: $black-almost;
-    padding-top: 8rem;
-    padding-bottom: 10rem;
+  #page {
     position: relative;
-    height: auto !important;
-    min-height: 100vh;
-    color: $white;
 
-    @include clearfix();
-
-    .section-title,
-    .section-sub-title,
-    .section-overlay {
-      @include columnPadding();
+    .site-header {
+      background-color: transparent;
+      position: absolute;
     }
 
-    .section-sub-title {
-      width: 31.75vw;
-    }
+    .community-section {
+      background-color: $black-almost;
+      padding-top: 14rem;
+      padding-bottom: 10rem;
+      position: relative;
+      height: auto !important;
+      min-height: 100vh;
+      color: $white;
 
-    .accern-overlay-button {
-      @include button(outline);
-
-      padding: 1rem 3rem;
-    }
-  }
-
-  .community-tab-wrapper {
-    width: 100%;
-    text-align: center;
-
-    ul {
-      margin: 3.5em auto;
-      max-width: 49em;
-
-      li {
-        border-bottom: 2px solid #d8d8d8;
-        color: #cacaca;
-        display: inline-block;
-        font-weight: 600;
-        list-style: none;
-        margin: 0 -0.13em;
-        padding: 1.06em 0;
-        text-transform: uppercase;
-        width: 32%;
-        cursor: pointer;
-
-        &.active-tab {
-          @include transition();
-
-          border-bottom: $red-light solid 4px;
-          color: $black-almost;
-          padding: 1em 0;
-        }
-      }
-    }
-  }
-
-  .community-content {
-    @include columnPadding();
-
-    display: none;
-
-    &.current-community-tab {
-      @include transition();
-
-      display: block;
-    }
-
-    .community-title {
-      font-size: 3em;
-      font-weight: 700;
-      width: auto;
-      display: inline-block;
-    }
-
-    .community-search-wrap {
-      float: right;
-      width: 50vw;
-      text-align: right;
-
-      .community-count {
-        display: inline-block;
-        margin-right: 2em;
-        font-size: 1.3em;
-        font-style: italic;
-        vertical-align: text-top;
-
-        .count-number {
-          display: inline-block;
-        }
-      }
-
-      .community-sort {
-        display: inline-block;
-        position: relative;
-        border: $grey-light solid 1px;
-        width: 13em;
-        height: 3.3em;
-        text-align: left;
-
-        &::before {
-          content: '';
-          position: absolute;
-          z-index: 0;
-          top: 1rem;
-          right: 0.5rem;
-          display: block;
-          width: 1rem;
-          height: 1rem;
-          opacity: 1;
-          background-image: url('../images/black-down-arrow.svg');
-          background-position: center center;
-          background-size: contain;
-          background-repeat: no-repeat;
-        }
-
-        .form-select-menu {
-          @include listStripped();
-          @include transition();
-
-          background-color: transparent;
-          position: absolute;
-          z-index: 1;
-          top: 0;
-          left: 0;
-          width: 100%;
-          max-height: 3rem;
-          overflow: hidden;
-          transform: translate3d(0, 0, 0);
-
-          li {
-            padding: 1rem 0.5rem;
-            min-height: 3rem;
-            font-size: 0.85rem;
-            background-color: $grey-light;
-            color: $black-almost;
-            cursor: pointer;
-            border-bottom: 1px solid $black-almost;
-
-            &:first-child {
-              border-bottom: 0;
-              color: $grey-light;
-            }
-
-            @include transition(all 150ms ease);
-
-            &:hover {
-              background-color: $red-light;
-              color: $white;
-            }
-
-            &.is-selected {
-              color: $red-light;
-
-              &:hover {
-                color: $white;
-              }
-            }
-
-            &.form-select-chosen {
-              height: 3rem;
-              background-color: transparent;
-            }
-
-            &.form-select-chosen:hover {
-              color: $grey-light;
-            }
-          }
-
-          &.is-active {
-            max-height: 10rem;
-            overflow: auto;
-            color: $black;
-            opacity: 1;
-          }
-        }
-
-        .form-select-value {
-          position: relative;
-          z-index: 0;
-        }
-      }
-
-      .community-search {
-        display: inline-block;
-        color: $grey-light;
-        vertical-align: top;
-        width: 40%;
-        margin: 0 1em;
-        padding-left: 3em;
-        position: relative;
-        border-bottom: 1px solid #cacaca;
-
-        &::before {
-          content: '';
-          position: absolute;
-          z-index: 0;
-          top: 1.2rem;
-          left: 0.7rem;
-          display: block;
-          width: 1.3rem;
-          height: 1.3rem;
-          opacity: 1;
-          background-image: url('../images/search-icon.svg');
-          background-position: center center;
-          background-size: contain;
-          background-repeat: no-repeat;
-        }
-
-        input {
-          color: $black-almost;
-          height: 3.3em;
-          width: 100%;
-          padding: 0;
-          margin: 0;
-          border-bottom: 0;
-        }
-      }
-    }
-
-    hr {
-      background-color: $grey-light;
-      border: none;
-      color: $grey-light;
-      height: 1px;
-      margin: 4em 0 -0.1em;
-      width: 100%;
-    }
-
-    .community-items-list-wrap {
       @include clearfix();
 
-      .white-paper-item {
-        background-color: $grey-lightish;
-        width: 22%;
-        margin-right: 1%;
-        padding: 3em 2em;
-        cursor: pointer;
-        position: relative;
+      .section-title,
+      .section-sub-title,
+      .section-overlay {
+        @include columnPadding();
+      }
+
+      .section-sub-title {
+        width: 31.75vw;
+      }
+
+      .accern-overlay-button {
+        @include button(outline);
+
+        padding: 1rem 3rem;
+      }
+    }
+
+    .community-tab-wrapper {
+      width: 100%;
+      text-align: center;
+
+      ul {
+        margin: 3.5em auto;
+        max-width: 49em;
+
+        li {
+          border-bottom: 2px solid #d8d8d8;
+          color: #cacaca;
+          display: inline-block;
+          font-weight: 600;
+          list-style: none;
+          margin: 0 -0.13em;
+          padding: 1.06em 0;
+          text-transform: uppercase;
+          width: 32%;
+          cursor: pointer;
+
+          &.active-tab {
+            @include transition();
+
+            border-bottom: $red-light solid 4px;
+            color: $black-almost;
+            padding: 1em 0;
+          }
+        }
+      }
+    }
+
+    .community-content {
+      @include columnPadding();
+
+      display: none;
+
+      &.current-community-tab {
+        @include transition();
+
+        display: block;
+      }
+
+      .community-title {
+        font-size: 3em;
+        font-weight: 700;
+        width: auto;
         display: inline-block;
-        vertical-align: top;
+      }
 
-        &:nth-child(4n+4) {
-          margin-right: 0;
+      .community-search-wrap {
+        float: right;
+        width: 50vw;
+        text-align: right;
+
+        .community-count {
+          display: inline-block;
+          margin-right: 2em;
+          font-size: 1.3em;
+          font-style: italic;
+          vertical-align: text-top;
+
+          .count-number {
+            display: inline-block;
+          }
         }
 
-        .article-subcat {
-          text-transform: uppercase;
-          margin-bottom: 15%;
-          color: $red-light;
-        }
-
-        .article-title {
-          font-size: 1.5em;
-          font-weight: 700;
-          text-transform: uppercase;
-          margin-bottom: 0.5em;
-        }
-
-        .article-content {
-          margin-bottom: 4em;
-        }
-
-        .download-file {
-          font-weight: 700;
-          padding-left: 3em;
-          padding-top: 0.7em;
-          position: absolute;
-          bottom: 5em;
-          text-transform: uppercase;
+        .community-sort {
+          display: inline-block;
+          position: relative;
+          border: $grey-light solid 1px;
+          width: 13em;
+          height: 3.3em;
+          text-align: left;
 
           &::before {
             content: '';
             position: absolute;
             z-index: 0;
-            top: 0;
-            left: 0;
+            top: 1rem;
+            right: 0.5rem;
             display: block;
-            width: 2.3rem;
-            height: 2.3rem;
+            width: 1rem;
+            height: 1rem;
             opacity: 1;
-            background-image: url('../images/download-icon.svg');
+            background-image: url('../images/black-down-arrow.svg');
             background-position: center center;
             background-size: contain;
             background-repeat: no-repeat;
           }
+
+          .form-select-menu {
+            @include listStripped();
+            @include transition();
+
+            background-color: transparent;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-height: 3rem;
+            overflow: hidden;
+            transform: translate3d(0, 0, 0);
+
+            li {
+              padding: 1rem 0.5rem;
+              min-height: 3rem;
+              font-size: 0.85rem;
+              background-color: $grey-light;
+              color: $black-almost;
+              cursor: pointer;
+              border-bottom: 1px solid $black-almost;
+
+              &:first-child {
+                border-bottom: 0;
+                color: $grey-light;
+              }
+
+              @include transition(all 150ms ease);
+
+              &:hover {
+                background-color: $red-light;
+                color: $white;
+              }
+
+              &.is-selected {
+                color: $red-light;
+
+                &:hover {
+                  color: $white;
+                }
+              }
+
+              &.form-select-chosen {
+                height: 3rem;
+                background-color: transparent;
+              }
+
+              &.form-select-chosen:hover {
+                color: $grey-light;
+              }
+            }
+
+            &.is-active {
+              max-height: 10rem;
+              overflow: auto;
+              color: $black;
+              opacity: 1;
+            }
+          }
+
+          .form-select-value {
+            position: relative;
+            z-index: 0;
+          }
         }
 
-        &:hover {
-          @include transition();
+        .community-search {
+          display: inline-block;
+          color: $grey-light;
+          vertical-align: top;
+          width: 40%;
+          margin: 0 1em;
+          padding-left: 3em;
+          position: relative;
+          border-bottom: 1px solid #cacaca;
 
-          background: $red-light;
-          color: $white;
+          &::before {
+            content: '';
+            position: absolute;
+            z-index: 0;
+            top: 1.2rem;
+            left: 0.7rem;
+            display: block;
+            width: 1.3rem;
+            height: 1.3rem;
+            opacity: 1;
+            background-image: url('../images/search-icon.svg');
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+
+          input {
+            color: $black-almost;
+            height: 3.3em;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border-bottom: 0;
+          }
+        }
+      }
+
+      hr {
+        background-color: $grey-light;
+        border: none;
+        color: $grey-light;
+        height: 1px;
+        margin: 4em 0 -0.1em;
+        width: 100%;
+      }
+
+      .community-items-list-wrap {
+        @include clearfix();
+
+        .white-paper-item {
+          background-color: $grey-lightish;
+          width: 22%;
+          margin-right: 1%;
+          padding: 3em 2em;
+          cursor: pointer;
+          position: relative;
+          display: inline-block;
+          vertical-align: top;
+
+          &:nth-child(4n+4) {
+            margin-right: 0;
+          }
 
           .article-subcat {
-            color: $white;
+            text-transform: uppercase;
+            margin-bottom: 15%;
+            color: $red-light;
+          }
+
+          .article-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5em;
+          }
+
+          .article-content {
+            margin-bottom: 4em;
           }
 
           .download-file {
+            font-weight: 700;
+            padding-left: 3em;
+            padding-top: 0.7em;
+            position: absolute;
+            bottom: 5em;
+            text-transform: uppercase;
+
             &::before {
-              background-image: url('../images/download-icon-white.svg');
+              content: '';
+              position: absolute;
+              z-index: 0;
+              top: 0;
+              left: 0;
+              display: block;
+              width: 2.3rem;
+              height: 2.3rem;
+              opacity: 1;
+              background-image: url('../images/download-icon.svg');
+              background-position: center center;
+              background-size: contain;
+              background-repeat: no-repeat;
+            }
+          }
+
+          &:hover {
+            @include transition();
+
+            background: $red-light;
+            color: $white;
+
+            .article-subcat {
+              color: $white;
+            }
+
+            .download-file {
+              &::before {
+                background-image: url('../images/download-icon-white.svg');
+              }
             }
           }
         }
-      }
 
-      .education-center-item,
-      .media-item {
-        width: 100%;
-        padding: 2em;
-        border-bottom: 1px solid #cacaca;
-
-        .article-title {
-          font-size: 1.5em;
-          font-weight: 700;
-          margin-bottom: 0.5em;
-        }
-
-        .article-author {
-          display: inline-block;
-          padding-right: 1em;
-        }
-
-        .article-tags {
-          display: inline-block;
-          color: $red-light;
-        }
-
-        .article-post-date {
-          float: right;
-          color: $grey-light;
-          margin-top: -1em;
-        }
-
-        .article-thumbnail {
+        .education-center-item,
+        .media-item {
           width: 100%;
-          max-width: 21em;
-          max-height: 10em;
-          overflow: hidden;
-          display: inline-block;
-        }
+          padding: 2em;
+          border-bottom: 1px solid #cacaca;
 
-        .article-information {
-          display: inline-block;
-          vertical-align: top;
-          margin: 2em 1em;
+          .article-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 0.5em;
+          }
 
-          .article-date {
+          .article-author {
+            display: inline-block;
+            padding-right: 1em;
+          }
+
+          .article-tags {
+            display: inline-block;
+            color: $red-light;
+          }
+
+          .article-post-date {
+            float: right;
             color: $grey-light;
-            text-transform: uppercase;
-            margin-bottom: 1.5em;
+            margin-top: -1em;
+          }
+
+          .article-thumbnail {
+            width: 100%;
+            max-width: 21em;
+            max-height: 10em;
+            overflow: hidden;
+            display: inline-block;
+          }
+
+          .article-information {
+            display: inline-block;
+            vertical-align: top;
+            margin: 2em 1em;
+
+            .article-date {
+              color: $grey-light;
+              text-transform: uppercase;
+              margin-bottom: 1.5em;
+            }
+          }
+
+          &:hover {
+            background-color: $grey-lightish;
           }
         }
 
-        &:hover {
-          background-color: $grey-lightish;
-        }
-      }
-
-      .media-item:hover {
-        .article-title {
-          color: $red-light;
+        .media-item:hover {
+          .article-title {
+            color: $red-light;
+          }
         }
       }
     }
-  }
 
-  #community-white .community-items-list-wrap {
-    margin-top: 4em;
+    #community-white .community-items-list-wrap {
+      margin-top: 4em;
+    }
+
+    footer {
+      position: relative;
+    }
   }
 }

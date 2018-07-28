@@ -16,7 +16,7 @@ $author = ! empty( $post_meta['article-fields-section'] ) && isset( $post_meta['
 $thumbnail = get_the_post_thumbnail_url( $id );
 $main_image = false !== $thumbnail ? 'background: url(' . $thumbnail . ');' : '';
 ?>
-<div data-section="1" id="article-main-section" class="article-section" style="<?php echo esc_attr( $main_image ); ?>">
+<div data-section="1" id="article-main-section" class="article-section currently-active-section" style="<?php echo esc_attr( $main_image ); ?>">
 	<div class="section-title">
 		<?php echo esc_html( $category ); ?>
 	</div>
@@ -32,6 +32,13 @@ $main_image = false !== $thumbnail ? 'background: url(' . $thumbnail . ');' : ''
 	<?php endif; ?>
 
 	<div class="section-author">
-		<?php echo esc_html( $author ); ?>
+		<?php echo esc_html__( 'Written by: ', 'accern-custom' ) . esc_html( $author ); ?>
+	</div>
+
+	<div id="scroll-down-one">Scroll</div>
+	<div class="mobile-scroll-buttons">
+		<a href="#next-section">
+			<span class="mobile-down-arrow"></span>
+		</a>
 	</div>
 </div>

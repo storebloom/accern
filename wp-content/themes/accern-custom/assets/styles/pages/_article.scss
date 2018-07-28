@@ -1,0 +1,83 @@
+/**
+  Article page specific styles
+  ---------------------------------------------------------------------- */
+.post-template-default {
+  background: $white;
+  color: $black-almost;
+  padding-bottom: 4em;
+
+  .site-header {
+    background-color: transparent;
+    position: absolute;
+  }
+
+  .article-section {
+    background-color: $black-almost;
+    padding-top: 14rem;
+    padding-bottom: 10rem;
+    position: relative;
+    height: auto !important;
+    min-height: 100vh;
+    color: $white;
+
+    @include clearfix();
+
+    .section-title,
+    .section-sub-title,
+    .section-overlay {
+      @include columnPadding();
+    }
+
+    .section-sub-title {
+      width: 100%;
+    }
+
+    .section-author {
+      @include columnPadding();
+    }
+
+    .section-publisher {
+      @include columnPadding();
+
+      margin-bottom: 0.5em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+
+  article {
+    padding: 2em 11vw;
+
+    .quote {
+      color: #f44336;
+      font-size: 2em;
+      width: 45vw;
+      margin: auto;
+      text-align: center;
+      position: relative;
+      font-style: italic;
+
+      &::before {
+        content: '“';
+        font-size: 4.5em;
+        position: absolute;
+        left: -0.6em;
+        top: -0.3em;
+        font-style: italic;
+      }
+
+      &::after {
+        content: '”';
+        font-size: 4.5em;
+        position: absolute;
+        right: -0.2em;
+        bottom: -0.2em;
+        font-style: italic;
+      }
+    }
+  }
+
+  footer {
+    position: relative;
+  }
+}
