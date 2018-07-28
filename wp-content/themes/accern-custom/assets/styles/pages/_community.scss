@@ -3,7 +3,6 @@
   ---------------------------------------------------------------------- */
 .page-template-community-template {
   background: $white;
-  color: $black-almost;
   padding-bottom: 4em;
 
   #page {
@@ -77,6 +76,7 @@
       @include columnPadding();
 
       display: none;
+      color: $black-almost;
 
       &.current-community-tab {
         @include transition();

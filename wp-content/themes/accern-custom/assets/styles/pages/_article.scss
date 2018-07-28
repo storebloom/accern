@@ -3,7 +3,6 @@
   ---------------------------------------------------------------------- */
 .post-template-default {
   background: $white;
-  color: $black-almost;
   padding-bottom: 4em;
 
   .site-header {
@@ -47,6 +46,7 @@
 
   article {
     padding: 2em 11vw;
+    color: $black-almost;
 
     .quote {
       color: #f44336;
