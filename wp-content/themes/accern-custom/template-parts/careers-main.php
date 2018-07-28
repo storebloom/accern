@@ -8,7 +8,7 @@
  */
 
 ?>
-<div id="careers-main-section" class="careers-section" style="<?php echo esc_attr( $main_image ); ?>">
+<div id="careers-main-section" class="careers-section currently-active-section" style="<?php echo esc_attr( $main_image ); ?>">
 	<div class="section-title">
 		<?php the_title() ?>
 	</div>

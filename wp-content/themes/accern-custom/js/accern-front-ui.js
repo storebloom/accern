@@ -178,7 +178,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Scroll down to next section.
 			this.$pageContainer.on( 'click', '#scroll-down-one, .mobile-down-arrow', function() {
-				if ( 'Community' === self.data.page || 0 !== $( '#article-main-section' ).length ) {
+				if ( $.inArray( self.data.page, ['Community', 'Careers'] ) || 0 !== $( '#article-main-section' ).length ) {
 					$( 'html, body' ).animate({
 						scrollTop: $( this ).parent( '.currently-active-section' ).siblings( '.next-section' ).offset().top,
 					}, 1000);

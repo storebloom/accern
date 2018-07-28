@@ -14,7 +14,7 @@ $careers = get_posts(
 	)
 );
 ?>
-<div class="careers-content">
+<div class="careers-content next-section">
 	<div class="career-title">
 		<?php the_title(); ?>
 	</div>
