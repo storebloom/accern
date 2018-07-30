@@ -49,4 +49,16 @@ $white_papers = get_posts(
 		}
 		?>
 	</div>
+
+	<?php if ( ! empty( $section_info['form-shortcode'] ) ) : ?>
+		<div id="request-access">
+			<div class="overlay-title">
+				<?php echo esc_html__( 'White Paper Access', 'accern-custom' ); ?>
+			</div>
+			<div class="overlay-content">
+				<?php echo do_shortcode( $section_info['form-shortcode'] ); ?>
+			</div>
+		</div>
+	<?php endif; ?>
+
 </div>

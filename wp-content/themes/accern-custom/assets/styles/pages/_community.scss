@@ -1,6 +1,80 @@
 /**
   Community page specific styles
   ---------------------------------------------------------------------- */
+.accern-overlay-content-wrap {
+  .wpcf7-form {
+    @include grid(space-between, flex-start, row, wrap);
+
+    .wpcf7-response-output {
+      display: none !important;
+    }
+
+    label {
+      font-size: 1rem;
+      color: $grey-evil;
+      margin: 0;
+
+      @include transition();
+    }
+
+    input {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: $grey-evil;
+    }
+
+    .form-wrap {
+      position: relative;
+      width: calc(50% - 0.75rem);
+      padding-top: 1rem;
+      margin-top: 2rem;
+
+      &.is-focused {
+        label {
+          top: 0.25rem;
+          font-size: 0.75rem;
+        }
+
+        input {
+          border-color: $white;
+        }
+      }
+    }
+
+    .wpcf7-submit {
+      @include button(red);
+
+      padding: 1rem 3rem;
+      line-height: 1;
+      margin-top: 4rem;
+    }
+
+    .wpcf7-not-valid-tip {
+      color: $red-light;
+      line-height: 1rem;
+      font-size: 0.65rem;
+
+      &::before {
+        content: '!';
+        position: absolute;
+        right: 0;
+        top: 0.25rem;
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        font-size: 1.25rem;
+        text-align: center;
+        font-family: $font-medium;
+      }
+    }
+
+    .wpcf7-not-valid {
+      border-color: $red-light;
+    }
+  }
+}
+
 .page-template-community-template {
   background: $white;
   padding-bottom: 4em;
@@ -378,6 +452,10 @@
         }
       }
     }
+  }
+
+  #request-access {
+    display: none;
   }
 
   #community-white .community-items-list-wrap {

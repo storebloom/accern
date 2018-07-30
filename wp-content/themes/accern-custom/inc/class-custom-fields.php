@@ -311,6 +311,7 @@ class Custom_Fields {
 				$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
 				$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
 				$overlay_field   = $this->create_custom_field( $postid, $prefix, 'overlay-repeater', 'overlay' );
+				$form_shortcode  = $this->create_custom_field( $postid, $prefix, 'form-shortcode', 'text' );
 
 				$metabox_array = array(
 					array(
@@ -319,7 +320,7 @@ class Custom_Fields {
 						'screen'      => 'page',
 						'context'     => 'normal',
 						'priority'    => 'high',
-						'args'        => $title_field . $sub_title_field . $overlay_field,
+						'args'        => $title_field . $sub_title_field . $form_shortcode . $overlay_field,
 					),
 				);
 				break;
@@ -462,12 +463,12 @@ class Custom_Fields {
 				$prefix = 'article-fields-section';
 				$publisher_field = $this->create_custom_field( $postid, $prefix, 'publisher', 'text' );
 				$author_field = $this->create_custom_field( $postid, $prefix, 'author', 'text' );
-				$file_field = $this->create_custom_field( $postid, $prefix, 'file', 'file' );
+				$file_field = $this->create_custom_field( $postid, $prefix, 'file', 'text' );
 
 				$metabox_array = array(
 					array(
 						'id'          => $prefix . '-accern',
-						'description' => 'Custom Article Fields ( Optional )',
+						'description' => 'Custom Article Fields ( Upload file of youre choosing to media library and paste URL in "file" field )',
 						'screen'      => 'post',
 						'context'     => 'normal',
 						'priority'    => 'high',
