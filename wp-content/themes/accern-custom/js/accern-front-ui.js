@@ -104,7 +104,9 @@ var AccernFrontUI = ( function( $, wp ) {
 			var self = this,
 				timer = '';
 
-			this.$pageContainer.on( 'click', '.accern-overlay-button', function() {
+			this.$pageContainer.on( 'click', '.accern-overlay-button', function( e ) {
+                e.preventDefault();
+
 				var section = $( this ).attr( 'data-section' ),
 					overlayNum = $( this ).attr( 'data-num' );
 
@@ -195,8 +197,12 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Contact form Success Message
 			document.addEventListener( 'wpcf7mailsent', function() {
-				$( '#contact-form-section' ).addClass( 'message-sent' );
-				$( '#contact-confirmation' ).addClass( 'active-message' );
+				if ( 0 !== $( '#request-access' ).length ) {
+					self.unlockAccess();
+				} else {
+                    $( '#contact-form-section' ).addClass( 'message-sent' );
+                    $( '#contact-confirmation' ).addClass( 'active-message' );
+                }
 			} );
 
 			// Create select menu GUI & Toggle other field if selected
@@ -291,20 +297,28 @@ var AccernFrontUI = ( function( $, wp ) {
 		 * @param overlayNum
 		 */
 		openOverlay: function( section, overlayNum ) {
+			var form;
+
 			$( '.accern-overlay-content-wrap' ).addClass( 'open' );
 			$( 'body' ).addClass( 'modal-active' );
 
 			// Disable when overlay is open.
 			$.scrollify.disable();
 
-			wp.ajax.post( 'get_overlay_content', {
-				section: section,
-				number: overlayNum,
-				postid: this.data.postid,
-				nonce: this.data.nonce
-			} ).always( function( results ) {
-				$( '.accern-overlay-content' ).html( results );
-			} );
+			if ( 'white-paper' === section ) {
+                form = $( '#request-access' ).html();
+
+                $( '.accern-overlay-content' ).append( form );
+			} else {
+                wp.ajax.post( 'get_overlay_content', {
+                    section: section,
+                    number: overlayNum,
+                    postid: this.data.postid,
+                    nonce: this.data.nonce
+                } ).always( function ( results ) {
+                    $( '.accern-overlay-content' ).html( results );
+                } );
+            }
 		},
 
 		/**
@@ -445,6 +459,20 @@ var AccernFrontUI = ( function( $, wp ) {
                     $( '.white-paper-item' ).css( 'height', itemWidth + 'px' );
                 }
 			} );
-		}
+		},
+
+        /**
+         * Unlock access to click on white paper pdf links.
+         */
+        unlockAccess: function() {
+            $( '.accern-overlay-content' ).html( '' );
+            $( '.accern-overlay-content-wrap' ).removeClass( 'open' );
+            $( 'body' ).removeClass( 'modal-active' );
+
+            // Reenable when modal is closed.
+            $.scrollify.enable();
+
+            $( '.white-paper-item .download-file' ).removeClass( 'accern-overlay-button' );
+        }
 	};
 } )( window.jQuery, window.wp );

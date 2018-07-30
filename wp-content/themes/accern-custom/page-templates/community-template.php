@@ -19,7 +19,7 @@ while ( have_posts() ) :
 	include( locate_template( 'template-parts/community-main.php' ) );
 
 	// Pull in white papers community section.
-	get_template_part( 'template-parts/community', 'white' );
+	include( locate_template( 'template-parts/community-white.php' ) );
 
 	// Pull in education center community section.
 	get_template_part( 'template-parts/community', 'education' );
