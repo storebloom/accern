@@ -44,6 +44,39 @@
     }
   }
 
+  article {
+    padding: 2em 11vw;
+    color: $black-almost;
+
+    .quote {
+      color: #f44336;
+      font-size: 2em;
+      width: 45vw;
+      margin: auto;
+      text-align: center;
+      position: relative;
+      font-style: italic;
+
+      &::before {
+        content: '“';
+        font-size: 4.5em;
+        position: absolute;
+        left: -0.6em;
+        top: -0.3em;
+        font-style: italic;
+      }
+
+      &::after {
+        content: '”';
+        font-size: 4.5em;
+        position: absolute;
+        right: -0.2em;
+        bottom: -0.2em;
+        font-style: italic;
+      }
+    }
+  }
+
   footer {
     position: relative;
   }
