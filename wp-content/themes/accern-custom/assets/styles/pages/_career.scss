@@ -167,6 +167,7 @@
   background-repeat: no-repeat;
   background-color: $black-almost;
   background-position: left top;
+  padding: 0 6em;
 
   .section-cta {
     @include columnPadding();
@@ -183,13 +184,14 @@
     position: absolute;
   }
 
+  #career-main-section {
+    padding-top: 14em;
+  }
+
   #career-main-section,
   #career-content-section {
-    padding-top: 14rem;
-    padding-bottom: 10rem;
     position: relative;
     height: auto !important;
-    min-height: 100vh;
 
     .section-title,
     .section-sub-title {
@@ -198,6 +200,7 @@
 
     .section-sub-title {
       width: 55vw;
+      margin: 1.5rem 0 2.75rem;
 
       &::after {
         display: none;
@@ -208,7 +211,7 @@
   #career-content-section {
     @include columnPadding();
 
-    margin: 8em 0 4em;
+    margin: 6em 0;
   }
 
   footer {
