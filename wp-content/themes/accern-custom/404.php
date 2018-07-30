@@ -1,60 +1,27 @@
 <?php
 /**
- * The template for displaying 404 pages (not found)
+ * Template for 404 page.
  *
- * @link https://codex.wordpress.org/Creating_an_Error_404_Page
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Accern_Custom
  */
 
 get_header();
 ?>
-
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-
-			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'accern-custom' ); ?></h1>
-				</header><!-- .page-header -->
-
-				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'accern-custom' ); ?></p>
-
-					<?php
-					get_search_form();
-
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'accern-custom' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories( array(
-								'orderby'    => 'count',
-								'order'      => 'DESC',
-								'show_count' => 1,
-								'title_li'   => '',
-								'number'     => 10,
-							) );
-							?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-					/* translators: %1$s: smiley */
-					$accern_custom_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'accern-custom' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$accern_custom_archive_content" );
-
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+<div class="section-404">
+	<div class="section-title">
+		<?php echo esc_html__( '404 Error', 'accern-custom' ); ?>
+	</div>
+	<div class="section-sub-title">
+		<?php echo esc_html__( 'Sorry the page you\'re looking for is missing', 'accern-custom' ); ?>
+	</div>
+	<div class="section-overlay">
+		<a class="accern-button red" href="/">
+			<?php echo esc_html__( 'Visit Homepage', 'accern-custom' ); ?>
+		</a>
+	</div>
+</div>
 
 <?php
 get_footer();

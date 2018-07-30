@@ -24,6 +24,7 @@
   "fonts/5664114/b2b47de7-f81a-4618-8972-3d49acb98d28.eot": "fonts/5664114/b2b47de7-f81a-4618-8972-3d49acb98d28_3673a4b8.eot",
   "fonts/5664114/bb16813f-1602-42b4-98f3-068eee70eb31.woff": "fonts/5664114/bb16813f-1602-42b4-98f3-068eee70eb31_1ee82696.woff",
   "images/accern-logo-white.svg": "images/accern-logo-white_db845c85.svg",
+  "images/back-404-jpg.jpg": "images/back-404-jpg_9f6bb245.jpg",
   "images/bg-block.svg": "images/bg-block_64d2b059.svg",
   "images/bg-redwaves.jpg": "images/bg-redwaves_77394467.jpg",
   "images/black-down-arrow.svg": "images/black-down-arrow_e2176146.svg",
@@ -63,12 +64,12 @@
   "images/particle.330a818.png": "images/particle.330a818_330a8182.png",
   "images/right-outline-black.svg": "images/right-outline-black_5504edb0.svg",
   "images/search-icon.svg": "images/search-icon_1921c57a.svg",
-  "styles/admin.css": "styles/admin_8eb28992.css",
-  "scripts/admin.js": "scripts/admin_8eb28992.js",
-  "styles/editor.css": "styles/editor_8eb28992.css",
-  "scripts/editor.js": "scripts/editor_8eb28992.js",
-  "styles/login.css": "styles/login_8eb28992.css",
-  "scripts/login.js": "scripts/login_8eb28992.js",
-  "styles/main.css": "styles/main_8eb28992.css",
-  "scripts/main.js": "scripts/main_8eb28992.js"
+  "styles/admin.css": "styles/admin_0b8eb775.css",
+  "scripts/admin.js": "scripts/admin_0b8eb775.js",
+  "styles/editor.css": "styles/editor_0b8eb775.css",
+  "scripts/editor.js": "scripts/editor_0b8eb775.js",
+  "styles/login.css": "styles/login_0b8eb775.css",
+  "scripts/login.js": "scripts/login_0b8eb775.js",
+  "styles/main.css": "styles/main_0b8eb775.css",
+  "scripts/main.js": "scripts/main_0b8eb775.js"
 }
