@@ -1,0 +1,42 @@
+/* 404 page individual styling */
+
+.error404 {
+  background-image: url('../images/back-404-jpg.jpg');
+  background-color: $black-almost;
+
+  .site-header {
+    background-color: transparent;
+    position: absolute;
+  }
+
+  .section-404 {
+    padding-top: 14rem;
+    padding-bottom: 10rem;
+    position: relative;
+    height: auto !important;
+    min-height: 100vh;
+
+    .section-title,
+    .section-sub-title {
+      @include columnPadding();
+    }
+
+    .section-sub-title {
+      width: 44vw;
+    }
+
+    .section-overlay {
+      @include columnPadding();
+
+      .accern-button {
+        @include button(red);
+
+        padding: 1rem 3rem;
+      }
+    }
+  }
+
+  footer {
+    position: relative;
+  }
+}

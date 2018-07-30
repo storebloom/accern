@@ -58,14 +58,17 @@ class Custom_Fields {
 			wp_enqueue_script( "{$this->theme->assets_prefix}-animation-app" );
 		}
 
+		$postid = isset( $post->ID ) ? $post->ID : '';
+		$post_title = isset( $post->post_title ) ? $post->post_title : '';
+
 		wp_enqueue_script( "{$this->theme->assets_prefix}-scrollify" );
 		wp_enqueue_script( "{$this->theme->assets_prefix}-front-ui" );
 		wp_add_inline_script( "{$this->theme->assets_prefix}-front-ui", sprintf( 'AccernFrontUI.boot( %s );',
 			wp_json_encode( array(
 				'nonce'  => wp_create_nonce( $this->theme->meta_prefix ),
 				'mobile' => wp_is_mobile(),
-				'postid' => $post->ID,
-				'page'   => $post->post_title,
+				'postid' => $postid,
+				'page'   => $post_title,
 			) )
 		) );
 	}
