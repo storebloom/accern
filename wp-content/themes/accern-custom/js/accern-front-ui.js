@@ -111,12 +111,21 @@ var AccernFrontUI = ( function( $, wp ) {
 					overlayNum = $( this ).attr( 'data-num' ),
 					download = $( this ).attr( 'href' );
 
-				if ( 'Community' === self.data.page ) {
-					$( '#download-this-one' ).val( download );
-				}
-
 				self.openOverlay( section, overlayNum );
 			} );
+
+			this.$pageContainer.on( 'click', '.accern-overlay-button-white', function( e ) {
+				e.preventDefault();
+
+				var download = $( this ).attr( 'href' );
+
+				$( '#download-this-one' ).val( download );
+
+				$( '.accern-overlay-content-wrap-white' ).addClass( 'open' );
+				$( 'body' ).addClass( 'modal-active' );
+			} );
+
+
 
 			this.$pageContainer.on( 'click', '.footer-accern-overlay-button', function() {
 				var section = $( this ).attr( 'data-section' ),
@@ -132,6 +141,11 @@ var AccernFrontUI = ( function( $, wp ) {
 				}
 
 				$( '.accern-overlay-content-wrap' ).removeClass( 'open' );
+
+				if ( 'Community' === self.data.page ) {
+					$( '.accern-overlay-content-wrap-white' ).removeClass( 'open' );
+				}
+
 				$( 'body' ).removeClass( 'modal-active' );
 
 				// Reenable when modal is closed.
@@ -163,8 +177,13 @@ var AccernFrontUI = ( function( $, wp ) {
 			$( document ).click( function( event ) {
 
 				// If you click on anything except the modal itself or the "open modal" link, close the modal.
-				if ( !$( event.target ).closest( '.footer-accern-overlay-button, .accern-overlay-button, .accern-overlay-content-wrap-inner, .accern-overlay-content' ).length ) {
+				if ( !$( event.target ).closest( '.footer-accern-overlay-button, .accern-overlay-button-white, .accern-overlay-button, .accern-overlay-content-wrap-inner, .accern-overlay-content' ).length ) {
 					$('body').find( '.accern-overlay-content-wrap' ).removeClass( 'open' );
+
+					if ( 'Community' === self.data.page ){
+						$('body').find( '.accern-overlay-content-wrap-white' ).removeClass( 'open' );
+					}
+
 					$('body').removeClass( 'modal-active' );
 
 					if ( $.scrollify.isDisabled() ) {
@@ -320,7 +339,7 @@ var AccernFrontUI = ( function( $, wp ) {
                     postid: this.data.postid,
                     nonce: this.data.nonce
                 } ).always( function ( results ) {
-                    $( '.accern-overlay-content' ).html( results );
+                    $( '.accern-overlay-content-wrap .accern-overlay-content' ).html( results );
                 } );
             }
 		},

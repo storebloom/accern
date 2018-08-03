@@ -12,7 +12,7 @@ $categories = wp_get_post_terms( $white->ID, 'category' );
 ?>
 <div class="white-paper-item">
 	<?php if ( ! empty( $download_file['article-fields-section']['file'] ) ) : ?>
-		<a class="accern-overlay-button" data-section="white-paper" target="_blank" href="<?php echo esc_url( $download_file['article-fields-section']['file'] ); ?>" >
+		<a class="accern-overlay-button-white" data-section="white-paper" target="_blank" href="<?php echo esc_url( $download_file['article-fields-section']['file'] ); ?>" >
 	<?php endif; ?>
 		<div class="article-subcat">
 			<?php echo esc_html( $categories[0]->name ); ?>

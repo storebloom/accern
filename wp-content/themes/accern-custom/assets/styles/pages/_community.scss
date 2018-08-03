@@ -1,7 +1,7 @@
 /**
   Community page specific styles
   ---------------------------------------------------------------------- */
-.accern-overlay-content-wrap {
+.accern-overlay-content-wrap-white {
   .wpcf7-form {
     @include grid(space-between, flex-start, row, wrap);
 
@@ -481,7 +481,7 @@
 
 @media (max-width: 600px) {
   .page-template-community-template {
-    .accern-overlay-content-wrap {
+    .accern-overlay-content-wrap-white {
       .wpcf7-form {
         .form-wrap {
           width: 100%;

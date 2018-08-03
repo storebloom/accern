@@ -64,12 +64,12 @@
   "images/particle.330a818.png": "images/particle.330a818_330a8182.png",
   "images/right-outline-black.svg": "images/right-outline-black_5504edb0.svg",
   "images/search-icon.svg": "images/search-icon_1921c57a.svg",
-  "styles/admin.css": "styles/admin_3b1f929d.css",
-  "scripts/admin.js": "scripts/admin_3b1f929d.js",
-  "styles/editor.css": "styles/editor_3b1f929d.css",
-  "scripts/editor.js": "scripts/editor_3b1f929d.js",
-  "styles/login.css": "styles/login_3b1f929d.css",
-  "scripts/login.js": "scripts/login_3b1f929d.js",
-  "styles/main.css": "styles/main_3b1f929d.css",
-  "scripts/main.js": "scripts/main_3b1f929d.js"
+  "styles/admin.css": "styles/admin_fff2fa64.css",
+  "scripts/admin.js": "scripts/admin_fff2fa64.js",
+  "styles/editor.css": "styles/editor_fff2fa64.css",
+  "scripts/editor.js": "scripts/editor_fff2fa64.js",
+  "styles/login.css": "styles/login_fff2fa64.css",
+  "scripts/login.js": "scripts/login_fff2fa64.js",
+  "styles/main.css": "styles/main_fff2fa64.css",
+  "scripts/main.js": "scripts/main_fff2fa64.js"
 }
