@@ -363,7 +363,7 @@ var AccernFrontUI = ( function( $, wp ) {
 				footer: true,
 				nonce: this.data.nonce
 			} ).always( function( results ) {
-				$( '.accern-overlay-content' ).html( results );
+				$( '.accern-overlay-content-wrap .accern-overlay-content' ).html( results );
 			} );
 		},
 
