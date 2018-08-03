@@ -73,7 +73,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			// Focus labels on forms
 			$( 'input' ).each( function() {
 				$( this ).on( 'focus', function() {
-					$(this).closest('.form-wrap' ).addClass( 'is-focused' );
+					$( this ).closest( '.form-wrap' ).addClass( 'is-focused' );
 				} );
 				$( this).on('blur', function() {
 					if ( undefined !== $( this ).val() && $( this ).val().length === 0 ) {
@@ -108,7 +108,12 @@ var AccernFrontUI = ( function( $, wp ) {
                 e.preventDefault();
 
 				var section = $( this ).attr( 'data-section' ),
-					overlayNum = $( this ).attr( 'data-num' );
+					overlayNum = $( this ).attr( 'data-num' ),
+					download = $( this ).attr( 'href' );
+
+				if ( 'Community' === self.data.page ) {
+					$( '#download-this-one' ).val( download );
+				}
 
 				self.openOverlay( section, overlayNum );
 			} );
@@ -122,7 +127,10 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Close overlay.
 			this.$pageContainer.on( 'click', '#close-overlay', function() {
-				$( this ).siblings( '.accern-overlay-content' ).html( '' );
+				if ( 'Community' !== self.data.page ) {
+					$( this ).siblings( '.accern-overlay-content' ).html( '' );
+				}
+
 				$( '.accern-overlay-content-wrap' ).removeClass( 'open' );
 				$( 'body' ).removeClass( 'modal-active' );
 
@@ -197,7 +205,7 @@ var AccernFrontUI = ( function( $, wp ) {
 
 			// Contact form Success Message
 			document.addEventListener( 'wpcf7mailsent', function() {
-				if ( 0 !== $( '#request-access' ).length ) {
+				if ( 'Community' === self.data.page ) {
 					self.unlockAccess();
 				} else {
                     $( '#contact-form-section' ).addClass( 'message-sent' );
@@ -305,11 +313,7 @@ var AccernFrontUI = ( function( $, wp ) {
 			// Disable when overlay is open.
 			$.scrollify.disable();
 
-			if ( 'white-paper' === section ) {
-                form = $( '#request-access' ).html();
-
-                $( '.accern-overlay-content' ).append( form );
-			} else {
+			if ( 'white-paper' !== section ) {
                 wp.ajax.post( 'get_overlay_content', {
                     section: section,
                     number: overlayNum,
@@ -465,12 +469,12 @@ var AccernFrontUI = ( function( $, wp ) {
          * Unlock access to click on white paper pdf links.
          */
         unlockAccess: function() {
-            $( '.accern-overlay-content' ).html( '' );
+        	const download = $( '#download-this-one' ).val();
+
+        	window.location.href = download;
+
             $( '.accern-overlay-content-wrap' ).removeClass( 'open' );
             $( 'body' ).removeClass( 'modal-active' );
-
-            // Reenable when modal is closed.
-            $.scrollify.enable();
 
             $( '.white-paper-item .download-file' ).removeClass( 'accern-overlay-button' );
         }

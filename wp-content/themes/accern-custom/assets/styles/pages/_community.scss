@@ -5,11 +5,16 @@
   .wpcf7-form {
     @include grid(space-between, flex-start, row, wrap);
 
-    .wpcf7-response-output {
-      display: none !important;
+    padding: 0 3em;
+
+    p {
+      padding: 0;
     }
 
     label {
+      position: absolute;
+      z-index: 1;
+      top: 1.25rem;
       font-size: 1rem;
       color: $grey-evil;
       margin: 0;
@@ -34,10 +39,6 @@
         label {
           top: 0.25rem;
           font-size: 0.75rem;
-        }
-
-        input {
-          border-color: $white;
         }
       }
     }
@@ -86,8 +87,7 @@
 
   .community-section {
     background-color: $black-almost;
-    padding-top: 14rem;
-    padding-bottom: 10rem;
+    padding: 11rem 0;
     position: relative;
     height: auto !important;
     min-height: 100vh;
@@ -102,7 +102,14 @@
     }
 
     .section-sub-title {
-      width: 31.75vw;
+      width: 37.75vw;
+      margin: 1.5rem 0 1.75rem;
+    }
+
+    .section-content {
+      @include columnPadding();
+
+      width: 33vw;
     }
 
     .accern-overlay-button {
@@ -121,10 +128,11 @@
       max-width: 49em;
 
       li {
+        @include fontBold();
+
         border-bottom: 2px solid #d8d8d8;
         color: #cacaca;
         display: inline-block;
-        font-weight: 600;
         list-style: none;
         margin: 0 -0.13em;
         padding: 1.06em 0;
@@ -156,8 +164,9 @@
     }
 
     .community-title {
+      @include fontBold();
+
       font-size: 3em;
-      font-weight: 700;
       width: auto;
       display: inline-block;
     }
@@ -340,8 +349,9 @@
         }
 
         .article-title {
-          font-size: 1.5em;
-          font-weight: 700;
+          @include fontBold();
+
+          font-size: 1.3em;
           text-transform: uppercase;
           margin-bottom: 0.5em;
         }
@@ -351,7 +361,8 @@
         }
 
         .download-file {
-          font-weight: 700;
+          @include fontBold();
+
           padding-left: 3em;
           padding-top: 0.7em;
           position: absolute;
@@ -400,8 +411,9 @@
         border-bottom: 1px solid #cacaca;
 
         .article-title {
+          @include fontBold();
+
           font-size: 1.5em;
-          font-weight: 700;
           margin-bottom: 0.5em;
         }
 
@@ -464,5 +476,94 @@
 
   footer {
     position: relative;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-template-community-template {
+    .accern-overlay-content-wrap {
+      .wpcf7-form {
+        .form-wrap {
+          width: 100%;
+        }
+      }
+    }
+
+    .community-section {
+      .section-sub-title {
+        width: 57.75vw;
+      }
+    }
+
+    .community-tab-wrapper {
+      overflow: scroll;
+
+      ul {
+        max-width: 200%;
+        margin-left: -1em;
+        width: 200%;
+
+        li {
+          width: 33%;
+        }
+      }
+    }
+
+    .community-content {
+      .community-search-wrap {
+        width: 100%;
+        margin: 2em 0 5em;
+        display: table;
+
+        .community-count {
+          display: table-footer-group;
+          margin: 0;
+          text-align: left;
+          font-size: 2em;
+        }
+
+        .community-sort {
+          width: 100%;
+        }
+
+        .community-search {
+          width: 100%;
+          margin: 2em 0;
+        }
+      }
+
+      .community-items-list-wrap {
+        .white-paper-item {
+          width: 100%;
+
+          .article-title {
+            font-size: 2em;
+          }
+
+          .article-content {
+            font-size: 1.3em;
+          }
+        }
+
+        .education-center-item {
+          a {
+            display: table;
+
+            .article-title {
+              margin: 1em 0 0;
+            }
+
+            .article-author {
+              margin: 1em 0;
+            }
+
+            .article-post-date {
+              display: table-header-group;
+              float: none;
+            }
+          }
+        }
+      }
+    }
   }
 }

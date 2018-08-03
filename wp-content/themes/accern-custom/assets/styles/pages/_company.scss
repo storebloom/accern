@@ -20,7 +20,7 @@
   display: block;
   background-color: $black-almost;
   padding-top: 8rem;
-  padding-right: 20vw;
+  padding-right: 10vw;
   padding-bottom: 8rem;
   width: 100%;
   height: auto !important;
@@ -83,7 +83,7 @@
 #company-team-section div:nth-child(5) {
   @for $i from 2 through 6 {
     .team-member-item:nth-child(#{$i}) {
-      width: calc(20% - 1rem);
+      width: calc(16.666% - 1rem);
     }
   }
 }

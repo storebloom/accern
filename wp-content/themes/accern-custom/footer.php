@@ -10,7 +10,10 @@
  */
 
 // Pull in overlay wrap.
-get_template_part( 'template-parts/home', 'overlay' );
+
+if ( ! is_page( 'Community' ) ) {
+	get_template_part( 'template-parts/home', 'overlay' );
+}
 ?>
 	</div><!-- #content -->
 

@@ -49,16 +49,21 @@ $white_papers = get_posts(
 		}
 		?>
 	</div>
+	<input type="hidden" id="download-this-one">
 
 	<?php if ( ! empty( $section_info['form-shortcode'] ) ) : ?>
-		<div id="request-access">
-			<div class="overlay-title">
-				<?php echo esc_html__( 'White Paper Access', 'accern-custom' ); ?>
-			</div>
-			<div class="overlay-content">
-				<?php echo do_shortcode( $section_info['form-shortcode'] ); ?>
+		<div class="accern-overlay-content-wrap">
+			<div class="accern-overlay-content-wrap-inner">
+				<span id="close-overlay" class="overlay-icon"><i>Close</i></span>
+				<div class="accern-overlay-content">
+					<div class="overlay-title">
+						<?php echo esc_html__( 'White Paper Access', 'accern-custom' ); ?>
+					</div>
+					<div class="overlay-content">
+						<?php echo do_shortcode( $section_info['form-shortcode'] ); ?>
+					</div>
+				</div>
 			</div>
 		</div>
 	<?php endif; ?>
-
 </div>

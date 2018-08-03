@@ -82,11 +82,10 @@ function get_accern_nav_icons( $id, $count, $page, $sections, $page_names = fals
 			for ( $x = 1; $x <= $count; $x++ ) :
 				$section_num = $x - 1;
 
-				if ( 'homepage' === $page ) {
-					$section = get_home_section_info( $sections[ $section_num ], $id );
-				} elseif ( 'company' === $page ) {
+				if ( 'company' === $page ) {
 					$section = get_section_info( 'company', $sections[ $section_num ], $id );
 				}
+
 				$current = 1 === $x ? 'current-section' : '';
 				$is_mobile = wp_is_mobile();
 			?>
