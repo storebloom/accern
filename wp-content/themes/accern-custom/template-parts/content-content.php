@@ -10,6 +10,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" class="next-section">
+	<a name="next-section"></a>
 	<div class="entry-content">
 		<?php the_content(); ?>
 	</div><!-- .entry-content -->

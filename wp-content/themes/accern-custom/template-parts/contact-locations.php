@@ -8,8 +8,9 @@
  */
 
 $section_info = get_section_info( 'contact', 'locations', get_the_ID() );
+$background = ! empty ( $main_section_info['background-size'] ) && 'half' === $main_section_info['background-size'] ? 'background-image: url(' . $main_image . ');' : '';
 ?>
-<div id="contact-locations-section">
+<div id="contact-locations-section" style="<?php echo esc_attr( $background ); ?>">
 	<?php if ( isset( $section_info['title'] ) && '' !== $section_info['title'] ) : ?>
 		<div class="section-title">
 			<?php echo esc_html( $section_info['title'] ); ?>

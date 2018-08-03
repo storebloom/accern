@@ -21,6 +21,10 @@
 		</div>
 	<?php endif; ?>
 
+	<div class="section-content">
+		<?php the_content(); ?>
+	</div>
+
 	<?php if ( ! empty( $section_info['overlay-repeater'][1]['title'] ) && is_array( $section_info['overlay-repeater'] ) ) : ?>
 		<?php foreach ( $section_info['overlay-repeater'] as $num => $overlay_links ) : ?>
 			<?php if ( ! empty( $overlay_links['url'] ) ) : ?>
@@ -48,6 +52,7 @@
 	</div>
 </div>
 <div class="community-tab-wrapper next-section">
+	<a name="next-section"></a>
 	<ul>
 		<li data-tab="community-white" class="active-tab"><?php echo esc_html__( 'White Papers', 'accern-custom' ); ?></li>
 		<li data-tab="community-education"><?php echo esc_html__( 'Education Center', 'accern-custom' ); ?></li>

@@ -23,7 +23,7 @@ while ( have_posts() ) :
 	// Nav icons.
 	$id = get_the_ID();
 
-	get_accern_nav_icons( $id, 6, 'homepage', array( '1', '2', '3', '4', '5', 'cases' ) );
+	get_accern_nav_icons( $id, 6, 'homepage', array( 'Behind Great Decisions', 'Content Aggregation', 'Content Filtering', 'Content Analysis', 'Decision-Making', 'Our Use Cases' ), true );
 endwhile; // End of the loop.
 
 get_footer();

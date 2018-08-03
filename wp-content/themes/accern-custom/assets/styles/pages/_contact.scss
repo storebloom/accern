@@ -10,6 +10,10 @@
     overflow-x: hidden;
     width: 100%;
     padding-bottom: 5rem;
+
+    .contact-wrap {
+      display: inherit;
+    }
   }
 
   .section-title {
@@ -39,7 +43,6 @@
 #contact-locations-section {
   padding: 20vh 4vw 2rem 4vw;
   min-width: 39vw;
-  background-image: url('../images/bg-block.svg');
   background-position: right center;
   background-size: 10px auto;
 }

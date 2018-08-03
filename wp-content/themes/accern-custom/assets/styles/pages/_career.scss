@@ -12,7 +12,7 @@
 
   .careers-section {
     background-color: $black-almost;
-    padding-top: 14rem;
+    padding-top: 10rem;
     padding-bottom: 10rem;
     position: relative;
     height: auto !important;
@@ -28,7 +28,8 @@
     }
 
     .section-sub-title {
-      width: 50vw;
+      width: 60vw;
+      margin: 1.5rem 0 0.75rem;
     }
 
     .section-content {
@@ -51,8 +52,9 @@
     margin-top: 4em;
 
     .career-title {
+      @include fontBold();
+
       font-size: 3em;
-      font-weight: 700;
       width: auto;
       display: inline-block;
     }
@@ -83,8 +85,9 @@
         }
 
         .article-title {
-          font-size: 1.5em;
-          font-weight: 700;
+          @include fontBold();
+
+          font-size: 1.3em;
           text-transform: uppercase;
           margin-bottom: 0.5em;
         }
@@ -94,11 +97,12 @@
         }
 
         .learn-more-link {
-          font-weight: 700;
+          @include fontBold();
+
           padding-left: 3em;
           padding-top: 0.7em;
           position: absolute;
-          bottom: 5em;
+          bottom: 3.5em;
           text-transform: uppercase;
 
           &::before {
@@ -216,5 +220,36 @@
 
   footer {
     position: relative;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-template-careers-template {
+    .careers-section {
+      .section-sub-title {
+        width: 100vw;
+        font-size: 3.3em;
+      }
+
+      .section-content {
+        width: 100vw;
+      }
+    }
+
+    .careers-content {
+      .career-items-list-wrap {
+        .career-item {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .career-template-default {
+    padding: 0;
+
+    #career-main-section {
+      padding-top: 10em;
+    }
   }
 }

@@ -304,9 +304,6 @@ class Custom_Fields {
 				);
 			break;
 			case 'page-templates/community-template.php' :
-				// Remove editor features for specific page.
-				remove_post_type_support( 'page', 'editor' );
-
 				$prefix          = 'community-main-section';
 				$title_field     = $this->create_custom_field( $postid, $prefix, 'title', 'text' );
 				$sub_title_field = $this->create_custom_field( $postid, $prefix, 'sub-title', 'text' );
@@ -327,7 +324,6 @@ class Custom_Fields {
 			case 'page-templates/contact-template.php' :
 				// Remove editor features for specific page.
 				remove_post_type_support( 'page', 'editor' );
-				remove_meta_box( 'postimagediv', 'page', 'side' );
 
 				// Form Section.
 				$prefix         = 'contact-form-section';
@@ -341,7 +337,19 @@ class Custom_Fields {
 				$wysiwyg_field2   = $this->create_custom_field( $postid, $prefix2, 'content', 'wysiwyg' );
 				$wysiwyg_repeater = $this->create_custom_field( $postid, $prefix2, 'wysiwyg-repeater', 'wysiwyg_repeater' );
 
+				// Locations Section.
+				$prefix3          = 'contact-global-section';
+				$background_field    = $this->create_custom_field( $postid, $prefix3, 'background-size', 'text' );
+
 				$metabox_array = array(
+					array(
+						'id'          => $prefix3 . '-accern',
+						'description' => esc_html__( 'Global Settings', 'accern-custom' ),
+						'screen'      => 'page',
+						'context'     => 'normal',
+						'priority'    => 'high',
+						'args'        => $background_field,
+					),
 					array(
 						'id'          => $prefix . '-accern',
 						'description' => esc_html__( 'Form Section', 'accern-custom' ),
