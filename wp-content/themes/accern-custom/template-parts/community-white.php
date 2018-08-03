@@ -52,7 +52,7 @@ $white_papers = get_posts(
 	<input type="hidden" id="download-this-one">
 
 	<?php if ( ! empty( $section_info['form-shortcode'] ) ) : ?>
-		<div class="accern-overlay-content-wrap">
+		<div class="accern-overlay-content-wrap-white">
 			<div class="accern-overlay-content-wrap-inner">
 				<span id="close-overlay" class="overlay-icon"><i>Close</i></span>
 				<div class="accern-overlay-content">

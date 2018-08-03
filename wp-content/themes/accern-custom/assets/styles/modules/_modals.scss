@@ -8,7 +8,8 @@ body.modal-active {
   overflow: hidden;
 }
 
-.accern-overlay-content-wrap {
+.accern-overlay-content-wrap,
+.accern-overlay-content-wrap-white {
   position: fixed;
   z-index: 1000;
   top: 0;
@@ -117,7 +118,8 @@ body.modal-active {
   Modal Windows
   ---------------------------------------------------------------------- */
 @media (max-width: 960px) {
-  .accern-overlay-content-wrap {
+  .accern-overlay-content-wrap,
+  .accern-overlay-content-wrap-white {
     padding: $sectionMobilePadding;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
